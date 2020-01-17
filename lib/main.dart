@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
           child: new Container(
 //            height: 200,
 //            child: HorizontalListView(),
-            child: VerticalListView(),
+//            child: VerticalListView(),
+            child: MyGridView(),
           ),
         ),
 //        body: new Center(
@@ -69,11 +70,61 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyGridView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new GridView(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 2,
+          mainAxisSpacing: 2,
+          childAspectRatio: 1),
+      children: <Widget>[
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+      ],
+    );
+  }
+}
+
 class VerticalListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListView(
       children: <Widget>[
+        new ListTile(
+          leading: new Icon(Icons.access_time),
+          title: new Text("access_time"),
+        ),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg"),
         new ListTile(
           leading: new Icon(Icons.access_time),
           title: new Text("access_time"),
