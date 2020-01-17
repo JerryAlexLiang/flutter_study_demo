@@ -75,10 +75,11 @@ class MyGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return new GridView(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          crossAxisSpacing: 2,
-          mainAxisSpacing: 2,
-          childAspectRatio: 1),
+          crossAxisCount: 3, //crossAxisCount:网格的列数，相当于一行放置的网格数量
+          crossAxisSpacing: 2, //crossAxisSpacing:网格列间的空当，相当于每个网格之间的间距
+          mainAxisSpacing: 2, //mainAxisSpacing:网格行间的空当，相当于每个网格之间的间距
+          childAspectRatio: 1 //childAspectRatio:宽高比，这个值的意思是宽是高的多少倍
+          ),
       children: <Widget>[
         new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
             fit: BoxFit.cover),
