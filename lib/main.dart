@@ -1,5 +1,4 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
@@ -18,7 +17,7 @@ class FirstPage extends StatelessWidget {
       appBar: AppBar(title: Text("页面导航")),
       body: Center(
         child: RaisedButton(
-          child: Text("路由导航跳转到下一页"),
+          child: Text("路由Navigator导航跳转到下一页"),
           onPressed: () {
             Navigator.push(context, new MaterialPageRoute(
                 builder: (context) => new SecondPage()));
@@ -38,7 +37,7 @@ class SecondPage extends StatelessWidget {
         child: RaisedButton(
           child: Text("返回"),
           onPressed: () {
-            Navigator.pop(context)
+            Navigator.pop(context);
           },
         ),
       ),
