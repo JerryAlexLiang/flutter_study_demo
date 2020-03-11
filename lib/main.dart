@@ -1,14 +1,88 @@
 // ignore: avoid_web_libraries_in_flutter
 
+
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
 //void main() => runApp(MyApp());
-void main() =>
-    runApp(MaterialApp(
-      title: "路由跳转演示",
-      home: new FirstPage(),
+void main() => runApp(MaterialApp(
+      title: "数据传递案例",
+      home: StudentList(
+        students: List.generate(20, (i) => Student('学生 $i', '学生编号: $i')),
+      ),
     ));
+
+class Student {
+  String name;
+  String number;
+
+  Student(this.name, this.number);
+}
+
+//自定义组件
+class StudentList extends StatelessWidget {
+  final List<Student> students;
+
+  StudentList({Key key, this.students}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('学生列表')),
+      body: ListView.builder(
+          itemCount: students.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(students[index].name),
+              onTap: () {
+//                Scaffold.of(context).showSnackBar(SnackBar(content: Text(students[index].name)));
+                Navigator.push(
+                  context,
+//                    MaterialPageRoute(builder: (context) => new FirstPage()));
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          new StudentDetail(student: students[index])),
+                );
+              },
+            );
+          }),
+    );
+  }
+}
+
+class StudentDetail extends StatelessWidget {
+  final Student student;
+
+  const StudentDetail({Key key, this.student}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: Text('学生详情-${student.name}'),
+      ),
+      body: Center(
+        child: Text('学生姓名: ${student.name}  ' + '\n' + '编号: ${student.number}'),
+      ),
+    );
+  }
+}
+
+//class ProductDetail extends StatelessWidget {
+//  final Product product;
+//  ProductDetail({Key key ,@required this.product}):super(key:key);
+//
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return new Scaffold(
+//      appBar: AppBar(
+//        title:Text('${product.title}'),
+//      ),
+//      body:Center(child: Text('${product.description}'),)
+//    );
+//  }
+//}
 
 class FirstPage extends StatelessWidget {
   @override
@@ -19,8 +93,8 @@ class FirstPage extends StatelessWidget {
         child: RaisedButton(
           child: Text("路由Navigator导航跳转到下一页"),
           onPressed: () {
-            Navigator.push(context, new MaterialPageRoute(
-                builder: (context) => new SecondPage()));
+            Navigator.push(context,
+                new MaterialPageRoute(builder: (context) => new SecondPage()));
           },
         ),
       ),
@@ -32,7 +106,9 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("详情页"),),
+      appBar: AppBar(
+        title: Text("详情页"),
+      ),
       body: Center(
         child: RaisedButton(
           child: Text("返回"),
@@ -43,7 +119,6 @@ class SecondPage extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class MyApp extends StatelessWidget {
@@ -122,7 +197,7 @@ class MyGridView extends StatelessWidget {
           crossAxisSpacing: 2, //crossAxisSpacing:网格列间的空当，相当于每个网格之间的间距
           mainAxisSpacing: 2, //mainAxisSpacing:网格行间的空当，相当于每个网格之间的间距
           childAspectRatio: 1 //childAspectRatio:宽高比，这个值的意思是宽是高的多少倍
-      ),
+          ),
       children: <Widget>[
         new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
             fit: BoxFit.cover),
