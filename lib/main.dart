@@ -1,16 +1,31 @@
 // ignore: avoid_web_libraries_in_flutter
 
+import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_study_demo/main_home_page.dart';
 
-//void main() => runApp(MyApp());
-void main() => runApp(MaterialApp(
-      title: "数据传递案例",
-      home: StudentList(
-        students: List.generate(20, (i) => Student('学生 $i', '学生编号: $i')),
-      ),
-    ));
+void main() async {
+  if (Platform.isAndroid) {
+    // 以下两行 设置Android状态栏为透明的沉浸。写在组件渲染之后，
+    // 是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+    SystemUiOverlayStyle systemUiOverlayStyle =
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
+  runApp(WanAndroidApp());
+}
+
+// void main() => runApp(WanAndroidApp());
+// void main() => runApp(MyApp());
+// void main() => runApp(MaterialApp(
+//       title: "数据传递案例",
+//       home: StudentList(
+//         students: List.generate(20, (i) => Student('学生 $i', '学生编号: $i')),
+//       ),
+//     ));
 
 class Student {
   String name;
@@ -199,6 +214,18 @@ class MyGridView extends StatelessWidget {
           childAspectRatio: 1 //childAspectRatio:宽高比，这个值的意思是宽是高的多少倍
           ),
       children: <Widget>[
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
+        new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
+            fit: BoxFit.cover),
         new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
             fit: BoxFit.cover),
         new Image.network("http://dpic.tiankong.com/8g/6d/QJ6316822497.jpg",
