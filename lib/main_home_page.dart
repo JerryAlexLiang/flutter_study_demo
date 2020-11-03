@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/home_list_page.dart';
 import 'package:flutter_study_demo/knowledge_system_tree_page.dart';
 
+/// 主页面
 class WanAndroidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
 
   PageController _pageController;
 
-  final appBarTitles = ['首页', '体系'];
+  final appBarTitles = ['知识', '视频'];
 
   @override
   void initState() {
@@ -55,11 +56,12 @@ class _HomeMainPageState extends State<HomeMainPage> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                onPressed: null)
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              onPressed: null,
+            )
           ],
         ),
         body: getHomeMainBody(),
@@ -98,12 +100,15 @@ class _HomeMainPageState extends State<HomeMainPage> {
               title: Text(appBarTitles[0]),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.widgets),
+              icon: Icon(Icons.movie),
               title: Text(appBarTitles[1]),
             ),
           ],
+          // selectedItemColor: Colors.red,
           onTap: (page) {
             //滑动到相应页面   curve是动画效果
+            // _pageController.animateToPage(page,
+            //     duration: Duration(milliseconds: 300), curve: Curves.easeIn);
             //直接转到相应页面,没得啥动画效果   并且不会经过中间的页面,上面的那个会经过中间页
             _pageController.jumpToPage(page);
           },
