@@ -65,6 +65,56 @@ class _HomeMainPageState extends State<HomeMainPage> {
           ],
         ),
         body: getHomeMainBody(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => KnowledgeSystemPage()),
+            );
+          },
+          tooltip: 'Increment',
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.white,
+          shape: CircularNotchedRectangle(),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                icon: Icon(Icons.home),
+                tooltip: '首页',
+                // highlightColor: Colors.blue,
+                // splashColor: Colors.blue,
+                onPressed: () {
+                  setState(() {
+                    currentPage = 0;
+                    //直接转到相应页面,没得啥动画效果   并且不会经过中间的页面,上面的那个会经过中间页
+                    _pageController.jumpToPage(currentPage);
+                  });
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.movie),
+                tooltip: '视频',
+                // highlightColor: Colors.blue,
+                // splashColor: Colors.blue,
+                onPressed: () {
+                  setState(() {
+                    currentPage = 1;
+                    //直接转到相应页面,没得啥动画效果   并且不会经过中间的页面,上面的那个会经过中间页
+                    _pageController.jumpToPage(currentPage);
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -92,28 +142,32 @@ class _HomeMainPageState extends State<HomeMainPage> {
             },
           ),
         ),
+        // //底部的BottomNavigationBar
+        // BottomNavigationBar(
+        //   items: [
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.home),
+        //       title: Text(appBarTitles[0]),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.movie),
+        //       title: Text(appBarTitles[1]),
+        //     ),
+        //   ],
+        //   // selectedItemColor: Colors.red,
+        //   onTap: (page) {
+        //     //滑动到相应页面   curve是动画效果
+        //     // _pageController.animateToPage(page,
+        //     //     duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+        //     //直接转到相应页面,没得啥动画效果   并且不会经过中间的页面,上面的那个会经过中间页
+        //     _pageController.jumpToPage(page);
+        //   },
+        //   currentIndex: currentPage,
+        // ),
+
         //底部的BottomNavigationBar
-        BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text(appBarTitles[0]),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.movie),
-              title: Text(appBarTitles[1]),
-            ),
-          ],
-          // selectedItemColor: Colors.red,
-          onTap: (page) {
-            //滑动到相应页面   curve是动画效果
-            // _pageController.animateToPage(page,
-            //     duration: Duration(milliseconds: 300), curve: Curves.easeIn);
-            //直接转到相应页面,没得啥动画效果   并且不会经过中间的页面,上面的那个会经过中间页
-            _pageController.jumpToPage(page);
-          },
-          currentIndex: currentPage,
-        ),
+
+        //底部工具栏BottomAppBar，比BottomNavigationBar widget灵活很多，可以放置文字和图标，当然也可以放置容器
       ],
     );
   }
