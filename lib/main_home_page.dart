@@ -3,7 +3,7 @@ import 'package:flutter_study_demo/home_list_page.dart';
 import 'package:flutter_study_demo/knowledge_system_tree_page.dart';
 import 'package:flutter_study_demo/simple_list_page.dart';
 
-import 'custome_router.dart';
+import 'custom_router.dart';
 
 /// 主页面
 class WanAndroidApp extends StatelessWidget {

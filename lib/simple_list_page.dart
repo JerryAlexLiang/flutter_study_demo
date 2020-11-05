@@ -5,16 +5,26 @@ import 'package:flutter/material.dart';
 class SimpleListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //return MaterialApp(home: HomeMainPage());
-    return MaterialApp(
-      title: 'ListView',
-      home: StudentList(
-        students:
-            List.generate(20, (index) => Student('学生 $index', '学生编号: $index')),
-      ),
-    );
+    // return MaterialApp(
+    //   title: 'ListView',
+    //   home: StudentList(
+    //     students:
+    //         List.generate(20, (index) => Student('学生 $index', '学生编号: $index')),
+    //   ),
+    // );
+
+    return Scaffold(
+          // appBar: AppBar(
+          //   title: Text('ListView'),
+          // ),
+          body: StudentList(
+            students:
+                List.generate(20, (index) => Student('学生 $index', '学生编号: $index')),
+          ),
+        );
   }
 }
+
 
 class Student {
   String name;
