@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/home_list_page.dart';
 import 'package:flutter_study_demo/knowledge_system_tree_page.dart';
+import 'package:flutter_study_demo/simple_list_page.dart';
+
+import 'custome_router.dart';
 
 /// 主页面
 class WanAndroidApp extends StatelessWidget {
@@ -69,7 +72,8 @@ class _HomeMainPageState extends State<HomeMainPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => KnowledgeSystemPage()),
+              // MaterialPageRoute(builder: (context) => SimpleListPage()),
+              CustomRoute(SimpleListPage())
             );
           },
           tooltip: 'Increment',
