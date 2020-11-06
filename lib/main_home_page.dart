@@ -52,21 +52,21 @@ class _HomeMainPageState extends State<HomeMainPage> {
         iconTheme: IconThemeData(color: Color(0xFF2962FF), size: 25.0),
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            appBarTitles[currentPage],
-            style: TextStyle(color: Colors.white),
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              onPressed: null,
-            )
-          ],
-        ),
+        // appBar: AppBar(
+        //   title: Text(
+        //     appBarTitles[currentPage],
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        //   actions: <Widget>[
+        //     IconButton(
+        //       icon: Icon(
+        //         Icons.search,
+        //         color: Colors.white,
+        //       ),
+        //       onPressed: null,
+        //     )
+        //   ],
+        // ),
         body: getHomeMainBody(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
