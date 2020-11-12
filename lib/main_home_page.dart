@@ -71,10 +71,9 @@ class _HomeMainPageState extends State<HomeMainPage> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(
-              context,
-              // MaterialPageRoute(builder: (context) => SimpleListPage()),
-              CustomRoute(SimpleListPage())
-            );
+                context,
+                // MaterialPageRoute(builder: (context) => SimpleListPage()),
+                CustomRoute(SimpleListPage()));
           },
           tooltip: 'Increment',
           child: Icon(

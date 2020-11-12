@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_study_demo/automatic_keep_alive_page.dart';
 
 class KnowledgeSystemPage extends StatefulWidget {
   @override
@@ -9,7 +11,7 @@ class KnowledgeSystemPage extends StatefulWidget {
 // 就是说可以将一个或者多个类的功能添加到自己的类无需继承这些类，
 // 避免多重继承导致的问题。
 // SingleTickerProviderStateMixin 主要是我们初始化TabController时，
-// 需要用到vsync ，垂直属性，然后传递this
+// 需要用到async ，垂直属性，然后传递this
 class _KnowledgeSystemPageState extends State<KnowledgeSystemPage>
     with SingleTickerProviderStateMixin {
   TabController _controller;
@@ -39,22 +41,31 @@ class _KnowledgeSystemPageState extends State<KnowledgeSystemPage>
                 Tab(icon: Icon(Icons.directions_transit)),
                 Tab(icon: Icon(Icons.directions_bike)),
               ],
-            )
-        ),
+              labelColor: Colors.red,
+              unselectedLabelColor: Colors.white,
+              indicatorColor: Colors.yellow,
+            )),
+        // body: TabBarView(
+        //   controller: _controller,
+        //   children: [
+        //     Center(
+        //       child: Text('111'),
+        //     ),
+        //     Center(
+        //       child: Text('222'),
+        //     ),
+        //     Center(
+        //       child: Text('333'),
+        //     ),
+        //   ],
+        // ));
         body: TabBarView(
           controller: _controller,
           children: [
-            Center(
-              child: Text('111'),
-            ),
-            Center(
-              child: Text('222'),
-            ),
-            Center(
-              child: Text('333'),
-            ),
+            AutomaticKeepAlivePage(),
+            AutomaticKeepAlivePage(),
+            AutomaticKeepAlivePage(),
           ],
-        )
-    );
+        ));
   }
 }
