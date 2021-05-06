@@ -69,7 +69,7 @@ requestHttpClient() async {
     //3、等待连接服务器：
     HttpClientResponse response = await request.close();
     //4、这一步完成后，请求信息就已经发送给服务器了，返回一个HttpClientResponse对象，
-    // 它包含响应头（header）和响应流(响应体的Stream)，接下来就可以通过读取响应流来获取响应内容。
+    // 它包含响应头（header）和响应流(响应体的Stream)，接下来就可以通过读取响应流来获取响应内容
     String _responseText = await response.transform(Utf8Decoder()).join();
     print("++++++++>>>>>>>>>>>  success " + _responseText);
     //5、请求结束，关闭HttpClient  关闭client后，通过该client发起的所有请求都会中止
