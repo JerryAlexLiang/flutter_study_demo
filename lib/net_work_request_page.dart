@@ -99,18 +99,19 @@ void _requestHttpClientGet() async {
     //1、创建一个HttpClient
     HttpClient httpClient = new HttpClient();
     //2、打开Http连接，设置请求头
-    HttpClientRequest request =
-    await httpClient.getUrl(Uri.parse("https://jsonplaceholder.typicode.com/posts/1"));
+    HttpClientRequest request = await httpClient
+        .getUrl(Uri.parse("https://jsonplaceholder.typicode.com/posts/1"));
     //通过HttpClientRequest可以设置请求header
     //request.headers.add("user-agent", "test");
     //3、等待连接服务器：
     HttpClientResponse response = await request.close();
     //4、这一步完成后，请求信息就已经发送给服务器了，返回一个HttpClientResponse对象，
     // 它包含响应头（header）和响应流(响应体的Stream)，接下来就可以通过读取响应流来获取响应内容
-    if(response.statusCode==200){
+    if (response.statusCode == 200) {
       String _responseText = await response.transform(Utf8Decoder()).join();
-      print(">>>>>>>>>>>  requestHttpClientGet success " + _responseText.toString());
-    }else{
+      print(">>>>>>>>>>>  requestHttpClientGet success " +
+          _responseText.toString());
+    } else {
       print('>>>>>>>>>>> requestHttpClientGet error: ');
     }
     //5、请求结束，关闭HttpClient  关闭client后，通过该client发起的所有请求都会中止
@@ -133,7 +134,12 @@ void _requestHttpClientPost() async {
     request.headers.set('content-type', 'application/json');
     */
     //添加请求体
-    Map jsonMap = {'shopperId': 9356,'machineId':5117,'orderType':2,'orderId':108};
+    Map jsonMap = {
+      'shopperId': 9356,
+      'machineId': 5117,
+      'orderType': 2,
+      'orderId': 108
+    };
     Map<String, String> map1 = new Map();
     map1["v"] = "1.0";
     map1["month"] = "7";
@@ -144,7 +150,7 @@ void _requestHttpClientPost() async {
 
     HttpClientResponse response = await request.close();
     String _responseText = await response.transform(Utf8Decoder()).join();
-    if(response.statusCode==HttpStatus.ok){
+    if (response.statusCode == HttpStatus.ok) {
       print(">>>>>>>>>>>  requestHttpClientPost success " + _responseText);
     }
     httpClient.close();
