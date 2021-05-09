@@ -126,8 +126,7 @@ void _requestHttpClientPost() async {
     HttpClient httpClient = new HttpClient();
     HttpClientRequest request = await httpClient
         .postUrl(Uri.parse("https://www.wanandroid.com/user/login"));
-    // 设置请求头
-    // Content-Type大小写都ok
+    // 设置请求头 Content-Type大小写都ok
     request.headers.contentType =
         ContentType("application", "x-www-form-urlencoded");
     //添加请求体-设置body参数
