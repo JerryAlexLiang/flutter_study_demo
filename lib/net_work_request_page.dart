@@ -124,30 +124,18 @@ void _requestHttpClientGet() async {
 void _requestHttpClientPost() async {
   try {
     HttpClient httpClient = new HttpClient();
-    HttpClientRequest request =
-        await httpClient.postUrl(Uri.parse("http://api.juheapi.com/japi/toh"));
+    HttpClientRequest request = await httpClient
+        .postUrl(Uri.parse("https://www.wanandroid.com/user/login"));
     // 设置请求头
-    /*  request.headers.set("loginSource", "IOS");
-    request.headers.set("useVersion", "3.1.0");
-    request.headers.set("isEncoded", "1");
     // Content-Type大小写都ok
-    request.headers.set('content-type', 'application/json');
-    */
-    //添加请求体
-    Map jsonMap = {
-      'shopperId': 9356,
-      'machineId': 5117,
-      'orderType': 2,
-      'orderId': 108
-    };
-
+    request.headers.contentType =
+        ContentType("application", "x-www-form-urlencoded");
+    //添加请求体-设置body参数
     Map<String, String> map1 = new Map();
-    map1["v"] = "1.0";
-    map1["month"] = "7";
-    map1["day"] = "25";
-    map1["key"] = "bd6e35a2691ae5bb8425c8631e475c2a";
+    map1["username"] = "";
+    map1["password"] = "";
 
-    request.add(utf8.encode(json.encode(map1)));
+    // request.write("username='1'&password='1'");
 
     HttpClientResponse response = await request.close();
     String _responseText = await response.transform(Utf8Decoder()).join();
