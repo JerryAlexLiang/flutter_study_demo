@@ -132,8 +132,8 @@ void _requestHttpClientPost() async {
         ContentType("application", "x-www-form-urlencoded");
     //添加请求体-设置body参数
     Map<String, String> map1 = new Map();
-    map1["username"] = "";
-    map1["password"] = "";
+    map1["username"] = "1";
+    map1["password"] = "1";
 
     // request.write("username='1'&password='1'");
 
