@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -53,10 +54,32 @@ class NetworkRequestPage extends StatelessWidget {
               height: 50,
               minWidth: 100,
               elevation: 5,
-              color: Colors.blue,
+              color: Colors.yellow,
               child: Text('DartHttpPost'),
               onPressed: () {
                 _requestDartHttpPost();
+              },
+            ),
+            SizedBox(height: 10), //保留间距10
+            MaterialButton(
+              height: 50,
+              minWidth: 100,
+              elevation: 5,
+              color: Colors.pink,
+              child: Text('DioGet'),
+              onPressed: () {
+                _requestDioGet();
+              },
+            ),
+            SizedBox(height: 10), //保留间距10
+            MaterialButton(
+              height: 50,
+              minWidth: 100,
+              elevation: 5,
+              color: Colors.pink,
+              child: Text('DioPost'),
+              onPressed: () {
+                _requestDioPost();
               },
             ),
           ],
@@ -120,7 +143,7 @@ void _requestHttpClientPost() async {
 }
 
 void _requestDartHttpGet() async {
-  var url = Uri.parse("https://wanandroid.com/wxarticle/chapters/json ");
+  var url = Uri.parse("https://wanandroid.com/wxarticle/chapters/json");
   try {
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);
@@ -157,5 +180,57 @@ void _requestDartHttpPost() async {
     }
   } catch (_) {
     print('>>>>>>>>>>> requestDartHttpPost 请求异常: ' + _.toString());
+  }
+}
+
+void _requestDioGet() async {
+  var url = Uri.parse("https://wanandroid.com/wxarticle/chapters/json");
+  var url2 = "https://www.wanandroid.com/article/list/0/json";
+  try {
+    Response response;
+    var dio = Dio();
+    // response = await dio.getUri(url);
+
+    //Optionally the request above could also be done as
+    //https://www.wanandroid.com/article/list/0/json?cid=60
+    response = await dio.get(url2, queryParameters: {'cid': 60});
+
+    if (response.statusCode == 200) {
+      var jsonResponse = response.data.toString();
+      print(">>>>>>>>>>>   requestDioGet success " + jsonResponse);
+    } else {
+      print('>>>>>>>>>>>  requestDioGet 请求异常: ');
+    }
+  } catch (_) {
+    print('>>>>>>>>>>>  requestDioGet 请求异常: ' + _.toString());
+  }
+}
+
+void _requestDioPost() async {
+  var url = "https://www.wanandroid.com/user/login";
+  //发送POST请求，application和x-www-from-urlencoded数据类型
+  //设置Header
+  // Map<String, String> headersMap = new Map();
+  // headersMap["content-type"] = "application/x-www-from-urlencoded";
+  //设置body参数
+  //设置body参数
+  Map<String, String> bodyParams = new Map();
+  bodyParams["username"] = "1";
+  bodyParams["password"] = "1";
+
+  try {
+    FormData formData = FormData.fromMap(bodyParams);
+    Response response;
+    var dio = Dio();
+    response = await dio.post(url, data: formData);
+
+    if (response.statusCode == 200) {
+      var jsonResponse = response.data.toString();
+      print(">>>>>>>>>>>   requestDioPost success " + jsonResponse);
+    } else {
+      print('>>>>>>>>>>>   requestDioPost 请求异常: ');
+    }
+  } catch (_) {
+    print('>>>>>>>>>>>   requestDioPost 请求异常: ' + _.toString());
   }
 }
