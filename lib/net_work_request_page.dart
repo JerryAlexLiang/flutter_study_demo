@@ -213,7 +213,6 @@ void _requestDioPost() async {
   // Map<String, String> headersMap = new Map();
   // headersMap["content-type"] = "application/x-www-from-urlencoded";
   //设置body参数
-  //设置body参数
   Map<String, String> bodyParams = new Map();
   bodyParams["username"] = "1";
   bodyParams["password"] = "1";
