@@ -5,7 +5,9 @@ import 'dart:io';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_study_demo/main_home_page.dart';
+import 'package:flutter_study_demo/main_new_home_page.dart';
+
+import 'main_new_home_page.dart';
 
 void main() async {
   if (Platform.isAndroid) {
@@ -15,7 +17,8 @@ void main() async {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
-  runApp(WanAndroidApp());
+  // runApp(WanAndroidApp());
+  runApp(MainNewHomePage());
 }
 
 // void main() => runApp(WanAndroidApp());
