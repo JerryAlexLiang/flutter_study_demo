@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class NetworkRequestPage extends StatelessWidget {
   @override
@@ -36,6 +37,28 @@ class NetworkRequestPage extends StatelessWidget {
                 _requestHttpClientPost();
               },
             ),
+            SizedBox(height: 10), //保留间距10
+            MaterialButton(
+              height: 50,
+              minWidth: 100,
+              elevation: 5,
+              color: Colors.blue,
+              child: Text('DartHttpGet'),
+              onPressed: () {
+                _requestDartHttpGet();
+              },
+            ),
+            SizedBox(height: 10), //保留间距10
+            MaterialButton(
+              height: 50,
+              minWidth: 100,
+              elevation: 5,
+              color: Colors.blue,
+              child: Text('DartHttpPost'),
+              onPressed: () {
+                _requestDartHttpPost();
+              },
+            ),
           ],
         ),
       ),
@@ -43,58 +66,7 @@ class NetworkRequestPage extends StatelessWidget {
   }
 }
 
-// requestHttpClient() {
-//   //创建一个HttpClient
-//   HttpClient _httpClient = HttpClient();
-//   getHttpClient() async {
-//     var url = "https://www.baidu.com";
-//     _httpClient.getUrl(Uri.parse(url)).then((HttpClientRequest request) {
-//       //使用iPhone的UA
-//       request.headers.add("user-agent",
-//           "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1");
-//
-//       return request.close();
-//     }).then((HttpClientResponse response) {
-//       if (response.statusCode == 200) {
-//         response.transform(utf8.decoder).join().then((String string) {
-//           print("++++++++>>>>>>>>>>>  success 1" + string);
-//         });
-//       } else {
-//         print("++++++++>>>>>>>>>>>  error");
-//       }
-//     });
-//   }
-//
-//   getHttpClient();
-//
-//
-// }
-
 void _requestHttpClientGet() async {
-  // try {
-  //   //1、创建一个HttpClient
-  //   HttpClient httpClient = new HttpClient();
-  //   //2、打开Http连接，设置请求头
-  //   HttpClientRequest request =
-  //       // await httpClient.getUrl(Uri.parse("https://www.phei.com.cn"));
-  //       await httpClient.getUrl(Uri.parse("https://www.baidu.com"));
-  //   //通过HttpClientRequest可以设置请求header
-  //   //request.headers.add("user-agent", "test");
-  //   //使用iPhone的UA
-  //   request.headers.add("user-agent",
-  //       "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1");
-  //   //3、等待连接服务器：
-  //   HttpClientResponse response = await request.close();
-  //   //4、这一步完成后，请求信息就已经发送给服务器了，返回一个HttpClientResponse对象，
-  //   // 它包含响应头（header）和响应流(响应体的Stream)，接下来就可以通过读取响应流来获取响应内容
-  //   String _responseText = await response.transform(Utf8Decoder()).join();
-  //   print("++++++++>>>>>>>>>>>  requestHttpClientGet success " + _responseText);
-  //   //5、请求结束，关闭HttpClient  关闭client后，通过该client发起的所有请求都会中止
-  //   httpClient.close();
-  // } catch (_) {
-  //   print('++++++++>>>>>>>>>>> requestHttpClientGet 请求异常: ' + _.toString());
-  // }
-
   try {
     //1、创建一个HttpClient
     HttpClient httpClient = new HttpClient();
@@ -144,5 +116,46 @@ void _requestHttpClientPost() async {
     httpClient.close();
   } catch (_) {
     print('>>>>>>>>>>> requestHttpClientPost 请求异常: ' + _.toString());
+  }
+}
+
+void _requestDartHttpGet() async {
+  var url = Uri.parse("https://wanandroid.com/wxarticle/chapters/json ");
+  try {
+    // Await the http get response, then decode the json-formatted response.
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = response.body.toString();
+      print(">>>>>>>>>>>  requestDartHttpGet success " + jsonResponse);
+    } else {
+      print('>>>>>>>>>>> requestDartHttpGet 请求异常: ');
+    }
+  } catch (_) {
+    print('>>>>>>>>>>> requestDartHttpGet 请求异常: ' + _.toString());
+  }
+}
+
+void _requestDartHttpPost() async {
+  var url = Uri.parse("https://www.wanandroid.com/user/login");
+  //发送POST请求，application和x-www-from-urlencoded数据类型
+  //设置Header
+  // Map<String, String> headersMap = new Map();
+  // headersMap["content-type"] = "application/x-www-from-urlencoded";
+  //设置body参数
+  Map<String, String> bodyParams = new Map();
+  bodyParams["username"] = "1";
+  bodyParams["password"] = "1";
+
+  try {
+    var response =
+        await http.post(url, body: bodyParams, encoding: Utf8Codec());
+    if (response.statusCode == 200) {
+      var jsonResponse = response.body.toString();
+      print(">>>>>>>>>>>  requestDartHttpPost success " + jsonResponse);
+    } else {
+      print('>>>>>>>>>>> requestDartHttpPost 请求异常: ');
+    }
+  } catch (_) {
+    print('>>>>>>>>>>> requestDartHttpPost 请求异常: ' + _.toString());
   }
 }
