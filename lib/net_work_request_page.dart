@@ -3,89 +3,214 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_demo/model/demo_bean.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
-class NetworkRequestPage extends StatelessWidget {
+class NetworkRequestPage extends StatefulWidget {
+  NetworkRequestPage({Key key}) : super(key: key);
+
+  @override
+  _NetworkRequestPageState createState() {
+    return _NetworkRequestPageState(
+        demoBean: _requestDioGetJsonFutureBuilder());
+  }
+}
+
+class _NetworkRequestPageState extends State<NetworkRequestPage> {
+  var _textContent = "DioGetJsonFutureBuilder";
+  final Future<DemoBean> demoBean;
+
+  _NetworkRequestPageState({this.demoBean});
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('请求网络数据'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MaterialButton(
-              height: 50,
-              minWidth: 100,
-              elevation: 5,
-              color: Colors.orangeAccent,
-              child: Text('HttpClientGet'),
-              onPressed: () {
-                _requestHttpClientGet();
-              },
+      body: SingleChildScrollView(
+          child:
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.orangeAccent,
+                  child: Text('HttpClientGet'),
+                  onPressed: () {
+                    _requestHttpClientGet();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.red,
+                  child: Text('HttpClientPost'),
+                  onPressed: () {
+                    _requestHttpClientPost();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.blue,
+                  child: Text('DartHttpGet'),
+                  onPressed: () {
+                    _requestDartHttpGet();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.yellow,
+                  child: Text('DartHttpPost'),
+                  onPressed: () {
+                    _requestDartHttpPost();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.pink,
+                  child: Text('DioGet'),
+                  onPressed: () {
+                    _requestDioGet();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.pink,
+                  child: Text('DioPost'),
+                  onPressed: () {
+                    _requestDioPost();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.blue,
+                  child: Text('DioGetJson'),
+                  onPressed: () {
+                    _requestDioGetJson();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.blue,
+                  child: Text('DioGetJsonSetState'),
+                  onPressed: () {
+                    _requestDioGetJson();
+                  },
+                ),
+                Container(
+                  margin: EdgeInsets.all(20.0),
+                  child: Text(
+                    '$_textContent',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10), //保留间距10
+                MaterialButton(
+                  height: 50,
+                  minWidth: 100,
+                  elevation: 5,
+                  color: Colors.blue,
+                  child: Text('DioGetJsonFutureBuilder'),
+                  onPressed: () {
+                    _requestDioGetJsonFutureBuilder();
+                  },
+                ),
+                SizedBox(height: 10), //保留间距10
+                Container(
+                  margin: EdgeInsets.all(20.0),
+                  child: FutureBuilder<DemoBean>(
+                      future: demoBean,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          _textContent =
+                              snapshot.data.data.datas[1].chapterName;
+                        } else if (snapshot.hasError) {
+                          _textContent = snapshot.error.toString();
+                        }
+
+                        return CircularProgressIndicator();
+                      }),
+                ),
+              ],
             ),
-            SizedBox(height: 10), //保留间距10
-            MaterialButton(
-              height: 50,
-              minWidth: 100,
-              elevation: 5,
-              color: Colors.red,
-              child: Text('HttpClientPost'),
-              onPressed: () {
-                _requestHttpClientPost();
-              },
-            ),
-            SizedBox(height: 10), //保留间距10
-            MaterialButton(
-              height: 50,
-              minWidth: 100,
-              elevation: 5,
-              color: Colors.blue,
-              child: Text('DartHttpGet'),
-              onPressed: () {
-                _requestDartHttpGet();
-              },
-            ),
-            SizedBox(height: 10), //保留间距10
-            MaterialButton(
-              height: 50,
-              minWidth: 100,
-              elevation: 5,
-              color: Colors.yellow,
-              child: Text('DartHttpPost'),
-              onPressed: () {
-                _requestDartHttpPost();
-              },
-            ),
-            SizedBox(height: 10), //保留间距10
-            MaterialButton(
-              height: 50,
-              minWidth: 100,
-              elevation: 5,
-              color: Colors.pink,
-              child: Text('DioGet'),
-              onPressed: () {
-                _requestDioGet();
-              },
-            ),
-            SizedBox(height: 10), //保留间距10
-            MaterialButton(
-              height: 50,
-              minWidth: 100,
-              elevation: 5,
-              color: Colors.pink,
-              child: Text('DioPost'),
-              onPressed: () {
-                _requestDioPost();
-              },
-            ),
-          ],
-        ),
+          ),
       ),
+
     );
+  }
+
+  void _requestDioGetJson() async {
+    var url = "https://www.wanandroid.com/article/list/0/json";
+    try {
+      Response response;
+      var dio = Dio();
+
+      response = await dio.get(url, queryParameters: {'cid': 60});
+
+      if (response.statusCode == 200) {
+        DemoBean demoBean = DemoBean().fromJson(response.data);
+        print(">>>>>>>>>>>   requestDioGetJson success 1 " +
+            demoBean.data.datas.length.toString());
+
+        print(">>>>>>>>>>>   requestDioGetJson success 2 " +
+            demoBean.data.datas[0].toString());
+
+        print(">>>>>>>>>>>   requestDioGetJson success 3 " +
+            demoBean.data.datas[0].toJson().toString());
+
+        print(">>>>>>>>>>>   requestDioGetJson success 4 " +
+            demoBean.data.datas[0].chapterName);
+
+        setState(() {
+          _textContent = demoBean.data.datas[0].chapterName;
+        });
+      } else {
+        print('>>>>>>>>>>>  requestDioGetJson 请求异常: ');
+      }
+    } catch (_) {
+      print('>>>>>>>>>>>  requestDioGetJson 请求异常: ' + _.toString());
+    }
   }
 }
 
@@ -171,7 +296,7 @@ void _requestDartHttpPost() async {
 
   try {
     var response =
-        await http.post(url, body: bodyParams, encoding: Utf8Codec());
+    await http.post(url, body: bodyParams, encoding: Utf8Codec());
     if (response.statusCode == 200) {
       var jsonResponse = response.body.toString();
       print(">>>>>>>>>>>  requestDartHttpPost success " + jsonResponse);
@@ -231,5 +356,36 @@ void _requestDioPost() async {
     }
   } catch (_) {
     print('>>>>>>>>>>>   requestDioPost 请求异常: ' + _.toString());
+  }
+}
+
+Future<DemoBean> _requestDioGetJsonFutureBuilder() async {
+  var url = "https://www.wanandroid.com/article/list/0/json";
+  try {
+    Response response;
+    var dio = Dio();
+
+    response = await dio.get(url, queryParameters: {'cid': 60});
+    if (response.statusCode == 200) {
+      DemoBean demoBean = DemoBean().fromJson(response.data);
+
+      print(">>>>>>>>>>>   requestDioGetJsonFutureBuilder success 1 " +
+          demoBean.data.datas.length.toString());
+
+      print(">>>>>>>>>>>   requestDioGetJsonFutureBuilder success 2 " +
+          demoBean.data.datas[0].toString());
+
+      print(">>>>>>>>>>>   requestDioGetJsonFutureBuilder success 3 " +
+          demoBean.data.datas[0].toJson().toString());
+
+      print(">>>>>>>>>>>   requestDioGetJsonFutureBuilder success 4 " +
+          demoBean.data.datas[0].chapterName);
+
+      return demoBean;
+    } else {
+      print('>>>>>>>>>>>  requestDioGetJsonFutureBuilder 请求异常: ');
+    }
+  } catch (_) {
+    print('>>>>>>>>>>>   requestDioGetJsonFutureBuilder 请求异常: ' + _.toString());
   }
 }

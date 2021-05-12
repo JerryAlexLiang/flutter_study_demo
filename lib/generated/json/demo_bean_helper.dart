@@ -1,8 +1,8 @@
-import 'package:flutter_study_demo/wan_android_article_bean_entity.dart';
+import 'package:flutter_study_demo/model/demo_bean.dart';
 
-wanAndroidArticleBeanEntityFromJson(WanAndroidArticleBeanEntity data, Map<String, dynamic> json) {
+demoBeanFromJson(DemoBean data, Map<String, dynamic> json) {
 	if (json['data'] != null) {
-		data.data = WanAndroidArticleBeanData().fromJson(json['data']);
+		data.data = DemoBeanData().fromJson(json['data']);
 	}
 	if (json['errorCode'] != null) {
 		data.errorCode = json['errorCode'] is String
@@ -15,7 +15,7 @@ wanAndroidArticleBeanEntityFromJson(WanAndroidArticleBeanEntity data, Map<String
 	return data;
 }
 
-Map<String, dynamic> wanAndroidArticleBeanEntityToJson(WanAndroidArticleBeanEntity entity) {
+Map<String, dynamic> demoBeanToJson(DemoBean entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['data'] = entity.data?.toJson();
 	data['errorCode'] = entity.errorCode;
@@ -23,14 +23,14 @@ Map<String, dynamic> wanAndroidArticleBeanEntityToJson(WanAndroidArticleBeanEnti
 	return data;
 }
 
-wanAndroidArticleBeanDataFromJson(WanAndroidArticleBeanData data, Map<String, dynamic> json) {
+demoBeanDataFromJson(DemoBeanData data, Map<String, dynamic> json) {
 	if (json['curPage'] != null) {
 		data.curPage = json['curPage'] is String
 				? int.tryParse(json['curPage'])
 				: json['curPage'].toInt();
 	}
 	if (json['datas'] != null) {
-		data.datas = (json['datas'] as List).map((v) => WanAndroidArticleBeanDataData().fromJson(v)).toList();
+		data.datas = (json['datas'] as List).map((v) => DemoBeanDataDatas().fromJson(v)).toList();
 	}
 	if (json['offset'] != null) {
 		data.offset = json['offset'] is String
@@ -58,7 +58,7 @@ wanAndroidArticleBeanDataFromJson(WanAndroidArticleBeanData data, Map<String, dy
 	return data;
 }
 
-Map<String, dynamic> wanAndroidArticleBeanDataToJson(WanAndroidArticleBeanData entity) {
+Map<String, dynamic> demoBeanDataToJson(DemoBeanData entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['curPage'] = entity.curPage;
 	data['datas'] =  entity.datas?.map((v) => v.toJson())?.toList();
@@ -70,7 +70,7 @@ Map<String, dynamic> wanAndroidArticleBeanDataToJson(WanAndroidArticleBeanData e
 	return data;
 }
 
-wanAndroidArticleBeanDataDataFromJson(WanAndroidArticleBeanDataData data, Map<String, dynamic> json) {
+demoBeanDataDatasFromJson(DemoBeanDataDatas data, Map<String, dynamic> json) {
 	if (json['apkLink'] != null) {
 		data.apkLink = json['apkLink'].toString();
 	}
@@ -112,6 +112,9 @@ wanAndroidArticleBeanDataDataFromJson(WanAndroidArticleBeanDataData data, Map<St
 	}
 	if (json['fresh'] != null) {
 		data.fresh = json['fresh'];
+	}
+	if (json['host'] != null) {
+		data.host = json['host'].toString();
 	}
 	if (json['id'] != null) {
 		data.id = json['id'] is String
@@ -196,7 +199,7 @@ wanAndroidArticleBeanDataDataFromJson(WanAndroidArticleBeanDataData data, Map<St
 	return data;
 }
 
-Map<String, dynamic> wanAndroidArticleBeanDataDataToJson(WanAndroidArticleBeanDataData entity) {
+Map<String, dynamic> demoBeanDataDatasToJson(DemoBeanDataDatas entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['apkLink'] = entity.apkLink;
 	data['audit'] = entity.audit;
@@ -210,6 +213,7 @@ Map<String, dynamic> wanAndroidArticleBeanDataDataToJson(WanAndroidArticleBeanDa
 	data['descMd'] = entity.descMd;
 	data['envelopePic'] = entity.envelopePic;
 	data['fresh'] = entity.fresh;
+	data['host'] = entity.host;
 	data['id'] = entity.id;
 	data['link'] = entity.link;
 	data['niceDate'] = entity.niceDate;
