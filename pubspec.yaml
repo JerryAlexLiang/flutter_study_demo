@@ -30,6 +30,11 @@ dependencies:
   dio: ^4.0.0
   http: ^0.13.3
 
+  #Flutter使用provide状态管理器管理界面
+  provide: ^1.0.2
+
+  fluttertoast: ^8.0.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

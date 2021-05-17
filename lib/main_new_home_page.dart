@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 
 import 'home_list_page.dart';
 import 'knowledge_system_tree_page.dart';
 import 'net_work_request_page.dart';
+import './provide/current_Index_provide.dart';
 import 'simple_list_page.dart';
+import 'study_demo_navigation_page.dart';
 
 class MainNewHomePage extends StatelessWidget {
   @override
@@ -11,6 +14,65 @@ class MainNewHomePage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: IndexPage(),
+      // home: IndexPageProvide(),
+    );
+  }
+}
+
+class IndexPageProvide extends StatelessWidget {
+  final List<BottomNavigationBarItem> bottomTabs = [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: '首页',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.book),
+      label: '知识',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.list),
+      label: '列表',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.network_check),
+      label: '网络',
+    )
+  ];
+
+  final List<Widget> tabPageBodies = [
+    HomeListPage(),
+    KnowledgeSystemPage(),
+    // SimpleListPage(),
+    StudyDemoNavigationPage(),
+    NetworkRequestPage()
+  ];
+
+  IndexPageProvide({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Provide<CurrentIndexProvide>(
+      builder: (context, child, val) {
+        int currentIndex =
+            Provide.value<CurrentIndexProvide>(context).currentIndex;
+
+        return Scaffold(
+          backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            items: bottomTabs,
+            onTap: (index) {
+              //Provide状态管理
+              Provide.value<CurrentIndexProvide>(context).changeIndex(index);
+            },
+          ),
+          body: IndexedStack(
+            index: currentIndex,
+            children: tabPageBodies,
+          ),
+        );
+      },
     );
   }
 }
@@ -47,7 +109,8 @@ class _IndexPageState extends State<IndexPage> {
   final List<Widget> tabPageBodies = [
     HomeListPage(),
     KnowledgeSystemPage(),
-    SimpleListPage(),
+    // SimpleListPage(),
+    StudyDemoNavigationPage(),
     NetworkRequestPage()
   ];
 
@@ -82,10 +145,6 @@ class _IndexPageState extends State<IndexPage> {
           });
         },
       ),
-      // body: IndexedStack(
-      //   index: currentIndex,
-      //   children: tabPageBodies,
-      // ),
       body: currentPage,
     );
   }

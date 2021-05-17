@@ -6,8 +6,10 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_study_demo/main_new_home_page.dart';
+import 'package:provide/provide.dart';
 
 import 'main_new_home_page.dart';
+import './provide/current_Index_provide.dart';
 
 void main() async {
   if (Platform.isAndroid) {
@@ -17,8 +19,21 @@ void main() async {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
+
+  //Provide状态变化管理器
+  var currentIndexProvide = CurrentIndexProvide();
+
+  var providers = Providers();
+
+  providers..provide(Provider<CurrentIndexProvide>.value(currentIndexProvide));
+
   // runApp(WanAndroidApp());
-  runApp(MainNewHomePage());
+  // runApp(MainNewHomePage());
+
+  runApp(ProviderNode(
+    child: MainNewHomePage(),
+    providers: providers,
+  ));
 }
 
 // void main() => runApp(WanAndroidApp());
