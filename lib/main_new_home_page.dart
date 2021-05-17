@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provide/provide.dart';
+import 'package:flutter_study_demo/provider/current_Index_provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 import 'home_list_page.dart';
 import 'knowledge_system_tree_page.dart';
 import 'net_work_request_page.dart';
-import './provide/current_Index_provide.dart';
 import 'simple_list_page.dart';
 import 'study_demo_navigation_page.dart';
 
@@ -13,13 +14,13 @@ class MainNewHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IndexPage(),
-      // home: IndexPageProvide(),
+      // home: IndexPage(),
+      home: IndexPageProvider(),
     );
   }
 }
 
-class IndexPageProvide extends StatelessWidget {
+class IndexPageProvider extends StatelessWidget {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
       icon: Icon(Icons.home),
@@ -47,14 +48,16 @@ class IndexPageProvide extends StatelessWidget {
     NetworkRequestPage()
   ];
 
-  IndexPageProvide({Key key}) : super(key: key);
+  IndexPageProvider({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Provide<CurrentIndexProvide>(
-      builder: (context, child, val) {
-        int currentIndex =
-            Provide.value<CurrentIndexProvide>(context).currentIndex;
+    return ChangeNotifierProvider(
+      create: (val) {
+        return CurrentIndexProvider();
+      },
+      builder: (context, child) {
+        int currentIndex = Provider.of<CurrentIndexProvider>(context).index;
 
         return Scaffold(
           backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
@@ -63,8 +66,14 @@ class IndexPageProvide extends StatelessWidget {
             currentIndex: currentIndex,
             items: bottomTabs,
             onTap: (index) {
-              //Provide状态管理
-              Provide.value<CurrentIndexProvide>(context).changeIndex(index);
+              // 扩展 BuildContext，添加 read 方法，具体看附录
+              // context.read<T> 实际调用的是 Provider.of<T>
+
+              context.read<CurrentIndexProvider>().changeIndex(index);
+              // Provider.of<CurrentIndexProvider>(context,listen: false).changeIndex(index);
+
+              // Provider.of<CurrentIndexProvider>(context,listen: true).changeIndex(index);
+              // Provider.of<CurrentIndexProvider>(context).changeIndex(index);
             },
           ),
           body: IndexedStack(
