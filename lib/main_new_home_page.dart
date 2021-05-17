@@ -52,36 +52,59 @@ class IndexPageProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (val) {
-        return CurrentIndexProvider();
-      },
-      builder: (context, child) {
-        int currentIndex = Provider.of<CurrentIndexProvider>(context).index;
+    // return ChangeNotifierProvider(
+    //   create: (val) {
+    //     return CurrentIndexProvider();
+    //   },
+    //   builder: (context, child) {
+    //     int currentIndex = Provider.of<CurrentIndexProvider>(context).index;
 
-        return Scaffold(
-          backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: currentIndex,
-            items: bottomTabs,
-            onTap: (index) {
-              // 扩展 BuildContext，添加 read 方法，具体看附录
-              // context.read<T> 实际调用的是 Provider.of<T>
+    //     return Scaffold(
+    //       backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+    //       bottomNavigationBar: BottomNavigationBar(
+    //         type: BottomNavigationBarType.fixed,
+    //         currentIndex: currentIndex,
+    //         items: bottomTabs,
+    //         onTap: (index) {
+    //           // 扩展 BuildContext，添加 read 方法，具体看附录
+    //           // context.read<T> 实际调用的是 Provider.of<T>
 
-              context.read<CurrentIndexProvider>().changeIndex(index);
-              // Provider.of<CurrentIndexProvider>(context,listen: false).changeIndex(index);
+    //           context.read<CurrentIndexProvider>().changeIndex(index);
+    //           // Provider.of<CurrentIndexProvider>(context,listen: false).changeIndex(index);
 
-              // Provider.of<CurrentIndexProvider>(context,listen: true).changeIndex(index);
-              // Provider.of<CurrentIndexProvider>(context).changeIndex(index);
-            },
-          ),
-          body: IndexedStack(
-            index: currentIndex,
-            children: tabPageBodies,
-          ),
-        );
-      },
+    //           // Provider.of<CurrentIndexProvider>(context,listen: true).changeIndex(index);
+    //           // Provider.of<CurrentIndexProvider>(context).changeIndex(index);
+    //         },
+    //       ),
+    //       body: IndexedStack(
+    //         index: currentIndex,
+    //         children: tabPageBodies,
+    //       ),
+    //     );
+    //   },
+    // );
+
+    int currentIndex = Provider.of<CurrentIndexProvider>(context).index;
+
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        items: bottomTabs,
+        onTap: (index) {
+          // 扩展 BuildContext，添加 read 方法，具体看附录
+          // context.read<T> 实际调用的是 Provider.of<T>
+          context.read<CurrentIndexProvider>().changeIndex(index);
+          // Provider.of<CurrentIndexProvider>(context, listen: false).changeIndex(index);
+          // Provider.of<CurrentIndexProvider>(context,listen: true).changeIndex(index);
+          // Provider.of<CurrentIndexProvider>(context).changeIndex(index);
+        },
+      ),
+      body: IndexedStack(
+        index: currentIndex,
+        children: tabPageBodies,
+      ),
     );
   }
 }
