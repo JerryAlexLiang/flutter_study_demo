@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_study_demo/provider/current_Index_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -6,16 +7,23 @@ import 'package:provider/provider.dart';
 import 'home_list_page.dart';
 import 'knowledge_system_tree_page.dart';
 import 'net_work_request_page.dart';
-import 'simple_list_page.dart';
 import 'study_demo_navigation_page.dart';
 
 class MainNewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // home: IndexPage(),
-      home: IndexPageProvider(),
+    return ScreenUtilInit(
+      designSize: Size(360, 690),
+      builder: () {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+
+          ],
+          // home: IndexPage(),
+          home: IndexPageProvider(),
+        );
+      },
     );
   }
 }

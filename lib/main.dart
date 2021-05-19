@@ -5,10 +5,10 @@ import 'dart:io';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_study_demo/main_new_home_page.dart';
+import 'package:flutter_study_demo/page/main_new_home_page.dart';
 import 'package:provider/provider.dart';
 
-import 'main_new_home_page.dart';
+import 'page/main_new_home_page.dart';
 import 'provider/current_Index_provider.dart';
 
 void main() async {

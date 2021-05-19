@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'model/study_demo_navigator_model.dart';
+import '../model/study_demo_navigator_model.dart';
 
 class StudyDemoNavigationPage extends StatelessWidget {
   final data = List.generate(

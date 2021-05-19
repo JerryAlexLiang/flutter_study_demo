@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_study_demo/wan_android_article_bean_entity.dart';
+import 'package:flutter_study_demo/model/wan_android_article_bean_entity.dart';
 
 class HomeListPage extends StatefulWidget {
   @override

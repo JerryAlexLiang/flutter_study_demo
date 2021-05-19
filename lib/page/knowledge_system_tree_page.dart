@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_study_demo/automatic_keep_alive_page.dart';
-import 'package:flutter_study_demo/net_work_request_page.dart';
+import 'package:flutter_study_demo/page/automatic_keep_alive_page.dart';
+import 'package:flutter_study_demo/page/net_work_request_page.dart';
 
 class KnowledgeSystemPage extends StatefulWidget {
   @override
