@@ -58,9 +58,9 @@ class _WanHomePageState extends State<WanHomePage>
   Widget build(BuildContext context) {
     //FutureBuilder Widget 是 Flutter内置的组件，是用来等待异步请求的
     return Scaffold(
-      appBar: AppBar(
-        title: Text('首页'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('首页'),
+      // ),
       body: FutureBuilder(
         future: getWanHomeTopBanner(),
         builder: (context, snapshot) {
