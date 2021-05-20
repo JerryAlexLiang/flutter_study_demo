@@ -43,6 +43,9 @@ dependencies:
   #flutter 下拉刷新插件flutter_easyrefresh
   flutter_easyrefresh: ^2.2.1
 
+  #banner
+  flutter_swiper: ^1.1.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
