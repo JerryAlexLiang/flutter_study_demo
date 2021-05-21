@@ -36,12 +36,10 @@ class _HomeEyeSubjectPageState extends State<HomeEyeSubjectPage> {
           EyeSubjectTopicsBean bean =
               EyeSubjectTopicsBean.fromJson(snapshot.data);
           print('======> getSpecialTopicsSuccess1   $bean');
-          bool f = bean.adExist;
-          print('======> getSpecialTopicsSuccess2   $f');
           String type = bean.itemList[0].data.dataType;
-          print('======> getSpecialTopicsSuccess3   $type');
+          print('======> getSpecialTopicsSuccess2   $type');
           List<ItemList> responseList = bean.itemList;
-          print('======> getSpecialTopicsSuccess4   $responseList');
+          print('======> getSpecialTopicsSuccess3   $responseList');
 
           return Container(
             margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
