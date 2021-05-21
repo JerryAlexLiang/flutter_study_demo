@@ -35,15 +35,16 @@ class _EyeCategoryListPageState extends State<EyeCategoryListPage> {
             Image.network(
               bean.bgPicture,
               width: ScreenUtil().setWidth(130),
-              // fit: BoxFit.cover,
+              height: ScreenUtil().setHeight(70),
+              fit: BoxFit.fitHeight,
             ),
             Container(
-              margin: EdgeInsets.only(top: 5),
+              margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: Text(
                 bean.name != null ? bean.name : "默认",
                 style: TextStyle(
                   color: Colors.black,
-                  // fontSize: ScreenUtil().setSp(24),
+                  fontSize: ScreenUtil().setSp(24),
                   fontStyle: FontStyle.normal,
                 ),
                 maxLines: 1,
@@ -70,8 +71,8 @@ class _EyeCategoryListPageState extends State<EyeCategoryListPage> {
           print('======> getEyeCategorySuccess2   $responseList');
           print('======> getEyeCategorySuccess3   $categoryList');
 
-          if (categoryList.length > 8) {
-            categoryList.removeRange(8, categoryList.length);
+          if (categoryList.length > 10) {
+            categoryList.removeRange(10, categoryList.length);
           }
 
           return Container(
@@ -81,7 +82,7 @@ class _EyeCategoryListPageState extends State<EyeCategoryListPage> {
             child: GridView.count(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              crossAxisCount: 4,
+              crossAxisCount: 5,
               //使用了map循环，然后再使用toList()进行转换
               children: categoryList.map((bean) {
                 return _gridViewItem(context, bean);

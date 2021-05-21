@@ -10,7 +10,8 @@ Future getWanHomeTopBanner() async {
     print('wan_android首页Banner数据 Start');
     Response response;
     Dio dio = new Dio();
-    response = await dio.get(servicePath['homePageBanner']);
+    // response = await dio.get(servicePath['homePageBanner']);
+    response = await dio.get(WanAndroidApi.homePageBanner);
     if (response.statusCode == 200) {
       print('wan_android首页Banner数据 Success');
       return response.data;

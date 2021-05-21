@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_study_demo/config/service_url.dart';
+import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/model/wan_home_banner_bean.dart';
 import 'package:flutter_study_demo/service/service_method.dart';
 import 'package:flutter_study_demo/wan_android/home/home_eye_subject_page.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'eye_category_list_page.dart';
 
@@ -22,6 +26,12 @@ class WanHomePage extends StatefulWidget {
 class _WanHomePageState extends State<WanHomePage>
     with AutomaticKeepAliveClientMixin {
   String wanHomeBanner = '首页Banner';
+
+  int page = 1;
+
+  EasyRefreshController _controller = EasyRefreshController();
+
+  List<Datas> articleDataList = [];
 
   // @override
   // bool get wantKeepAlive{
@@ -76,15 +86,30 @@ class _WanHomePageState extends State<WanHomePage>
             print('======>  =====>  =====>1   ${snapshot.data.toString()}');
             WanHomeBannerBean bean = WanHomeBannerBean.fromJson(map);
             print('======>  =====>  =====>2   $bean');
-            // return Column(
-            //   children: [
-            //     WanHomeSwiperBanner(bean),
-            //     EyeCategoryListPage(),
-            //   ],
+
+            // return SingleChildScrollView(
+            //   child: Column(
+            //     children: [
+            //       WanHomeSwiperBanner(bean),
+            //       EyeCategoryListPage(),
+            //       HomeEyeSubjectPage(),
+            //       Container(
+            //         color: Colors.white,
+            //         height: 200,
+            //         child: Center(
+            //           child: Text('demo'),
+            //         ),
+            //       )
+            //     ],
+            //   ),
             // );
 
-            return SingleChildScrollView(
-              child: Column(
+            //EasyRefresh很容易就能在Flutter应用上实现下拉刷新以及上拉加载操作，
+            // 它支持几乎所有的Flutter控件，但前提是需要包裹成ScrollView。
+            // 它的功能与Android的SmartRefreshLayout很相似，同样也吸取了很多三方库的优点。
+            return EasyRefresh(
+              controller: _controller,
+              child: ListView(
                 children: [
                   WanHomeSwiperBanner(bean),
                   EyeCategoryListPage(),
@@ -95,9 +120,49 @@ class _WanHomePageState extends State<WanHomePage>
                     child: Center(
                       child: Text('demo'),
                     ),
-                  )
+                  ),
+                  _articleListPage(),
                 ],
               ),
+              onRefresh: () async {
+                print('开始下拉刷新 currentPage: $page');
+
+                await requestGet(WanAndroidApi.homeArticleList + "$page/json")
+                    .then((value) {
+                  WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value);
+                  List<Datas> list = bean.data.datas;
+
+                  setState(() {
+                    page = 1;
+                    articleDataList.clear();
+                    articleDataList.addAll(list);
+                  });
+
+                  _controller.finishRefresh(success: true);
+
+                  print('下拉刷新成功 currentPage: $page');
+                  print('开始加载更多 currentPage: $bean');
+                });
+              },
+              onLoad: () async {
+                print('开始加载更多 currentPage: $page');
+
+                await requestGet(WanAndroidApi.homeArticleList + "$page/json")
+                    .then((value) {
+                  WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value);
+                  List<Datas> list = bean.data.datas;
+
+                  setState(() {
+                    articleDataList.addAll(list);
+                    page++;
+                  });
+
+                  _controller.finishLoad(success: true);
+
+                  print('加载更多成功 currentPage: $page');
+                  print('加载更多成功 currentPage: $bean');
+                });
+              },
             );
           } else {
             return Center(
@@ -105,6 +170,39 @@ class _WanHomePageState extends State<WanHomePage>
             );
           }
         },
+      ),
+    );
+  }
+
+  Widget _articleListPage() {
+
+    if (articleDataList != null) {
+
+      List<Widget> listWidget = articleDataList.map((e) => _articleListItem(e)).toList();
+
+      return Wrap(
+        spacing: 1,
+        children: listWidget,
+      );
+    } else {
+      return Center(
+        child: Text('暂时没有文章数据~'),
+      );
+    }
+  }
+
+  Widget _articleListItem(Datas item) {
+    return InkWell(
+      onTap: () {
+        Fluttertoast.showToast(msg: item.title);
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(750),
+        height: ScreenUtil().setHeight(200),
+        color: Colors.blue,
+        child: Center(
+          child: Text('${item.title}'),
+        ),
       ),
     );
   }
