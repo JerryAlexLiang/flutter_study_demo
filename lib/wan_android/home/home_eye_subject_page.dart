@@ -4,6 +4,7 @@ import 'package:flutter_study_demo/config/service_url.dart';
 import 'package:flutter_study_demo/model/EyeSubjectTopicsBean.dart';
 import 'package:flutter_study_demo/model/EyeSubjectTopicsBean.dart';
 import 'package:flutter_study_demo/service/service_method.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 //首页-开眼-专题列表
 class HomeEyeSubjectPage extends StatefulWidget {
@@ -34,48 +35,28 @@ class _HomeEyeSubjectPageState extends State<HomeEyeSubjectPage> {
         if (snapshot.hasData) {
           EyeSubjectTopicsBean bean =
               EyeSubjectTopicsBean.fromJson(snapshot.data);
-          print(
-              '======> getSpecialTopicsSuccess1   ${snapshot.data.toString()}');
-          print('======> getSpecialTopicsSuccess2   $bean');
-          print('======> getSpecialTopicsSuccess3   ${bean.itemList}');
+          print('======> getSpecialTopicsSuccess1   $bean');
+          bool f = bean.adExist;
+          print('======> getSpecialTopicsSuccess2   $f');
+          String type = bean.itemList[0].data.dataType;
+          print('======> getSpecialTopicsSuccess3   $type');
+          List<ItemList> responseList = bean.itemList;
+          print('======> getSpecialTopicsSuccess4   $responseList');
 
-          List responseList = bean.itemList;
-          // List<ItemList> list =
-          //     responseList.map((e) => ItemList.fromJson(e)).toList();
-
-          // responseList.map((e) {
-          //   Map map = new Map<String, dynamic>.from(e);
-          //   print('======> getSpecialTopicsSuccess5   $map');
-          // });
-
-          // List list = responseList.map((e) => ItemList.fromJson(e)).toList();
-          // print('======> getSpecialTopicsSuccess5   $list');
-
-          List<ItemList> list = [];
-          // responseList.map((e) => list.add(ItemList.fromJson(e)));
-
-          responseList.forEach((element) {
-            print('======> getSpecialTopicsSuccess5   $element');
-            // Map<String, dynamic> map = new Map<String, dynamic>.from(element);
-            ItemList itemListBean = ItemList.fromJson(element);
-            print('======> getSpecialTopicsSuccess6   ${itemListBean.data.dataType}');
-          });
+          return Container(
+            margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+            child: Column(
+              children: [
+                _titleWidget(),
+                _eyeSubjectListView(responseList),
+              ],
+            ),
+          );
         } else {
           return Container(
             child: Text('getSpecialTopicsFail'),
           );
         }
-
-        return Container(
-          height: ScreenUtil().setHeight(380),
-          margin: EdgeInsets.only(top: 10.0),
-          child: Column(
-            children: [
-              _titleWidget(),
-              // _eyeSubjectList(responseList),
-            ],
-          ),
-        );
       },
     );
   }
@@ -87,6 +68,7 @@ class _HomeEyeSubjectPageState extends State<HomeEyeSubjectPage> {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
+          top: BorderSide(width: 0.5, color: Colors.black12),
           bottom: BorderSide(width: 0.5, color: Colors.black12),
         ),
       ),
@@ -97,9 +79,10 @@ class _HomeEyeSubjectPageState extends State<HomeEyeSubjectPage> {
     );
   }
 
-  Widget _eyeSubjectList(responseList) {
+  Widget _eyeSubjectListView(List<ItemList> responseList) {
     return Container(
-      height: ScreenUtil().setHeight(330),
+      height: ScreenUtil().setHeight(150),
+      margin: EdgeInsets.only(top: 5.0),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: responseList.length,
@@ -110,20 +93,25 @@ class _HomeEyeSubjectPageState extends State<HomeEyeSubjectPage> {
     );
   }
 
-  Widget _eyeSubjectListItem(responseList, int index) {
+  Widget _eyeSubjectListItem(List<ItemList> responseList, int index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Fluttertoast.showToast(msg: responseList[index].data.dataType);
+      },
       child: Container(
-        height: ScreenUtil().setHeight(330),
-        width: ScreenUtil().setWidth(250),
-        padding: EdgeInsets.all(8.0),
+        // height: ScreenUtil().setHeight(150),
+        width: ScreenUtil().setWidth(300),
+        margin: EdgeInsets.only(right: 3.0),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border(
             left: BorderSide(width: 0.5, color: Colors.black12),
           ),
         ),
-        child: Image.network(responseList[index]),
+        child: Image.network(
+          responseList[index].data.image,
+          fit: BoxFit.fitHeight,
+        ),
       ),
     );
   }

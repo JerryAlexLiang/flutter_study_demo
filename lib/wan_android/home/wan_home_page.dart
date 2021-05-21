@@ -90,6 +90,7 @@ class _WanHomePageState extends State<WanHomePage>
                   EyeCategoryListPage(),
                   HomeEyeSubjectPage(),
                   Container(
+                    color: Colors.white,
                     height: 200,
                     child: Center(
                       child: Text('demo'),
