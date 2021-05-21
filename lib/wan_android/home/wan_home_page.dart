@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_study_demo/model/wan_home_banner_bean.dart';
 import 'package:flutter_study_demo/service/service_method.dart';
+import 'package:flutter_study_demo/wan_android/home/home_eye_subject_page.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart';
 
 import 'eye_category_list_page.dart';
@@ -86,6 +88,7 @@ class _WanHomePageState extends State<WanHomePage>
                 children: [
                   WanHomeSwiperBanner(bean),
                   EyeCategoryListPage(),
+                  HomeEyeSubjectPage(),
                   Container(
                     height: 200,
                     child: Center(

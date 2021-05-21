@@ -39,3 +39,25 @@ Future getEyeCategory() async {
     return print('开眼 发现-分类数据 Error : $e');
   }
 }
+
+//开眼-专题
+Future requestGet(url, {queryParameters}) async {
+  try {
+    print('开始请求数据 Start');
+    Response response;
+    Dio dio = new Dio();
+    if (queryParameters == null) {
+      response = await dio.get(url);
+    } else {
+      response = await dio.get(url, queryParameters: queryParameters);
+    }
+    if (response.statusCode == 200) {
+      print('接口请求成功 Success');
+      return response.data;
+    } else {
+      return print('接口请求失败 Fail');
+    }
+  } catch (e) {
+    return print('后端接口出现异常 Error : $e');
+  }
+}
