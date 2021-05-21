@@ -19,7 +19,7 @@ class WanHomeSwiperBanner extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: ScreenUtil().setWidth(750),
-      height: ScreenUtil().setHeight(160),
+      height: ScreenUtil().setHeight(330),
       child: Swiper(
         itemCount: bean.data.length,
         pagination: new SwiperPagination(),

@@ -14,7 +14,7 @@ class MainNewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: Size(750, 1334),
       builder: () {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

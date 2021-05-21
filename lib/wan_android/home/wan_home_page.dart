@@ -4,6 +4,8 @@ import 'package:flutter_study_demo/model/wan_home_banner_bean.dart';
 import 'package:flutter_study_demo/service/service_method.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart';
 
+import 'eye_category_list_page.dart';
+
 class WanHomePage extends StatefulWidget {
   WanHomePage({Key key}) : super(key: key);
 
@@ -58,9 +60,9 @@ class _WanHomePageState extends State<WanHomePage>
   Widget build(BuildContext context) {
     //FutureBuilder Widget 是 Flutter内置的组件，是用来等待异步请求的
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('首页'),
-      // ),
+      appBar: AppBar(
+        title: Text('首页'),
+      ),
       body: FutureBuilder(
         future: getWanHomeTopBanner(),
         builder: (context, snapshot) {
@@ -72,10 +74,26 @@ class _WanHomePageState extends State<WanHomePage>
             print('======>  =====>  =====>1   ${snapshot.data.toString()}');
             WanHomeBannerBean bean = WanHomeBannerBean.fromJson(map);
             print('======>  =====>  =====>2   $bean');
-            return Column(
-              children: [
-                WanHomeSwiperBanner(bean),
-              ],
+            // return Column(
+            //   children: [
+            //     WanHomeSwiperBanner(bean),
+            //     EyeCategoryListPage(),
+            //   ],
+            // );
+
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  WanHomeSwiperBanner(bean),
+                  EyeCategoryListPage(),
+                  Container(
+                    height: 200,
+                    child: Center(
+                      child: Text('demo'),
+                    ),
+                  )
+                ],
+              ),
             );
           } else {
             return Center(
