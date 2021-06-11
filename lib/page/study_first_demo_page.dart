@@ -24,7 +24,7 @@ class WordPairList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // //english_words 其中包含数千个最常用的英文单词以及一些实用功能。
+    // //english_words 其中包含数千个最常用的英文单词以及一些实用功能
     // final wordPair = WordPair.random();
 
     // return Scaffold(
