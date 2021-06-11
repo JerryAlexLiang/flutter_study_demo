@@ -1,4 +1,5 @@
 import 'package:english_words/english_words.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -57,6 +58,34 @@ class _RandomWordsState extends State<RandomWords> {
   // 在这里，Set 比 List 更合适，因为 Set 中不允许重复的值
   final Set<WordPair> _saved = Set<WordPair>();
 
+  void _pushSaved() {
+    // Navigator.push(context, new MaterialPageRoute(builder: (context) {
+    //   return FavoriteWordPairListPage();
+    // }));
+
+    Navigator.push(context, new CupertinoPageRoute(builder: (context) {
+      //添加生成 ListTile 行的代码
+      final Iterable<ListTile> tiles = _saved.map((e) => new ListTile(
+            title: Text(
+              e.asPascalCase,
+              style: _biggerFont,
+            ),
+          ));
+
+      //通过 toList()方法非常方便的转换成列表显示
+      final List<Widget> divided = tiles.toList();
+
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('收藏夹'),
+        ),
+        body: ListView(
+          children: divided,
+        ),
+      );
+    }));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -76,6 +105,9 @@ class _RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         title: Text('我的第一个Demo'),
+        actions: [
+          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSuggestions(),
     );
@@ -131,7 +163,6 @@ class _RandomWordsState extends State<RandomWords> {
       },
     );
   }
-
 }
 
 class FavoriteWordPairListPage extends StatelessWidget {
