@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/custom_router.dart';
-import 'package:flutter_study_demo/page/simple_list_page.dart';
+
+// import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../model/study_demo_navigator_model.dart';
+import 'CodeLab/code_lab_login_page.dart';
 import 'my_widget.dart';
 import 'net_work_request_page.dart';
 
@@ -14,7 +16,8 @@ class StudyDemoNavigationPage extends StatelessWidget {
 
   final List<StudyDemoNavigatorModel> dataList = [
     StudyDemoNavigatorModel("Flutter2中文网Demo1", "0", "image"),
-    StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", "0", "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", "1", "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", "2", "image"),
     StudyDemoNavigatorModel("网络数据", "1", "image"),
     StudyDemoNavigatorModel("Provide状态管理", "2", "image"),
     StudyDemoNavigatorModel("ListView", "3", "image"),
@@ -62,6 +65,10 @@ class StudyDemoListWidget extends StatelessWidget {
                     break;
 
                   case 2:
+                    Navigator.push(context, CustomRoute(CodeLabLoginPage()));
+                    break;
+
+                  case 3:
                     Navigator.push(context, CustomRoute(NetworkRequestPage()));
                     break;
                 }
