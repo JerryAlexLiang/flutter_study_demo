@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_demo/page/CodeLab/code_lab_home_page.dart';
 
 class CodeLabLoginPage extends StatefulWidget {
   CodeLabLoginPage({Key key}) : super(key: key);
@@ -46,7 +47,7 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
                   SizedBox(
                     height: 16.0,
                   ),
-                  Text('SHRINE'),
+                  Text('致一科技'),
                 ],
               ),
             ),
@@ -83,7 +84,11 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
                   onPressed: () {
                     //Navigator 维护了一个 route 栈，类似于 iOS 中的 UINavigationController
                     //对栈进行 Pop 操作会将最新加入的 route 移除
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CodeLabHomePage()));
                   },
                   child: Text('Next'),
                 ),
