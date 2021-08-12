@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
+import 'package:flutter_study_demo/page/scoped_model_page.dart';
 
 // import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
@@ -25,6 +26,7 @@ class StudyDemoNavigationPage extends StatelessWidget {
     StudyDemoNavigatorModel("ListView2", "4", "image"),
     StudyDemoNavigatorModel("StatefulWidget", "5", "image"),
     StudyDemoNavigatorModel("extends custom widget", "6", "image"),
+    StudyDemoNavigatorModel("ScopedModel数据共享与传递", "7", "image"),
   ];
 
   StudyDemoNavigationPage({Key key}) : super(key: key);
@@ -76,6 +78,13 @@ class StudyDemoListWidget extends StatelessWidget {
 
                   case 8:
                     Navigator.push(context, CustomRoute(CustomWidgetPages()));
+                    break;
+
+                  case 9:
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return ScopedModelPage();
+                    // }));
                     break;
                 }
                 Fluttertoast.showToast(

@@ -5,8 +5,11 @@ import 'dart:io';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_study_demo/model/scoped_counter_model.dart';
 import 'package:flutter_study_demo/page/main_new_home_page.dart';
+import 'package:flutter_study_demo/page/scoped_model_page.dart';
 import 'package:provider/provider.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'page/main_new_home_page.dart';
 import 'provider/current_Index_provider.dart';
@@ -24,13 +27,18 @@ void main() async {
   // runApp(MainNewHomePage());
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
-      ],
-      child: MainNewHomePage(),
-    ),
-  );
+      // MultiProvider(
+      //   providers: [
+      //     ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
+      //   ],
+      //   child: MainNewHomePage(),
+      // ),
+      ScopedModel<ScopedCounterModel>(
+          model: ScopedCounterModel(),
+          child: MaterialApp(
+            title: 'ScopedModel Demo',
+            home: ScopedModelPage(),
+          )));
 }
 
 // void main() => runApp(WanAndroidApp());
