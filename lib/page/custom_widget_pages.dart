@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/widget/LoadingDialog.dart';
 import 'package:flutter_study_demo/widget/custom_toolbar.dart';
+import 'package:flutter_study_demo/widget/oral_rect_painter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CustomWidgetPages extends StatefulWidget {
@@ -99,6 +102,21 @@ class _CustomWidgetPagesState extends State<CustomWidgetPages> {
                             return LoadingDialog('loading...', true);
                           });
                     },
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(50),
+                  child: CustomPaint(
+                    painter: OralRectPainter(),
+                    child: Center(
+                      child: Text(
+                        '通过CustomPaint绘制组件',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 22.0,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
