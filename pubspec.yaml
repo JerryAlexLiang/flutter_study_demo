@@ -39,6 +39,9 @@ dependencies:
   #Flutter使用provider状态管理器管理界面
   provider: ^5.0.0
 
+  #event_bus
+  event_bus: ^2.0.0
+
   fluttertoast: ^8.0.6
 
   flutter_screenutil: ^5.0.0+2

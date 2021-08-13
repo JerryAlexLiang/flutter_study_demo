@@ -27,18 +27,19 @@ void main() async {
   // runApp(MainNewHomePage());
 
   runApp(
-      // MultiProvider(
-      //   providers: [
-      //     ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
-      //   ],
-      //   child: MainNewHomePage(),
-      // ),
-      ScopedModel<ScopedCounterModel>(
-          model: ScopedCounterModel(),
-          child: MaterialApp(
-            title: 'ScopedModel Demo',
-            home: ScopedModelPage(),
-          )));
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
+      ],
+      child: MainNewHomePage(),
+    ),
+    // ScopedModel<ScopedCounterModel>(
+    //     model: ScopedCounterModel(),
+    //     child: MaterialApp(
+    //       title: 'ScopedModel Demo',
+    //       home: ScopedModelPage(),
+    //     ))
+  );
 }
 
 // void main() => runApp(WanAndroidApp());
