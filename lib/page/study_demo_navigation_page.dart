@@ -31,6 +31,7 @@ class StudyDemoNavigationPage extends StatelessWidget {
     StudyDemoNavigatorModel("ScopedModel数据共享与传递", "7", "image"),
     StudyDemoNavigatorModel("EventBus数据共享与传递", "8", "image"),
     StudyDemoNavigatorModel("shared_preferences存储数据", "9", "image"),
+    StudyDemoNavigatorModel("路由的基本使用", "10", "image"),
   ];
 
   StudyDemoNavigationPage({Key key}) : super(key: key);
@@ -103,6 +104,11 @@ class StudyDemoListWidget extends StatelessWidget {
                         MaterialPageRoute(builder: (context) {
                       return SharedPreferencesPage();
                     }));
+                    break;
+
+                  case 12:
+                    Navigator.push(
+                        context, CustomRoute(SharedPreferencesPage()));
                     break;
                 }
                 Fluttertoast.showToast(
