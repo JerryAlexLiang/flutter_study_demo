@@ -3,6 +3,7 @@ import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
 import 'package:flutter_study_demo/page/scoped_model_page.dart';
+import 'package:flutter_study_demo/page/shared_preferences_page.dart';
 
 // import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
@@ -29,6 +30,7 @@ class StudyDemoNavigationPage extends StatelessWidget {
     StudyDemoNavigatorModel("extends custom widget", "6", "image"),
     StudyDemoNavigatorModel("ScopedModel数据共享与传递", "7", "image"),
     StudyDemoNavigatorModel("EventBus数据共享与传递", "8", "image"),
+    StudyDemoNavigatorModel("shared_preferences存储数据", "9", "image"),
   ];
 
   StudyDemoNavigationPage({Key key}) : super(key: key);
@@ -93,6 +95,13 @@ class StudyDemoListWidget extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return EventBusOnePage();
+                    }));
+                    break;
+
+                  case 11:
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return SharedPreferencesPage();
                     }));
                     break;
                 }
