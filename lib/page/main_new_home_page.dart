@@ -18,11 +18,14 @@ class MainNewHomePage extends StatelessWidget {
       builder: () {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-
-          ],
+          localizationsDelegates: [],
           // home: IndexPage(),
           home: IndexPageProvider(),
+          //借助MaterialApp的theme属性，可以为应用程序管理全局主题
+          // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
         );
       },
     );

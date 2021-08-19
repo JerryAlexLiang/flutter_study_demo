@@ -4,6 +4,7 @@ import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
 import 'package:flutter_study_demo/page/scoped_model_page.dart';
 import 'package:flutter_study_demo/page/shared_preferences_page.dart';
+import 'package:flutter_study_demo/page/sliver_list_page.dart';
 
 // import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
@@ -32,6 +33,7 @@ class StudyDemoNavigationPage extends StatelessWidget {
     StudyDemoNavigatorModel("EventBus数据共享与传递", "8", "image"),
     StudyDemoNavigatorModel("shared_preferences存储数据", "9", "image"),
     StudyDemoNavigatorModel("路由的基本使用", "10", "image"),
+    StudyDemoNavigatorModel("可滚动的布局1 SliverAppBar + SliverList", "11", "image"),
   ];
 
   StudyDemoNavigationPage({Key key}) : super(key: key);
@@ -109,6 +111,10 @@ class StudyDemoListWidget extends StatelessWidget {
                   case 12:
                     Navigator.push(
                         context, CustomRoute(SharedPreferencesPage()));
+                    break;
+
+                  case 13:
+                    Navigator.push(context, CustomRoute(SliverListPage()));
                     break;
                 }
                 Fluttertoast.showToast(
