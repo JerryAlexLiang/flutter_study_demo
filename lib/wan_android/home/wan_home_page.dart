@@ -11,6 +11,7 @@ import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart'
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'eye_category_list_page.dart';
+import 'my_drawer.dart';
 
 class WanHomePage extends StatefulWidget {
   WanHomePage({Key key}) : super(key: key);
@@ -74,6 +75,8 @@ class _WanHomePageState extends State<WanHomePage>
     return Scaffold(
       appBar: AppBar(
         title: Text('首页'),
+        // automaticallyImplyLeading: false,
+        // leading: BackButton(),
       ),
       body: FutureBuilder(
         future: getWanHomeTopBanner(),
@@ -171,6 +174,8 @@ class _WanHomePageState extends State<WanHomePage>
           }
         },
       ),
+      //抽屉菜单 drawer属性接受一个需要在抽屉栏中显示的抽屉组件，MyDrawer是自定义的无状态组件
+      drawer: MyDrawer(),
     );
   }
 
