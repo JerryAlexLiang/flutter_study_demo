@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_study_demo/page/sliver_list_page.dart';
 import 'package:flutter_study_demo/provider/current_Index_provider.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -57,7 +58,8 @@ class IndexPageProvider extends StatelessWidget {
     // HomeListPage(),
     KnowledgeSystemPage(),
     // SimpleListPage(),
-    StudyDemoNavigationPage(),
+    // StudyDemoNavigationPage(),
+    SliverListPage(),
     NetworkRequestPage()
   ];
 
