@@ -6,6 +6,7 @@ import 'package:flutter_study_demo/page/scoped_model_page.dart';
 import 'package:flutter_study_demo/page/shared_preferences_page.dart';
 import 'package:flutter_study_demo/page/sliver_grid_page.dart';
 import 'package:flutter_study_demo/page/sliver_list_page.dart';
+import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
 
 // import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
@@ -42,6 +43,7 @@ class StudyDemoNavigationPage extends StatelessWidget {
         "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter",
         "12",
         "image"),
+    StudyDemoNavigatorModel("SliverPersistentHeader组件", "13", "image"),
   ];
 
   StudyDemoNavigationPage({Key key}) : super(key: key);
@@ -127,6 +129,11 @@ class StudyDemoListWidget extends StatelessWidget {
 
                   case 14:
                     Navigator.push(context, CustomRoute(SliverGridPage()));
+                    break;
+
+                  case 15:
+                    Navigator.push(
+                        context, CustomRoute(SliverPersistentHeaderPage()));
                     break;
                 }
                 Fluttertoast.showToast(

@@ -33,8 +33,8 @@ dependencies:
   #scoped_model: ^1.0.1
   scoped_model: ^1.1.0
 
-#  #Flutter使用provide状态管理器管理界面
-#  provide: ^1.0.2
+  #  #Flutter使用provide状态管理器管理界面
+  #  provide: ^1.0.2
 
   #Flutter使用provider状态管理器管理界面
   provider: ^5.0.0
@@ -54,6 +54,9 @@ dependencies:
 
   #banner
   flutter_swiper: ^1.1.6
+
+  #google_fonts
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +81,12 @@ flutter:
 
   assets:
     - images/core_icon_bg_header.png
+
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: fonts/Rubik-Regular.ttf
+        - asset: fonts/Rubik-Medium.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

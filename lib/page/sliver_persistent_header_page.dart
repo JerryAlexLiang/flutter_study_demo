@@ -8,13 +8,14 @@ import 'package:flutter_study_demo/page/my_widget.dart';
 import 'package:flutter_study_demo/page/net_work_request_page.dart';
 import 'package:flutter_study_demo/page/shared_preferences_page.dart';
 import 'package:flutter_study_demo/page/sliver_grid_page.dart';
-import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
 import 'package:flutter_study_demo/widget/custom_toolbar.dart';
+import 'package:flutter_study_demo/widget/sliver_appbar_delegate.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class SliverListPage extends StatelessWidget {
-  SliverListPage({Key key}) : super(key: key);
+class SliverPersistentHeaderPage extends StatelessWidget {
+  SliverPersistentHeaderPage({Key key}) : super(key: key);
 
   final data = <Color>[
     Colors.purple[200],
@@ -84,6 +85,7 @@ class SliverListPage extends StatelessWidget {
         slivers: [
           _buildSliversAppBar(),
           _buildSliverListHorizon3(),
+          _buildPersistentHeader('SliverPersistentHeader'),
           // _buildSliverList(),
           _buildSliverList2(),
         ],
@@ -296,7 +298,7 @@ class SliverListPage extends StatelessWidget {
         break;
 
       case 13:
-        Navigator.push(context, CustomRoute(SliverListPage()));
+        Navigator.push(context, CustomRoute(SliverPersistentHeaderPage()));
         break;
 
       case 14:
@@ -323,5 +325,32 @@ class SliverListPage extends StatelessWidget {
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0);
+  }
+
+  _buildPersistentHeader(String s) {
+    //SliverPersistentHeader 通常用于CustomScrollView中，可以让一个组件在滑动中停留在顶部，不会滑动消失
+    return SliverPersistentHeader(
+      //pinned 是否伸展并顶部停留
+      pinned: true,
+      // //floating 是否浮动
+      // floating: false,
+      //delegate 代理
+      delegate: SliverAppBarDelegate(
+        50.0,
+        100.0,
+        Container(
+          alignment: Alignment.center,
+          color: Colors.blue,
+          child: Text(
+            'SliverPersistentHeader - StudyList',
+            style: GoogleFonts.oswald(
+              color: Colors.white,
+              fontSize: 18.0,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
