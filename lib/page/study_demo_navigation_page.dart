@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/custom_router.dart';
+import 'package:flutter_study_demo/page/animation_page.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
 import 'package:flutter_study_demo/page/scoped_model_page.dart';
@@ -44,6 +45,7 @@ class StudyDemoNavigationPage extends StatelessWidget {
         "12",
         "image"),
     StudyDemoNavigatorModel("SliverPersistentHeader组件", "13", "image"),
+    StudyDemoNavigatorModel("AnimationWidget组件", "14", "image"),
   ];
 
   StudyDemoNavigationPage({Key key}) : super(key: key);
@@ -71,6 +73,7 @@ class StudyDemoListWidget extends StatelessWidget {
         elevation: 0.0,
       ),
       body: ListView.builder(
+          reverse: true,
           itemCount: models.length,
           itemBuilder: (context, index) {
             return ListTile(
@@ -134,6 +137,13 @@ class StudyDemoListWidget extends StatelessWidget {
                   case 15:
                     Navigator.push(
                         context, CustomRoute(SliverPersistentHeaderPage()));
+                    break;
+
+                  case 16:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AnimationPage()),
+                    );
                     break;
                 }
                 Fluttertoast.showToast(

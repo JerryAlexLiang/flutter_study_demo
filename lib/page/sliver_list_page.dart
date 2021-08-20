@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/model/study_demo_navigator_model.dart';
 import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
+import 'package:flutter_study_demo/page/animation_page.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
 import 'package:flutter_study_demo/page/my_widget.dart';
@@ -62,6 +63,7 @@ class SliverListPage extends StatelessWidget {
         "12",
         "image"),
     StudyDemoNavigatorModel("SliverPersistentHeader组件", "13", "image"),
+    StudyDemoNavigatorModel("AnimationWidget组件", "14", "image"),
   ];
 
   final imageUrl =
@@ -312,6 +314,13 @@ class SliverListPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SliverPersistentHeaderPage()),
+        );
+        break;
+
+      case 16:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnimationPage()),
         );
         break;
     }
