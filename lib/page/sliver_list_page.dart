@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/animation_page.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
+import 'package:flutter_study_demo/page/gesture_detector_drag_page.dart';
 import 'package:flutter_study_demo/page/implicitly_animated_page.dart';
 import 'package:flutter_study_demo/page/my_widget.dart';
 import 'package:flutter_study_demo/page/net_work_request_page.dart';
@@ -62,6 +63,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("SliverPersistentHeader组件", 15, "image"),
     StudyDemoNavigatorModel("AnimationWidget组件", 16, "image"),
     StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 17, "image"),
+    StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 18, "image"),
   ];
 
   final imageUrl =
@@ -332,6 +334,11 @@ class SliverListPage extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => ImplicitlyAnimatedPage(),
             ));
+        break;
+
+      case 18:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => GestureDetectorDragPage()));
         break;
     }
     Fluttertoast.showToast(

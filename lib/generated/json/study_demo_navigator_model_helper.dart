@@ -5,7 +5,7 @@ studyDemoNavigatorModelFromJson(StudyDemoNavigatorModel data, Map<String, dynami
 		data.name = json['name'].toString();
 	}
 	if (json['id'] != null) {
-		data.id = json['id'].toString();
+		data.id = json['id'].toString() as int;
 	}
 	if (json['image'] != null) {
 		data.image = json['image'].toString();
