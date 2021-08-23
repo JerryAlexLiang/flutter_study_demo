@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MoonTransitionAnimation extends AnimatedWidget {
-
   MoonTransitionAnimation({Key key, Animation<double> animation})
       : super(key: key, listenable: animation);
 
@@ -11,7 +10,7 @@ class MoonTransitionAnimation extends AnimatedWidget {
     // 就代表我们可能传入的Animation或者AnimationController类型的对象
     final Animation<double> animation = listenable;
     return Container(
-      height: 200,
+      height: 150,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -27,6 +26,13 @@ class MoonTransitionAnimation extends AnimatedWidget {
             0,
             animation.value,
           ],
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        'AnimatedWidget',
+        style: TextStyle(
+          color: Colors.white,
         ),
       ),
     );

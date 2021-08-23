@@ -41,28 +41,28 @@ class SliverPersistentHeaderPage extends StatelessWidget {
   ];
 
   final List<StudyDemoNavigatorModel> dataList = [
-    StudyDemoNavigatorModel("Flutter2中文网Demo1", "0", "image"),
-    StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", "1", "image"),
-    StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", "2", "image"),
-    StudyDemoNavigatorModel("网络数据", "1", "image"),
-    StudyDemoNavigatorModel("Provide状态管理", "2", "image"),
-    StudyDemoNavigatorModel("ListView", "3", "image"),
-    StudyDemoNavigatorModel("ListView2", "4", "image"),
-    StudyDemoNavigatorModel("StatefulWidget", "5", "image"),
-    StudyDemoNavigatorModel("extends custom widget", "6", "image"),
-    StudyDemoNavigatorModel("ScopedModel数据共享与传递", "7", "image"),
-    StudyDemoNavigatorModel("EventBus数据共享与传递", "8", "image"),
-    StudyDemoNavigatorModel("shared_preferences存储数据", "9", "image"),
-    StudyDemoNavigatorModel("路由的基本使用", "10", "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo1", 0, "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", 1, "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", 2, "image"),
+    StudyDemoNavigatorModel("网络数据", 3, "image"),
+    StudyDemoNavigatorModel("Provide状态管理", 4, "image"),
+    StudyDemoNavigatorModel("ListView", 5, "image"),
+    StudyDemoNavigatorModel("ListView2", 6, "image"),
+    StudyDemoNavigatorModel("StatefulWidget", 7, "image"),
+    StudyDemoNavigatorModel("extends custom widget", 8, "image"),
+    StudyDemoNavigatorModel("ScopedModel数据共享与传递", 9, "image"),
+    StudyDemoNavigatorModel("EventBus数据共享与传递", 10, "image"),
+    StudyDemoNavigatorModel("shared_preferences存储数据", 11, "image"),
+    StudyDemoNavigatorModel("路由的基本使用", 12, "image"),
     StudyDemoNavigatorModel(
         "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter",
-        "11",
+        13,
         "image"),
     StudyDemoNavigatorModel(
         "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter",
-        "12",
+        14,
         "image"),
-    StudyDemoNavigatorModel("SliverPersistentHeader组件", "13", "image"),
+    StudyDemoNavigatorModel("SliverPersistentHeader组件", 15, "image"),
   ];
 
   final imageUrl =

@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/animation_page.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
+import 'package:flutter_study_demo/page/implicitly_animated_page.dart';
 import 'package:flutter_study_demo/page/my_widget.dart';
 import 'package:flutter_study_demo/page/net_work_request_page.dart';
 import 'package:flutter_study_demo/page/shared_preferences_page.dart';
@@ -41,29 +42,26 @@ class SliverListPage extends StatelessWidget {
   ];
 
   final List<StudyDemoNavigatorModel> dataList = [
-    StudyDemoNavigatorModel("Flutter2中文网Demo1", "0", "image"),
-    StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", "1", "image"),
-    StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", "2", "image"),
-    StudyDemoNavigatorModel("网络数据", "1", "image"),
-    StudyDemoNavigatorModel("Provide状态管理", "2", "image"),
-    StudyDemoNavigatorModel("ListView", "3", "image"),
-    StudyDemoNavigatorModel("ListView2", "4", "image"),
-    StudyDemoNavigatorModel("StatefulWidget", "5", "image"),
-    StudyDemoNavigatorModel("extends custom widget", "6", "image"),
-    StudyDemoNavigatorModel("ScopedModel数据共享与传递", "7", "image"),
-    StudyDemoNavigatorModel("EventBus数据共享与传递", "8", "image"),
-    StudyDemoNavigatorModel("shared_preferences存储数据", "9", "image"),
-    StudyDemoNavigatorModel("路由的基本使用", "10", "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo1", 0, "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", 1, "image"),
+    StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", 2, "image"),
+    StudyDemoNavigatorModel("网络数据", 3, "image"),
+    StudyDemoNavigatorModel("Provide状态管理", 4, "image"),
+    StudyDemoNavigatorModel("ListView", 5, "image"),
+    StudyDemoNavigatorModel("ListView2", 6, "image"),
+    StudyDemoNavigatorModel("StatefulWidget", 7, "image"),
+    StudyDemoNavigatorModel("extends custom widget", 8, "image"),
+    StudyDemoNavigatorModel("ScopedModel数据共享与传递", 9, "image"),
+    StudyDemoNavigatorModel("EventBus数据共享与传递", 10, "image"),
+    StudyDemoNavigatorModel("shared_preferences存储数据", 11, "image"),
+    StudyDemoNavigatorModel("路由的基本使用", 12, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter",
-        "11",
-        "image"),
+        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter", 13, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter",
-        "12",
-        "image"),
-    StudyDemoNavigatorModel("SliverPersistentHeader组件", "13", "image"),
-    StudyDemoNavigatorModel("AnimationWidget组件", "14", "image"),
+        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter", 14, "image"),
+    StudyDemoNavigatorModel("SliverPersistentHeader组件", 15, "image"),
+    StudyDemoNavigatorModel("AnimationWidget组件", 16, "image"),
+    StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 17, "image"),
   ];
 
   final imageUrl =
@@ -72,6 +70,9 @@ class SliverListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //在Dart中，使用sort()方法对List结构数据进行排序
+    dataList.sort((a, b) => (b.id).compareTo(a.id));
+
     return Scaffold(
       // appBar: CustomToolBar(
       //   onTapLeft: () {
@@ -104,6 +105,7 @@ class SliverListPage extends StatelessWidget {
         ),
         height: 100.0,
         child: ListView.builder(
+          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: dataList.length,
           itemBuilder: (context, index) {
@@ -253,7 +255,7 @@ class SliverListPage extends StatelessWidget {
   }
 
   _listViewClickListener(BuildContext context, int index) {
-    switch (index) {
+    switch (dataList[index].id) {
       case 0:
         Navigator.push(context, CustomRoute(StudyFirstDemoPage()));
         break;
@@ -322,6 +324,14 @@ class SliverListPage extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => AnimationPage()),
         );
+        break;
+
+      case 17:
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ImplicitlyAnimatedPage(),
+            ));
         break;
     }
     Fluttertoast.showToast(

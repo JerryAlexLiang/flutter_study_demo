@@ -1,7 +1,7 @@
 
 class StudyDemoNavigatorModel  {
 	String name;
-	String id;
+	int id;
 	String image;
 
 	StudyDemoNavigatorModel(this.name, this.id, this.image);

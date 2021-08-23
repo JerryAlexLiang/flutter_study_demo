@@ -80,7 +80,6 @@ class _AnimationPageState extends State<AnimationPage>
               ),
             ),
           ),
-
           Row(
             children: [
               Container(
@@ -172,10 +171,50 @@ class _AnimationPageState extends State<AnimationPage>
               ),
             ],
           ),
-
-          //AnimatedWidget
-          MoonTransitionAnimation(
-            animation: _controller,
+          Row(
+            children: [
+              Expanded(
+                child: //AnimatedWidget
+                    MoonTransitionAnimation(
+                  animation: _controller,
+                ),
+              ),
+              Expanded(
+                child: //除了通过直接继承自AnimatedWidget自定义动画组件外，在不需要单独自定义组件的情况下，还可以使用AnimatedBuilder实现相同类型的动画
+                    AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.red,
+                            Colors.blue,
+                          ],
+                          //LinearGradient的stops接受一个double类型的数组并且数量必须和colors属性中颜色对象数组的数量相等，
+                          // 表示从开始到结束的渐变颜色起始与结束位置。这里将起始值设置为0，将结束值设置为动画对象animation中动态更新的插值。
+                          stops: [
+                            0,
+                            _controller.value,
+                          ],
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'AnimatedBuilder',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ],
       ),
