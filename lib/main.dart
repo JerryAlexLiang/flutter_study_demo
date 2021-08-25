@@ -1,5 +1,3 @@
-// ignore: avoid_web_libraries_in_flutter
-
 import 'dart:io';
 
 import 'package:english_words/english_words.dart';

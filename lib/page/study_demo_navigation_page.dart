@@ -115,13 +115,13 @@ class StudyDemoListWidget extends StatelessWidget {
                   case 11:
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return SharedPreferencesPage();
+                      return SharedPreferencesPage('shared_preferences存储数据');
                     }));
                     break;
 
                   case 12:
                     Navigator.push(
-                        context, CustomRoute(SharedPreferencesPage()));
+                        context, CustomRoute(SharedPreferencesPage('路由的基本使用')));
                     break;
 
                   case 13:

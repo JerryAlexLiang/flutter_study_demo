@@ -13,6 +13,7 @@ import 'package:flutter_study_demo/page/shared_preferences_page.dart';
 import 'package:flutter_study_demo/page/sliver_grid_page.dart';
 import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
+import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/widget/custom_toolbar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -25,14 +26,14 @@ class SliverListPage extends StatelessWidget {
     Colors.purple[400],
     Colors.purple[500],
     Colors.purple[600],
-    Colors.purple[50],
-    Colors.purple[100],
+    Colors.purple[300],
+    Colors.purple[500],
     Colors.purple[700],
     Colors.purple[800],
     Colors.purple[900],
-    Colors.purple[50],
-    Colors.purple[100],
-    Colors.purple[200],
+    Colors.purple[300],
+    Colors.purple[600],
+    Colors.purple[700],
     Colors.purple[300],
     Colors.purple[400],
     Colors.purple[500],
@@ -47,23 +48,20 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", 1, "image"),
     StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", 2, "image"),
     StudyDemoNavigatorModel("网络数据", 3, "image"),
-    StudyDemoNavigatorModel("Provide状态管理", 4, "image"),
-    StudyDemoNavigatorModel("ListView", 5, "image"),
-    StudyDemoNavigatorModel("ListView2", 6, "image"),
-    StudyDemoNavigatorModel("StatefulWidget", 7, "image"),
-    StudyDemoNavigatorModel("extends custom widget", 8, "image"),
-    StudyDemoNavigatorModel("ScopedModel数据共享与传递", 9, "image"),
-    StudyDemoNavigatorModel("EventBus数据共享与传递", 10, "image"),
-    StudyDemoNavigatorModel("shared_preferences存储数据", 11, "image"),
-    StudyDemoNavigatorModel("路由的基本使用", 12, "image"),
+    StudyDemoNavigatorModel("Extends Custom Widget", 4, "image"),
+    StudyDemoNavigatorModel("ScopedModel数据共享与传递", 5, "image"),
+    StudyDemoNavigatorModel("EventBus数据共享与传递", 6, "image"),
+    StudyDemoNavigatorModel("shared_preferences存储数据", 7, "image"),
+    StudyDemoNavigatorModel("路由的基本使用", 8, "image"),
+    StudyDemoNavigatorModel("SQLite数据库 TodoList", 9, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter", 13, "image"),
+        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter", 10, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter", 14, "image"),
-    StudyDemoNavigatorModel("SliverPersistentHeader组件", 15, "image"),
-    StudyDemoNavigatorModel("AnimationWidget组件", 16, "image"),
-    StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 17, "image"),
-    StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 18, "image"),
+        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter", 11, "image"),
+    StudyDemoNavigatorModel("SliverPersistentHeader组件", 12, "image"),
+    StudyDemoNavigatorModel("AnimationWidget组件", 13, "image"),
+    StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 14, "image"),
+    StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 15, "image"),
   ];
 
   final imageUrl =
@@ -127,7 +125,8 @@ class SliverListPage extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => Fluttertoast.showToast(msg: dataList[index].name),
+              // onTap: () => Fluttertoast.showToast(msg: dataList[index].name),
+              onTap: () => _listViewClickListener(context, index),
             );
           },
         ),
@@ -159,7 +158,7 @@ class SliverListPage extends StatelessWidget {
               title: Text(
                 dataList[index].name,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
               onTap: () {
@@ -201,11 +200,11 @@ class SliverListPage extends StatelessWidget {
 
   Widget _buildSliversAppBar() {
     return SliverAppBar(
-      //是否顶部停留
+      //是否顶部停留 设置为true时，当SliverAppBar内容滑出屏幕时，将始终渲染一个固定在顶部的收起状态
       pinned: true,
-      //是否浮动
-      // floating: true,
-      //是否半收展 snap为true时必须floating为true
+      //是否浮动 设置为true时，向下滑动时，即使当前CustomScrollView不在顶部，SliverAppBar也会跟着一起向下出现
+      floating: true,
+      //是否半收展 snap为true时必须floating为true  设置为true时，当手指放开时，SliverAppBar会根据当前的位置进行调整，始终保持展开或收起的状态，此效果在floating=true时生效
       // snap: true,
       //延展高度 double
       expandedHeight: 300.0,
@@ -257,55 +256,59 @@ class SliverListPage extends StatelessWidget {
   }
 
   _listViewClickListener(BuildContext context, int index) {
-    switch (dataList[index].id) {
-      case 0:
+    switch (dataList[index].name) {
+      case "Flutter2中文网Demo1":
         Navigator.push(context, CustomRoute(StudyFirstDemoPage()));
         break;
 
-      case 1:
+      case "Flutter2中文网Demo2 Flutter布局基础":
         Navigator.push(context, CustomRoute(MyWidget()));
         break;
 
-      case 2:
+      case "Flutter2中文网Demo3 Flutter CodeLab":
         Navigator.push(context, CustomRoute(CodeLabLoginPage()));
         break;
 
-      case 3:
+      case "网络数据":
         Navigator.push(context, CustomRoute(NetworkRequestPage()));
         break;
 
-      case 8:
+      case "Extends Custom Widget":
         Navigator.push(context, CustomRoute(CustomWidgetPages()));
         break;
 
-      case 9:
+      case "EventBus数据共享与传递":
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return EventBusOnePage();
+        }));
+        break;
+
+      case "ScopedModel数据共享与传递":
         // Navigator.push(context,
         //     MaterialPageRoute(builder: (context) {
         //   return ScopedModelPage();
         // }));
         break;
 
-      case 10:
+      case "shared_preferences存储数据":
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return EventBusOnePage();
+          return SharedPreferencesPage("shared_preferences存储数据");
         }));
         break;
 
-      case 11:
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SharedPreferencesPage();
-        }));
+      case "路由的基本使用":
+        Navigator.push(context, CustomRoute(SharedPreferencesPage("路由的基本使用")));
         break;
 
-      case 12:
-        Navigator.push(context, CustomRoute(SharedPreferencesPage()));
+      case "SQLite数据库 TodoList":
+        Navigator.push(context, CustomRoute(TodoListPage()));
         break;
 
-      case 13:
+      case "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter":
         Navigator.push(context, CustomRoute(SliverListPage()));
         break;
 
-      case 14:
+      case "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter":
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -314,21 +317,21 @@ class SliverListPage extends StatelessWidget {
         );
         break;
 
-      case 15:
+      case "SliverPersistentHeader组件":
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SliverPersistentHeaderPage()),
         );
         break;
 
-      case 16:
+      case "AnimationWidget组件":
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AnimationPage()),
         );
         break;
 
-      case 17:
+      case "隐式动画组件ImplicitlyAnimatedWidget":
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -336,9 +339,8 @@ class SliverListPage extends StatelessWidget {
             ));
         break;
 
-      case 18:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => GestureDetectorDragPage()));
+      case "手势事件GestureDetector - Drag":
+        Navigator.push(context, CustomRoute(GestureDetectorDragPage()));
         break;
     }
     Fluttertoast.showToast(

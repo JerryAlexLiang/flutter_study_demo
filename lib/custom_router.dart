@@ -53,15 +53,15 @@ class CustomRoute extends PageRouteBuilder {
               // 幻灯片路由动画
               return SlideTransition(
                 //左右滑动路由动画
-                // position: Tween<Offset>(
-                //         begin: Offset(-1.0, 0.0), end: Offset(0.0, 0.0))
-                //     .animate(CurvedAnimation(
-                //         parent: animation1, curve: Curves.fastOutSlowIn)),
-                //下上滑动路由动画
                 position: Tween<Offset>(
-                        begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
+                        begin: Offset(-1.0, 0.0), end: Offset(0.0, 0.0))
                     .animate(CurvedAnimation(
                         parent: animation1, curve: Curves.fastOutSlowIn)),
+                //下上滑动路由动画
+                // position: Tween<Offset>(
+                //         begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
+                //     .animate(CurvedAnimation(
+                //         parent: animation1, curve: Curves.fastOutSlowIn)),
                 child: child,
               );
             });

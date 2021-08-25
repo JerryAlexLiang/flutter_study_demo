@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_demo/custom_router.dart';
+import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -76,6 +78,27 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             onTap: () => Fluttertoast.showToast(msg: '我的'),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.book,
+              color: Colors.red,
+            ),
+            title: Text(
+              'TODO List',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                CustomRoute(
+                  TodoListPage(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(

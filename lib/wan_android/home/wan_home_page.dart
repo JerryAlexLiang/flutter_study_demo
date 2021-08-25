@@ -71,6 +71,7 @@ class _WanHomePageState extends State<WanHomePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     //FutureBuilder Widget 是 Flutter内置的组件，是用来等待异步请求的
     return Scaffold(
       appBar: AppBar(
@@ -111,19 +112,20 @@ class _WanHomePageState extends State<WanHomePage>
             // 它支持几乎所有的Flutter控件，但前提是需要包裹成ScrollView。
             // 它的功能与Android的SmartRefreshLayout很相似，同样也吸取了很多三方库的优点。
             return EasyRefresh(
+              firstRefresh: true,
               controller: _controller,
               child: ListView(
                 children: [
                   WanHomeSwiperBanner(bean),
                   EyeCategoryListPage(),
                   HomeEyeSubjectPage(),
-                  Container(
-                    color: Colors.white,
-                    height: 200,
-                    child: Center(
-                      child: Text('demo'),
-                    ),
-                  ),
+                  // Container(
+                  //   color: Colors.white,
+                  //   height: 200,
+                  //   child: Center(
+                  //     child: Text('demo'),
+                  //   ),
+                  // ),
                   _articleListPage(),
                 ],
               ),

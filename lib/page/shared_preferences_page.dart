@@ -4,7 +4,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesPage extends StatefulWidget {
-  SharedPreferencesPage({Key key}) : super(key: key);
+  // SharedPreferencesPage({Key key}) : super(key: key);
+
+  final String titleName;
+
+  SharedPreferencesPage(this.titleName);
 
   @override
   _SharedPreferencesPageState createState() {
@@ -35,7 +39,7 @@ class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SharedPreferences1'),
+        title: Text(this.widget.titleName),
         primary: true,
       ),
       body: Container(
@@ -100,6 +104,8 @@ class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
 
   void initFromCache() async {
     //Flutter中获取SharedPreferences的单例方法是一个异步方法，所以在使用时需要注意使用await获取其真实对象
+    //使用SharedPreferences对象的方法只能存储int、double、bool、string和stringList类型的数据。
+    // 另外，出于读取、写入的性能原因，SharedPreferences对象的方法不能存储较大的数据量
     final SharedPreferences preferences = await _prefs;
     //根据健key获取本地存储的值value
     final int counter = preferences.getInt("key_counter");
@@ -118,16 +124,41 @@ class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
     });
   }
 
-  //路由跳转到SharedPreferencesTwoPage 关键"等待": async-await组合
-  void _navigatorToSecondPageResult(BuildContext context) async {
+  //way1: 路由跳转到SharedPreferencesTwoPage 关键"等待": async-await组合
+  // void _navigatorToSecondPageResult(BuildContext context) async {
+  //   //压栈操作并等待页面返回操作
+  //   final result = await Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => SharedPreferencesTwoPage("丁程鑫")));
+  //   //读取并显示返回值
+  //   setState(() {
+  //     jumpResult = result == null ? "返回值为空" : result;
+  //   });
+  // }
+
+  void _navigatorToSecondPageResult(BuildContext context) {
     //压栈操作并等待页面返回操作
-    final result = await Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SharedPreferencesTwoPage("丁程鑫")));
-    //读取并显示返回值
-    setState(() {
-      jumpResult = result == null ? "返回值为空" : result;
+    // final result = await Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) => SharedPreferencesTwoPage("丁程鑫")));
+    // //读取并显示返回值
+    // setState(() {
+    //   jumpResult = result == null ? "返回值为空" : result;
+    // });
+
+    //Way2: Navigator中的相关push方法都会返回一个Future对象，从而接收新页面将会返回的数据。可以使用Future对象接受打开页面中返回的数据
+    Future<String> result =
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SharedPreferencesTwoPage('李天泽');
+    }));
+
+    //使用Future对象的then方法接收异步数据
+    result.then((value) {
+      return setState(() {
+        jumpResult = value == null ? "返回值为空" : value;
+      });
     });
   }
 }

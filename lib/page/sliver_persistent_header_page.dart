@@ -55,13 +55,9 @@ class SliverPersistentHeaderPage extends StatelessWidget {
     StudyDemoNavigatorModel("shared_preferences存储数据", 11, "image"),
     StudyDemoNavigatorModel("路由的基本使用", 12, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter",
-        13,
-        "image"),
+        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter", 13, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter",
-        14,
-        "image"),
+        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter", 14, "image"),
     StudyDemoNavigatorModel("SliverPersistentHeader组件", 15, "image"),
   ];
 
@@ -83,7 +79,7 @@ class SliverPersistentHeaderPage extends StatelessWidget {
       // ),
       body: CustomScrollView(
         slivers: [
-          _buildSliversAppBar(),
+          _buildSliversAppBar(context),
           _buildSliverListHorizon3(),
           _buildPersistentHeader('SliverPersistentHeader'),
           // _buildSliverList(),
@@ -195,8 +191,15 @@ class SliverPersistentHeaderPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSliversAppBar() {
+  Widget _buildSliversAppBar(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
+      leading: IconButton(
+        icon: Icon(Icons.close),
+        // onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => Navigator.pop(context),
+        color: Colors.white,
+      ),
       //是否顶部停留
       pinned: true,
       //是否浮动
@@ -289,12 +292,12 @@ class SliverPersistentHeaderPage extends StatelessWidget {
 
       case 11:
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SharedPreferencesPage();
+          return SharedPreferencesPage("shared_preferences存储数据");
         }));
         break;
 
       case 12:
-        Navigator.push(context, CustomRoute(SharedPreferencesPage()));
+        Navigator.push(context, CustomRoute(SharedPreferencesPage("路由的基本使用")));
         break;
 
       case 13:

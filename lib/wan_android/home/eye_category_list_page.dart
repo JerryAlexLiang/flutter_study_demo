@@ -32,23 +32,57 @@ class _EyeCategoryListPageState extends State<EyeCategoryListPage> {
       child: Container(
         child: Column(
           children: [
-            Image.network(
-              bean.bgPicture,
-              width: ScreenUtil().setWidth(130),
-              height: ScreenUtil().setHeight(70),
-              fit: BoxFit.fitHeight,
+            // Image.network(
+            //   bean.bgPicture,
+            //   width: ScreenUtil().setWidth(130),
+            //   height: ScreenUtil().setHeight(70),
+            //   fit: BoxFit.fitHeight,
+            // ),
+            // Container(
+            //   width: ScreenUtil().setWidth(70),
+            //   height: ScreenUtil().setHeight(70),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(10),
+            //     image: DecorationImage(
+            //       image: NetworkImage(bean.bgPicture),
+            //     ),
+            //   ),
+            // ),
+            // Expanded(
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Image.network(
+            //       bean.bgPicture,
+            //       width: ScreenUtil().setWidth(100),
+            //       height: ScreenUtil().setHeight(150),
+            //       fit: BoxFit.fill,
+            //     ),
+            //   ),
+            // ),
+
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                bean.bgPicture,
+                width: ScreenUtil().setWidth(100),
+                height: ScreenUtil().setHeight(60),
+                fit: BoxFit.cover,
+              ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
-              child: Text(
-                bean.name != null ? bean.name : "默认",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: ScreenUtil().setSp(24),
-                  fontStyle: FontStyle.normal,
+
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                child: Text(
+                  bean.name != null ? bean.name : "默认",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: ScreenUtil().setSp(24),
+                    fontStyle: FontStyle.normal,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
@@ -77,10 +111,19 @@ class _EyeCategoryListPageState extends State<EyeCategoryListPage> {
 
           return Container(
             color: Colors.white,
-            margin: EdgeInsets.only(top: 5),
-            padding: EdgeInsets.only(top: 5, bottom: 5),
+            margin: EdgeInsets.only(
+              top: 5,
+              left: 10,
+              right: 10,
+            ),
+            padding: EdgeInsets.only(
+              top: 5,
+              bottom: 5,
+            ),
             child: GridView.count(
               shrinkWrap: true,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
               physics: NeverScrollableScrollPhysics(),
               crossAxisCount: 5,
               //使用了map循环，然后再使用toList()进行转换

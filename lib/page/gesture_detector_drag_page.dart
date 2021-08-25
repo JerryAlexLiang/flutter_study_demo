@@ -15,6 +15,8 @@ class GestureDetectorDragPage extends StatefulWidget {
 class _GestureDetectorDragPageState extends State<GestureDetectorDragPage> {
   //实例化本地存储对象
   //Flutter中获取SharedPreferences的单例方法是一个异步方法，所以在使用时需要注意使用await获取其真实对象
+  //使用SharedPreferences对象的方法只能存储int、double、bool、string和stringList类型的数据。
+  // 另外，出于读取、写入的性能原因，SharedPreferences对象的方法不能存储较大的数据量
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   double _top = 0;
@@ -46,6 +48,7 @@ class _GestureDetectorDragPageState extends State<GestureDetectorDragPage> {
         primary: true,
       ),
       body: _DragGestureWidget(),
+      // body: _ScaleGestureWidget(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           clearCacheReset();
@@ -157,8 +160,11 @@ class _GestureDetectorDragPageState extends State<GestureDetectorDragPage> {
               child: Text('确定'),
               onPressed: () async {
                 final SharedPreferences preferences = await _prefs;
-                preferences.setDouble("gesture_top", 0);
-                preferences.setDouble("gesture_left", 0);
+                // preferences.setDouble("gesture_top", 0);
+                // preferences.setDouble("gesture_left", 0);
+                //SharedPreferences对象的remove()方法可以实现将本地保存的键值对数据清空的功能
+                preferences.remove('gesture_top');
+                preferences.remove('gesture_left');
                 setState(() {
                   _left = 0;
                   _top = 0;
@@ -171,6 +177,39 @@ class _GestureDetectorDragPageState extends State<GestureDetectorDragPage> {
           ],
         );
       },
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  _ScaleGestureWidget() {
+    return Center(
+      child: GestureDetector(
+        child: Container(
+          width: _width,
+          height: _height,
+          color: Colors.yellow,
+          child: Center(
+            child: Text('陈星旭'),
+          ),
+        ),
+        //处理缩放手势的相关属性
+        //onScaleStart 当手指屏幕接触并建立焦点时触发，初始缩放比例为1.0
+        onScaleStart: (ScaleStartDetails details) {
+          print("用户手指在${details.localFocalPoint.toString()}处开始缩放");
+        },
+        //onScaleUpdate 当手指呈缩放手势时触发
+        onScaleUpdate: (ScaleUpdateDetails details) {
+          //缩放比例介于0.8-10
+          setState(() {
+            _width = _width * details.scale.clamp(0.8, 10.0);
+            _height = _height * details.scale.clamp(.8, 10.0);
+          });
+        },
+        //onScaleEnd 当手指离开屏幕时触发
+        onScaleEnd: (ScaleEndDetails details) {
+          print("缩放以${details.velocity.toString()}的速度移动结束");
+        },
+      ),
     );
   }
 }
