@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_study_demo/config/service_url.dart';
+import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/model/wan_home_banner_bean.dart';
 import 'package:flutter_study_demo/service/service_method.dart';
+import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/wan_android/home/home_eye_subject_page.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -78,6 +80,15 @@ class _WanHomePageState extends State<WanHomePage>
         title: Text('首页'),
         // automaticallyImplyLeading: false,
         // leading: BackButton(),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.book),
+            onPressed: () => Navigator.push(
+              context,
+              CustomRoute(TodoListPage()),
+            ),
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: getWanHomeTopBanner(),
@@ -115,6 +126,9 @@ class _WanHomePageState extends State<WanHomePage>
               firstRefresh: true,
               controller: _controller,
               child: ListView(
+                shrinkWrap: true,
+                //解决滑动事件冲突
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   WanHomeSwiperBanner(bean),
                   EyeCategoryListPage(),
@@ -182,10 +196,9 @@ class _WanHomePageState extends State<WanHomePage>
   }
 
   Widget _articleListPage() {
-
     if (articleDataList != null) {
-
-      List<Widget> listWidget = articleDataList.map((e) => _articleListItem(e)).toList();
+      List<Widget> listWidget =
+          articleDataList.map((e) => _articleListItem(e)).toList();
 
       return Wrap(
         spacing: 1,

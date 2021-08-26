@@ -18,17 +18,30 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage> {
   ToDoDatabaseHelper databaseHelper = ToDoDatabaseHelper();
   List<TodoModel> todoList;
-  bool isOffstage = false;
+  bool isOffstageDelete = false;
+  bool isOffstageClear = false;
+
+  final FocusNode _focusNode = FocusNode();
+  TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
     todoList = List<TodoModel>();
     updateListView();
+
+    if (_controller.text.isNotEmpty) {
+      isOffstageClear = false;
+    } else {
+      isOffstageClear = true;
+    }
   }
 
   @override
   void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -40,7 +53,7 @@ class _TodoListPageState extends State<TodoListPage> {
         primary: true,
         actions: [
           Offstage(
-            offstage: isOffstage,
+            offstage: isOffstageDelete,
             child: InkWell(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -62,7 +75,18 @@ class _TodoListPageState extends State<TodoListPage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: initTodoListView(),
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 5,
+            bottom: 25,
+          ),
+          child: ListView(
+            children: [
+              initSearchBar(),
+              initTodoListView(),
+            ],
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -81,44 +105,127 @@ class _TodoListPageState extends State<TodoListPage> {
           this.todoList = value;
 
           if (todoList.isEmpty) {
-            isOffstage = true;
+            isOffstageDelete = true;
           } else {
-            isOffstage = false;
+            isOffstageDelete = false;
           }
         });
       });
     });
   }
 
+  void searchListView(String title) async {
+    List<TodoModel> model = await databaseHelper.getQueryTodoListByTitle(title);
+    setState(() {
+      this.todoList = model;
+      if (todoList.isEmpty) {
+        isOffstageDelete = true;
+      } else {
+        isOffstageDelete = false;
+      }
+    });
+  }
+
+  initSearchWidget() {
+    return TextField(
+      style: TextStyle(color: Colors.white),
+      //装饰线
+      decoration: InputDecoration(
+        //边线相关
+        border: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.deepOrangeAccent,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        //无焦点时文字
+        labelText: '请输入关键字',
+        labelStyle: TextStyle(color: Colors.red),
+        //提示文字相关
+        hintText: '请输入关键字',
+        hintStyle: TextStyle(
+          color: Colors.white60,
+        ),
+        //输入框最左侧
+        prefixText: 'Search : ',
+        prefixStyle: TextStyle(color: Colors.red),
+        prefixIcon: Icon(
+          Icons.search,
+          size: 20,
+          color: Colors.white,
+        ),
+      ),
+      onChanged: (v) {
+        //Flutter中TextField设置文本内容后让光标在文本末尾
+        setTitleSelection();
+        setState(() {
+          if (v.isNotEmpty) {
+            isOffstageClear = false;
+          } else {
+            isOffstageClear = true;
+          }
+        });
+      },
+      focusNode: _focusNode,
+      controller: _controller,
+      minLines: 1,
+      onSubmitted: (v) {
+        Fluttertoast.showToast(msg: '搜索关键字: $v');
+        searchListView(v);
+      },
+    );
+  }
+
   initTodoListView() {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: todoList.length,
       itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            todoList[index].title,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
+        return Card(
+          // //影深
+          // elevation: 1,
+          color: Colors.transparent,
+          child: ListTile(
+            title: Text(
+              todoList[index].title,
+              style: TextStyle(
+                color: Colors.yellow,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
             ),
-          ),
-          subtitle: Text(
-            todoList[index].description,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
+            subtitle: Text(
+              todoList[index].description,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-          ),
-          trailing: IconButton(
-            icon: Icon(
-              Icons.delete,
-              color: Colors.white,
+            trailing: IconButton(
+              icon: Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+              onPressed: () => _delete(todoList[index]),
+              // onPressed: () => Fluttertoast.showToast(msg: '${todoList[index].id} title: ${todoList[index].title}'),
             ),
-            onPressed: () => _delete(todoList[index]),
-            // onPressed: () => Fluttertoast.showToast(msg: '${todoList[index].id} title: ${todoList[index].title}'),
+            onTap: () => navigatorToAddPage(todoList[index]),
+            onLongPress: () => _delete(todoList[index]),
           ),
-          onTap: () => navigatorToAddPage(todoList[index]),
         );
       },
     );
@@ -255,4 +362,59 @@ class _TodoListPageState extends State<TodoListPage> {
 //         }
 //       }));
 // }
+
+//Flutter中TextField设置文本内容后让光标在文本末尾
+  void setTitleSelection() {
+    _controller.selection = TextSelection.fromPosition(
+      TextPosition(
+        offset: _controller.text.length,
+        affinity: TextAffinity.downstream,
+      ),
+    );
+  }
+
+  _clearTextField() {
+    // _focusNode.unfocus();
+    // _focusNode.canRequestFocus = false;
+    // Future.delayed(Duration(milliseconds: 500), () {
+    //   _focusNode.canRequestFocus = true;
+    // });
+
+    setState(() {
+      Fluttertoast.showToast(msg: 'clear text');
+      _controller.clear();
+      isOffstageClear = true;
+    });
+
+    updateListView();
+  }
+
+  initSearchBar() {
+    return Padding(
+      padding: EdgeInsets.all(5),
+      child: Row(
+        children: [
+          Expanded(
+            child: initSearchWidget(),
+          ),
+          Offstage(
+            offstage: isOffstageClear,
+            child: Container(
+              margin: EdgeInsets.only(
+                left: 5,
+                right: 5,
+              ),
+              child: InkWell(
+                child: Icon(
+                  Icons.clear,
+                  color: Colors.white,
+                ),
+                onTap: () => _clearTextField(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

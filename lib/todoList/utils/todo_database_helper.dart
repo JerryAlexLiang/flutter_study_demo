@@ -49,13 +49,43 @@ class ToDoDatabaseHelper {
         'CREATE TABLE $todoTable($_id INTEGER PRIMARY KEY AUTOINCREMENT,$_title TEXT,$_description TEXT,$_date TEXT)');
   }
 
-  //查
+  //查全部
   Future<List<Map<String, dynamic>>> getTodoMapList() async {
     Database db = await this.dataBase;
     var result = await db.query(todoTable, orderBy: '$_id ASC');
     return result;
   }
 
+  //根据title查询
+  Future<List<Map<String, dynamic>>> getQueryToDoMapList(
+      String searchContent) async {
+    Database db = await this.dataBase;
+    //关键字搜索
+    // var result = await db.query(todoTable,
+    //     where: '$_title = ?', whereArgs: [title]);
+
+    //模糊搜索（根据关键字查询匹配标题or内容）
+    var result = await db.query(todoTable,
+        where: '$_title LIKE ? or $_description LIKE ?',
+        whereArgs: ['%$searchContent%', '%$searchContent%']);
+    return result;
+  }
+
+  //条件查询返回List<T>
+  Future<List<TodoModel>> getQueryTodoListByTitle(String searchContent) async {
+    var todoMapList = await getQueryToDoMapList(searchContent);
+    int count = todoMapList.length;
+
+    List<TodoModel> todoList = List<TodoModel>();
+
+    for (int i = 0; i < count; i++) {
+      todoList.add(TodoModel.fromJson(todoMapList[i]));
+    }
+
+    return todoList;
+  }
+
+  //查询全部返回List<T>
   Future<List<TodoModel>> getTodoList() async {
     // Get 'Map List' from database
     var todoMapList = await getTodoMapList();

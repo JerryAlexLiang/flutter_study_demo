@@ -107,6 +107,11 @@ class _TodoListDetailPageState extends State<TodoListDetailPage> {
             color: Colors.blue,
             focusColor: Colors.red,
             textColor: Colors.white,
+            highlightColor: Colors.red,
+            splashColor: Colors.yellow,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
           )
         ],
       ),
@@ -127,10 +132,12 @@ class _TodoListDetailPageState extends State<TodoListDetailPage> {
 
       if (this.widget._model != null && this.widget._model.id != null) {
         await helper.updateTodoCompleted(model);
-        Fluttertoast.showToast(msg: "${model.title} 1==> ${model.description}");
+        Fluttertoast.showToast(
+            msg: "update ${model.title}  ${model.description}");
       } else {
         await helper.insertTodo(model);
-        Fluttertoast.showToast(msg: "${model.title} 2==> ${model.description}");
+        Fluttertoast.showToast(
+            msg: "insert ${model.title}  ${model.description}");
       }
       Navigator.pop(context, true);
     }

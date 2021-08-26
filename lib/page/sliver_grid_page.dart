@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SliverGridPage extends StatelessWidget {
@@ -75,7 +76,7 @@ class SliverGridPage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           title: Text(
-            'SliverAppBar + SliverGrid + SliverToBoxAdapter' ,
+            'SliverAppBar + SliverGrid + SliverToBoxAdapter',
             style: TextStyle(
               fontSize: 16,
               color: Colors.white,
@@ -102,7 +103,30 @@ class SliverGridPage extends StatelessWidget {
           return Container(
             alignment: Alignment.center,
             color: data[index],
-            child: Text('grid item $index'),
+            // child: Text('grid item $index'),
+            child: InkWell(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      imageUrl,
+                      fit: BoxFit.fitWidth,
+                      width: 250,
+                    ),
+                    flex: 4,
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text('grid item $index'),
+                    ),
+                    flex: 1,
+                  ),
+                  // Text('grid item $index'),
+                ],
+              ),
+              onTap: () => Fluttertoast.showToast(msg: 'grid item $index'),
+            ),
           );
         },
         childCount: data.length,
@@ -116,7 +140,7 @@ class SliverGridPage extends StatelessWidget {
         //纵轴间距
         crossAxisSpacing: 1,
         //box主长/交叉轴长（宽高比设定）
-        childAspectRatio: 1,
+        // childAspectRatio: 1,
       ),
     );
   }
