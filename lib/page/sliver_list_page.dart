@@ -7,6 +7,7 @@ import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
 import 'package:flutter_study_demo/page/gesture_detector_drag_page.dart';
 import 'package:flutter_study_demo/page/implicitly_animated_page.dart';
+import 'package:flutter_study_demo/page/knowledge_system_tree_page.dart';
 import 'package:flutter_study_demo/page/my_widget.dart';
 import 'package:flutter_study_demo/page/net_work_request_page.dart';
 import 'package:flutter_study_demo/page/shared_preferences_page.dart';
@@ -48,6 +49,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", 1, "image"),
     StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", 2, "image"),
     StudyDemoNavigatorModel("网络数据", 3, "image"),
+    StudyDemoNavigatorModel("保持页面状态SingleTickerProviderStateMixin", 3, "image"),
     StudyDemoNavigatorModel("Extends Custom Widget", 4, "image"),
     StudyDemoNavigatorModel("ScopedModel数据共享与传递", 5, "image"),
     StudyDemoNavigatorModel("EventBus数据共享与传递", 6, "image"),
@@ -273,6 +275,10 @@ class SliverListPage extends StatelessWidget {
         Navigator.push(context, CustomRoute(NetworkRequestPage()));
         break;
 
+      case "保持页面状态SingleTickerProviderStateMixin":
+        Navigator.push(context, CustomRoute(KnowledgeSystemPage()));
+        break;
+
       case "Extends Custom Widget":
         Navigator.push(context, CustomRoute(CustomWidgetPages()));
         break;
@@ -301,7 +307,7 @@ class SliverListPage extends StatelessWidget {
         break;
 
       case "SQLite数据库 TodoList":
-        Navigator.push(context, CustomRoute(TodoListPage()));
+        Navigator.push(context, CustomRoute(TodoListPage('SQLite数据库 TodoList')));
         break;
 
       case "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter":

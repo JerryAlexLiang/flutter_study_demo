@@ -7,7 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TodoListPage extends StatefulWidget {
-  TodoListPage({Key key}) : super(key: key);
+  // TodoListPage({Key key}) : super(key: key);
+
+  final String pageTitle;
+
+  TodoListPage(this.pageTitle);
 
   @override
   _TodoListPageState createState() {
@@ -18,8 +22,15 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage> {
   ToDoDatabaseHelper databaseHelper = ToDoDatabaseHelper();
   List<TodoModel> todoList;
+
+  //默认不显示删除按钮
   bool isOffstageDelete = false;
+
+  //默认不显示清除文字按钮
   bool isOffstageClear = false;
+
+  //默认不显示搜索栏
+  bool isOffstageSearchBar = false;
 
   final FocusNode _focusNode = FocusNode();
   TextEditingController _controller;
@@ -49,7 +60,7 @@ class _TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SQLite数据库 TodoList'),
+        title: Text(this.widget.pageTitle),
         primary: true,
         actions: [
           Offstage(
@@ -106,8 +117,10 @@ class _TodoListPageState extends State<TodoListPage> {
 
           if (todoList.isEmpty) {
             isOffstageDelete = true;
+            isOffstageSearchBar = true;
           } else {
             isOffstageDelete = false;
+            isOffstageSearchBar = false;
           }
         });
       });
@@ -193,41 +206,128 @@ class _TodoListPageState extends State<TodoListPage> {
       physics: NeverScrollableScrollPhysics(),
       itemCount: todoList.length,
       itemBuilder: (context, index) {
-        return Card(
-          // //影深
-          // elevation: 1,
-          color: Colors.transparent,
-          child: ListTile(
-            title: Text(
-              todoList[index].title,
-              style: TextStyle(
-                color: Colors.yellow,
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
-            ),
-            subtitle: Text(
-              todoList[index].description,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            trailing: IconButton(
-              icon: Icon(
-                Icons.delete,
-                color: Colors.white,
-              ),
-              onPressed: () => _delete(todoList[index]),
-              // onPressed: () => Fluttertoast.showToast(msg: '${todoList[index].id} title: ${todoList[index].title}'),
-            ),
-            onTap: () => navigatorToAddPage(todoList[index]),
-            onLongPress: () => _delete(todoList[index]),
-          ),
-        );
+        // return Card(
+        //   // //影深
+        //   // elevation: 1,
+        //   color: Colors.transparent,
+        //   child: ListTile(
+        //     title: Text(
+        //       todoList[index].title,
+        //       style: TextStyle(
+        //         color: Colors.yellow,
+        //         fontWeight: FontWeight.bold,
+        //         fontSize: 22,
+        //       ),
+        //     ),
+        //     subtitle: Text(
+        //       todoList[index].description,
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //         fontSize: 16,
+        //       ),
+        //       maxLines: 2,
+        //       overflow: TextOverflow.ellipsis,
+        //     ),
+        //     trailing: IconButton(
+        //       icon: Icon(
+        //         Icons.delete,
+        //         color: Colors.white,
+        //       ),
+        //       onPressed: () => _delete(todoList[index]),
+        //       // onPressed: () => Fluttertoast.showToast(msg: '${todoList[index].id} title: ${todoList[index].title}'),
+        //     ),
+        //     onTap: () => navigatorToAddPage(todoList[index]),
+        //     onLongPress: () => _delete(todoList[index]),
+        //   ),
+        // );
+
+        return _toDoListItem(context, todoList[index]);
       },
+    );
+  }
+
+  _toDoListItem(BuildContext context, TodoModel model) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            // image: DecorationImage(
+            //   image: AssetImage('images/core_icon_bg_header.png'),
+            //   fit: BoxFit.cover,
+            // ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.all(10),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            model.title,
+                            style: TextStyle(
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Text(
+                            model.date,
+                            style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(top: 10),
+                      child: Text(
+                        model.description,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                alignment: Alignment.centerRight,
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                ),
+                onPressed: () => _delete(model),
+                // onPressed: () => Fluttertoast.showToast(msg: '${todoList[index].id} title: ${todoList[index].title}'),
+              ),
+            ],
+          ),
+        ),
+        onTap: () => navigatorToAddPage(model),
+        // onLongPress: () => _delete(model),
+      ),
     );
   }
 
@@ -395,7 +495,10 @@ class _TodoListPageState extends State<TodoListPage> {
       child: Row(
         children: [
           Expanded(
-            child: initSearchWidget(),
+            child: Offstage(
+              offstage: isOffstageSearchBar,
+              child: initSearchWidget(),
+            ),
           ),
           Offstage(
             offstage: isOffstageClear,

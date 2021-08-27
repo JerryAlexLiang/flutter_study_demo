@@ -16,7 +16,7 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.2.2 <3.0.0"
 
-#闪屏页
+#闪屏页  终端输入命令flutter pub pub run flutter_native_splash:create
 flutter_native_splash:
   image: images/core_icon_bg_weather.png
   color: "#FFFFFF"
@@ -71,6 +71,9 @@ dependencies:
 
   #闪屏页
   flutter_native_splash: ^1.2.1
+
+  #date_format: ^2.0.4
+  date_format: ^2.0.4
 
 dev_dependencies:
   flutter_test:

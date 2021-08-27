@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/todoList/model/todo_model.dart';
 import 'package:flutter_study_demo/todoList/utils/todo_database_helper.dart';
@@ -127,7 +128,9 @@ class _TodoListDetailPageState extends State<TodoListDetailPage> {
 
       model.title = titleContent;
       model.description = descriptionContent;
-      model.date = DateTime.now().toString();
+      // model.date = DateTime.now().toString();
+      model.date =
+          formatDate(DateTime.now(), [yyyy, "年", mm, "月", dd, "日", " ", DD]);
       model.id = this.widget._model.id;
 
       if (this.widget._model != null && this.widget._model.id != null) {

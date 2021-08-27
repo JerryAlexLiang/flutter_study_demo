@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_study_demo/page/sliver_list_page.dart';
 import 'package:flutter_study_demo/provider/current_Index_provider.dart';
+import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class IndexPageProvider extends StatelessWidget {
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.book),
-      label: '知识',
+      label: '记录',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.list),
@@ -56,9 +57,10 @@ class IndexPageProvider extends StatelessWidget {
   final List<Widget> tabPageBodies = [
     WanHomePage(),
     // HomeListPage(),
-    KnowledgeSystemPage(),
+    // KnowledgeSystemPage(),
     // SimpleListPage(),
     // StudyDemoNavigationPage(),
+    TodoListPage('TodoList'),
     SliverListPage(),
     NetworkRequestPage()
   ];
