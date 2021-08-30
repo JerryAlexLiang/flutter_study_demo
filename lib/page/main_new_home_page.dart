@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/provider/current_Index_provider.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
 import 'home_list_page.dart';
@@ -18,15 +19,30 @@ class MainNewHomePage extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(750, 1334),
       builder: () {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [],
-          // home: IndexPage(),
-          home: IndexPageProvider(),
-          //借助MaterialApp的theme属性，可以为应用程序管理全局主题
-          // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        // return MaterialApp(
+        //   debugShowCheckedModeBanner: false,
+        //   localizationsDelegates: [],
+        //   // home: IndexPage(),
+        //   home: IndexPageProvider(),
+        //   //借助MaterialApp的theme属性，可以为应用程序管理全局主题
+        //   // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
+        //   theme: ThemeData(
+        //     primarySwatch: Colors.blue,
+        //   ),
+        // );
+
+        //在代码中定义OKToast组件，包裹你的 MaterialApp,不是包裹你的 Scaffold
+        return OKToast(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: [],
+            // home: IndexPage(),
+            home: IndexPageProvider(),
+            //借助MaterialApp的theme属性，可以为应用程序管理全局主题
+            // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
           ),
         );
       },

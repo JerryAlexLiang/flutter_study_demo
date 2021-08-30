@@ -56,7 +56,12 @@ dependencies:
   #sqflite: ^2.0.0+3
   sqflite: ^2.0.0+3
 
+  #toast
+  #fluttertoast插件依赖原生
   fluttertoast: ^8.0.8
+
+  #oktoast: ^3.1.1  包裹你的 MaterialApp,不是包裹你的 Scaffold
+  oktoast: ^3.1.1
 
   flutter_screenutil: ^5.0.0+2
 

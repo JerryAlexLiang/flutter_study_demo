@@ -10,6 +10,7 @@ import 'package:flutter_study_demo/page/implicitly_animated_page.dart';
 import 'package:flutter_study_demo/page/knowledge_system_tree_page.dart';
 import 'package:flutter_study_demo/page/my_widget.dart';
 import 'package:flutter_study_demo/page/net_work_request_page.dart';
+import 'package:flutter_study_demo/page/ok_flutter_toast_page.dart';
 import 'package:flutter_study_demo/page/shared_preferences_page.dart';
 import 'package:flutter_study_demo/page/sliver_grid_page.dart';
 import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
@@ -64,6 +65,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("AnimationWidget组件", 13, "image"),
     StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 14, "image"),
     StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 15, "image"),
+    StudyDemoNavigatorModel("OKToast插件", 16, "image"),
   ];
 
   final imageUrl =
@@ -307,7 +309,8 @@ class SliverListPage extends StatelessWidget {
         break;
 
       case "SQLite数据库 TodoList":
-        Navigator.push(context, CustomRoute(TodoListPage('SQLite数据库 TodoList')));
+        Navigator.push(
+            context, CustomRoute(TodoListPage('SQLite数据库 TodoList')));
         break;
 
       case "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter":
@@ -347,6 +350,10 @@ class SliverListPage extends StatelessWidget {
 
       case "手势事件GestureDetector - Drag":
         Navigator.push(context, CustomRoute(GestureDetectorDragPage()));
+        break;
+
+      case "OKToast插件":
+        Navigator.push(context, CustomRoute(OKFlutterToastPage()));
         break;
     }
     Fluttertoast.showToast(
