@@ -119,6 +119,8 @@ class IndexPageProvider extends StatelessWidget {
 
     int currentIndex = Provider.of<CurrentIndexProvider>(context).index;
 
+    DateTime _lastDateTime;
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
       bottomNavigationBar: BottomNavigationBar(
@@ -134,9 +136,28 @@ class IndexPageProvider extends StatelessWidget {
           // Provider.of<CurrentIndexProvider>(context).changeIndex(index);
         },
       ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: tabPageBodies,
+      // body: IndexedStack(
+      //   index: currentIndex,
+      //   children: tabPageBodies,
+      // ),
+      body: WillPopScope(
+        child: IndexedStack(
+          index: currentIndex,
+          children: tabPageBodies,
+        ),
+        onWillPop: () {
+          if (_lastDateTime == null ||
+              DateTime.now().difference(_lastDateTime) > Duration(seconds: 1)) {
+            _lastDateTime = DateTime.now();
+            showToast(
+              "再次点击退出程序",
+              backgroundColor: Theme.of(context).primaryColor,
+              position: ToastPosition.center,
+            );
+            return Future.value(false);
+          }
+          return Future.value(true);
+        },
       ),
     );
   }
