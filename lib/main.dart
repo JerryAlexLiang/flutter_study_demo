@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_study_demo/model/scoped_counter_model.dart';
 import 'package:flutter_study_demo/page/main_new_home_page.dart';
 import 'package:flutter_study_demo/page/scoped_model_page.dart';
+import 'package:flutter_study_demo/routes/app_pages.dart';
+import 'package:flutter_study_demo/routes/app_routes.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -29,7 +32,18 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
       ],
-      child: MainNewHomePage(),
+      // child: MainNewHomePage(),
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        enableLog: true,
+        initialRoute: AppRoutes.SPLASH,
+        getPages: AppPages.routes,
+        smartManagement: SmartManagement.keepFactory,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+
+      ),
     ),
     // ScopedModel<ScopedCounterModel>(
     //     model: ScopedCounterModel(),
