@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/model/study_demo_navigator_model.dart';
 import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_study_demo/page/animation_page.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
 import 'package:flutter_study_demo/page/flutter_easyloading_page.dart';
+import 'package:flutter_study_demo/page/form_text_form_field_page.dart';
 import 'package:flutter_study_demo/page/gesture_detector_drag_page.dart';
 import 'package:flutter_study_demo/page/implicitly_animated_page.dart';
 import 'package:flutter_study_demo/page/knowledge_system_tree_page.dart';
@@ -19,6 +21,7 @@ import 'package:flutter_study_demo/page/study_first_demo_page.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/widget/custom_toolbar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class SliverListPage extends StatelessWidget {
   SliverListPage({Key key}) : super(key: key);
@@ -68,6 +71,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 15, "image"),
     StudyDemoNavigatorModel("OKToast插件", 16, "image"),
     StudyDemoNavigatorModel("flutter_easyloading", 17, "image"),
+    StudyDemoNavigatorModel("Form TextFrmField", 18, "image"),
   ];
 
   final imageUrl =
@@ -360,6 +364,10 @@ class SliverListPage extends StatelessWidget {
 
       case "flutter_easyloading":
         Navigator.push(context, CustomRoute(FlutterEasyLoadingPage()));
+        break;
+
+      case "Form TextFrmField":
+        navigator.push(CustomRoute(FormTextFormFieldPage()));
         break;
     }
     Fluttertoast.showToast(
