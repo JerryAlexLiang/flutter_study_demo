@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
 import 'package:flutter_study_demo/page/animation_page.dart';
 import 'package:flutter_study_demo/page/custom_widget_pages.dart';
 import 'package:flutter_study_demo/page/event_bus_one_page.dart';
+import 'package:flutter_study_demo/page/flutter_easyloading_page.dart';
 import 'package:flutter_study_demo/page/gesture_detector_drag_page.dart';
 import 'package:flutter_study_demo/page/implicitly_animated_page.dart';
 import 'package:flutter_study_demo/page/knowledge_system_tree_page.dart';
@@ -66,6 +67,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 14, "image"),
     StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 15, "image"),
     StudyDemoNavigatorModel("OKToast插件", 16, "image"),
+    StudyDemoNavigatorModel("flutter_easyloading", 17, "image"),
   ];
 
   final imageUrl =
@@ -354,6 +356,10 @@ class SliverListPage extends StatelessWidget {
 
       case "OKToast插件":
         Navigator.push(context, CustomRoute(OKFlutterToastPage()));
+        break;
+
+      case "flutter_easyloading":
+        Navigator.push(context, CustomRoute(FlutterEasyLoadingPage()));
         break;
     }
     Fluttertoast.showToast(

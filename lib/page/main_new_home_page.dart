@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_study_demo/page/sliver_list_page.dart';
 import 'package:flutter_study_demo/provider/current_Index_provider.dart';
@@ -32,16 +33,35 @@ class MainNewHomePage extends StatelessWidget {
         // );
 
         //在代码中定义OKToast组件，包裹你的 MaterialApp,不是包裹你的 Scaffold
-        return OKToast(
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: [],
-            // home: IndexPage(),
-            home: IndexPageProvider(),
-            //借助MaterialApp的theme属性，可以为应用程序管理全局主题
-            // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
+        // return OKToast(
+        //   child: MaterialApp(
+        //     debugShowCheckedModeBanner: false,
+        //     localizationsDelegates: [],
+        //     // home: IndexPage(),
+        //     home: IndexPageProvider(),
+        //     //借助MaterialApp的theme属性，可以为应用程序管理全局主题
+        //     // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
+        //     theme: ThemeData(
+        //       primarySwatch: Colors.blue,
+        //     ),
+        //   ),
+        // );
+
+        //使用FlutterEasyLoading组件包裹App组件
+        //子组件通常为 [MaterialApp] 或者 [CupertinoApp].
+        //这样做是为了确保loading组件能覆盖在其他组件之上.
+        return FlutterEasyLoading(
+          child: OKToast(
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: [],
+              // home: IndexPage(),
+              home: IndexPageProvider(),
+              //借助MaterialApp的theme属性，可以为应用程序管理全局主题
+              // theme属性接受一个ThemeData对象，在ThemeData对象中，可以通过配置各个属性来确定各个主题值
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
             ),
           ),
         );

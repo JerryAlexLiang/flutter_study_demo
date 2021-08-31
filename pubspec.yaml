@@ -66,6 +66,8 @@ dependencies:
   #oktoast: ^3.1.1  包裹你的 MaterialApp,不是包裹你的 Scaffold
   oktoast: ^3.1.1
 
+  flutter_easyloading: ^3.0.1
+
   flutter_screenutil: ^5.0.0+2
 
   #flutter 下拉刷新插件flutter_easyrefresh
