@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class CustomToolBar extends StatefulWidget implements PreferredSizeWidget {
   //属性参数，单击回调
   final GestureTapCallback onTapLeft;
   final GestureTapCallback onTapRight;
-  Color navigationBarBackgroundColor; //设置导航栏背景的颜色
+  final Color navigationBarBackgroundColor; //设置导航栏背景的颜色
 
   CustomToolBar({
     @required this.onTapLeft,

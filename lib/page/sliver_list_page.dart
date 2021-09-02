@@ -20,6 +20,7 @@ import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/widget/custom_toolbar.dart';
+import 'package:flutter_study_demo/widget/home_menu.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
@@ -261,6 +262,7 @@ class SliverListPage extends StatelessWidget {
           icon: Icon(Icons.star),
           onPressed: () => Fluttertoast.showToast(msg: 'star'),
         ),
+        HomeMenu(),
       ],
     );
   }

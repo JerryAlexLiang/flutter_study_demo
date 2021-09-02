@@ -44,10 +44,10 @@ dependencies:
   #  #Flutter使用provide状态管理器管理界面
   #  provide: ^1.0.2
 
-  #Flutter使用provider状态管理器管理界面
+  #Flutter使用provider状态管理器管理界面   InheritedWidget的包装器 ，使它们更易于使用和更可重用
   provider: ^5.0.0
 
-  #GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理
+  #GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理  State Manager、Navigation Manager
   get: ^4.3.8
 
   #event_bus
@@ -72,6 +72,9 @@ dependencies:
 
   #flutter 下拉刷新插件flutter_easyrefresh
   flutter_easyrefresh: ^2.2.1
+
+  #下拉刷新和上拉加载的库
+  pull_to_refresh: ^2.0.0
 
   #banner
   flutter_swiper: ^1.1.6
@@ -106,9 +109,12 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
+#  assets:
+#    - images/core_icon_bg_header.png
+#    - images/core_icon_bg_weather.png
+
   assets:
-    - images/core_icon_bg_header.png
-    - images/core_icon_bg_weather.png
+    - images/
 
   fonts:
     - family: Rubik
