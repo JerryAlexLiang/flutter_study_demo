@@ -1,5 +1,5 @@
-
 import 'package:flutter_study_demo/page/main_new_home_page.dart';
+import 'package:flutter_study_demo/page/rich_text_page.dart';
 import 'package:flutter_study_demo/page/splash/bindings/splash_binding.dart';
 import 'package:flutter_study_demo/page/splash/views/splash_page.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
@@ -15,6 +15,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.MAIN,
       page: () => MainNewHomePage(),
+    ),
+    GetPage(
+      name: AppRoutes.RICH_TEXT,
+      page: () => RichTextPage(),
+      transition: Transition.leftToRightWithFade,
     ),
   ];
 }

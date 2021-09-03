@@ -19,6 +19,7 @@ import 'package:flutter_study_demo/page/sliver_grid_page.dart';
 import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
 import 'package:flutter_study_demo/page/snackbar_bottomsheet_page.dart';
 import 'package:flutter_study_demo/page/study_first_demo_page.dart';
+import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/widget/custom_toolbar.dart';
 import 'package:flutter_study_demo/widget/home_menu.dart';
@@ -75,10 +76,11 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("flutter_easyloading", 17, "image"),
     StudyDemoNavigatorModel("Form TextFrmField", 18, "image"),
     StudyDemoNavigatorModel("showSnackBar和showBottomSheet", 19, "image"),
+    StudyDemoNavigatorModel("RichText", 20, "image"),
   ];
 
   final imageUrl =
-  // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
+      // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
       "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
 
   @override
@@ -155,7 +157,7 @@ class SliverListPage extends StatelessWidget {
 
       //方法2：通过构建函数可以设置一个可以无限滚动的列表
       delegate: SliverChildBuilderDelegate(
-            (context, index) {
+        (context, index) {
           return Container(
             alignment: Alignment.center,
             height: 100,
@@ -302,10 +304,10 @@ class SliverListPage extends StatelessWidget {
         break;
 
       case "ScopedModel数据共享与传递":
-      // Navigator.push(context,
-      //     MaterialPageRoute(builder: (context) {
-      //   return ScopedModelPage();
-      // }));
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) {
+        //   return ScopedModelPage();
+        // }));
         break;
 
       case "shared_preferences存储数据":
@@ -376,6 +378,10 @@ class SliverListPage extends StatelessWidget {
 
       case "showSnackBar和showBottomSheet":
         navigator.push(CustomRoute(SnackBarBottomSheetPage()));
+        break;
+
+      case "RichText":
+        Get.toNamed(AppRoutes.RICH_TEXT);
         break;
     }
     Fluttertoast.showToast(
