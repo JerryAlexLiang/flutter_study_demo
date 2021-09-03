@@ -42,4 +42,6 @@ class StringConfig {
 //   };
 
   static const menuInfo = ['Flutter', 'Android', 'ios'];
+
+  static const homeTabs = ['Flutter', 'Android', 'ios'];
 }
