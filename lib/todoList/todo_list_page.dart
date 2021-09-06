@@ -253,6 +253,7 @@ class _TodoListPageState extends State<TodoListPage> {
       ),
       color: Colors.transparent,
       child: InkWell(
+        //保持按压区域水波纹区域和Card区域保持一致
         borderRadius: BorderRadius.circular(10),
         child: Container(
           decoration: BoxDecoration(

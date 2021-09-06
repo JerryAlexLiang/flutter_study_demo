@@ -9,6 +9,7 @@ import 'package:flutter_study_demo/model/wan_home_banner_bean.dart';
 import 'package:flutter_study_demo/service/service_method.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/wan_android/home/home_eye_subject_page.dart';
+import 'package:flutter_study_demo/wan_android/home/wan_home_article_list_item.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -133,13 +134,10 @@ class _WanHomePageState extends State<WanHomePage>
                   WanHomeSwiperBanner(bean),
                   EyeCategoryListPage(),
                   HomeEyeSubjectPage(),
-                  // Container(
-                  //   color: Colors.white,
-                  //   height: 200,
-                  //   child: Center(
-                  //     child: Text('demo'),
-                  //   ),
-                  // ),
+                  Container(
+                    height: 5,
+                    color: Colors.grey.withOpacity(0.1),
+                  ),
                   _articleListPage(),
                 ],
               ),
@@ -212,17 +210,26 @@ class _WanHomePageState extends State<WanHomePage>
   }
 
   Widget _articleListItem(Datas item) {
-    return InkWell(
-      onTap: () {
-        Fluttertoast.showToast(msg: item.title);
-      },
-      child: Container(
-        width: ScreenUtil().setWidth(750),
-        height: ScreenUtil().setHeight(200),
-        color: Colors.blue,
-        child: Center(
-          child: Text('${item.title}'),
-        ),
+    // return InkWell(
+    //   onTap: () {
+    //     Fluttertoast.showToast(msg: item.title);
+    //   },
+    //   child: Container(
+    //     // margin: EdgeInsets.only(bottom: 5),
+    //     width: ScreenUtil().setWidth(750),
+    //     height: ScreenUtil().setHeight(200),
+    //     // color: Colors.blue,
+    //     child: Center(
+    //       child: WanHomeArticleListItem(item),
+    //     ),
+    //   ),
+    // );
+    return Container(
+      width: ScreenUtil().setWidth(750),
+      height: ScreenUtil().setHeight(200),
+      color: Colors.grey.withOpacity(0.1),
+      child: Center(
+        child: WanHomeArticleListItem(item),
       ),
     );
   }
