@@ -21,6 +21,10 @@ class RichTextPage extends StatelessWidget {
           height: 10,
         ),
         showTextSpan2(),
+        SizedBox(
+          height: 10.0,
+        ),
+        showWidgetSpan(),
       ],
     );
   }
@@ -89,6 +93,65 @@ class RichTextPage extends StatelessWidget {
           style: TextStyle(
             fontSize: 22,
             color: Colors.black,
+          ),
+          children: span,
+        ),
+      ),
+    );
+  }
+
+  showWidgetSpan() {
+    //需要将各种Widget拼在一行时，可以用WidgetSpan，它是InlineSpan的实现类，
+    // 所以用WidgetSpan来包裹一个组件就可以作为TextSpan的子组件显示
+    var span = [
+      TextSpan(
+        text: 'Flutter',
+        style: TextStyle(
+          color: Colors.blue,
+          fontSize: 18,
+        ),
+      ),
+      WidgetSpan(
+        alignment: PlaceholderAlignment.aboveBaseline,
+        baseline: TextBaseline.ideographic,
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Image.asset(
+            'images/core_icon_bg_weather.png',
+            width: 30,
+            height: 30,
+            fit: BoxFit.fitWidth,
+          ),
+        ),
+      ),
+      TextSpan(
+        text: 'Android',
+        style: TextStyle(
+          color: Colors.green,
+          fontSize: 18,
+        ),
+      ),
+      WidgetSpan(
+        child: Container(
+          margin: EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: Icon(
+            Icons.face,
+            color: Colors.red,
+          ),
+        ),
+      ),
+    ];
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: RichText(
+        text: TextSpan(
+          text: 'WidgetSpan \n',
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 20,
           ),
           children: span,
         ),
