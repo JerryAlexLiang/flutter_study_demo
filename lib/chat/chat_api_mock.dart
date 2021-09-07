@@ -30,6 +30,14 @@ class ChatApiMock {
     ];
 
     // var content2 = content.reversed;
+    //
+    // for (int i = 0; i < content2.length; i++) {
+    //   _chatList.add(ChatItem(
+    //       headIconUrl: (i.isEven ? leftImageUrl : rightImageUrl),
+    //       // chatContent: content[random.nextInt(content.length)],
+    //       chatContent: content2.toList()[i],
+    //       chatType: (i.isEven ? ChatType.left : ChatType.right)));
+    // }
 
     for (int i = 0; i < content.length; i++) {
       _chatList.add(ChatItem(
@@ -39,5 +47,28 @@ class ChatApiMock {
           chatType: (i.isEven ? ChatType.left : ChatType.right)));
     }
     return this;
+  }
+
+  Future<void> addTop() async {
+    //模拟耗时操作
+    await Future.delayed(Duration(seconds: 2));
+    _chatList.insert(
+      0,
+      ChatItem(
+        headIconUrl: leftImageUrl,
+        chatContent: '下拉刷新 春花秋月何时了，往事知多少。',
+        chatType: ChatType.left,
+      ),
+    );
+  }
+
+  Future<void> addBottom() async {
+    //模拟耗时操作
+    await Future.delayed(Duration(seconds: 2));
+    _chatList.add(ChatItem(
+      headIconUrl: rightImageUrl,
+      chatContent: '上拉加载更多 小楼昨夜又东风，故国不堪回首月明中。',
+      chatType: ChatType.right,
+    ));
   }
 }
