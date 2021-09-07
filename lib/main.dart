@@ -22,6 +22,20 @@ void main() async {
     SystemUiOverlayStyle systemUiOverlayStyle =
         SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+
+    //屏幕方向设置必须要添加这个进行初始化
+    WidgetsFlutterBinding.ensureInitialized();
+    //强制竖屏
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    // //强制横屏
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.landscapeLeft,
+    //   DeviceOrientation.landscapeRight,
+    // ]);
   }
 
   // runApp(WanAndroidApp());
@@ -42,7 +56,6 @@ void main() async {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-
       ),
     ),
     // ScopedModel<ScopedCounterModel>(

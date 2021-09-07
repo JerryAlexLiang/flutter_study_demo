@@ -77,6 +77,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("Form TextFrmField", 18, "image"),
     StudyDemoNavigatorModel("showSnackBar和showBottomSheet", 19, "image"),
     StudyDemoNavigatorModel("RichText", 20, "image"),
+    StudyDemoNavigatorModel("ListView Chat UI", 21, "image"),
   ];
 
   final imageUrl =
@@ -382,6 +383,10 @@ class SliverListPage extends StatelessWidget {
 
       case "RichText":
         Get.toNamed(AppRoutes.RICH_TEXT);
+        break;
+
+      case "ListView Chat UI":
+        Get.toNamed(AppRoutes.LIST_VIEW_CHAT_UI);
         break;
     }
     Fluttertoast.showToast(

@@ -6,6 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 class WanHomeArticleListItem extends StatefulWidget {
   final Datas item;
 
+  // WanHomeArticleListItem({this.item});
+
   WanHomeArticleListItem(this.item);
 
   @override
@@ -134,87 +136,48 @@ class _WanHomeArticleListItemState extends State<WanHomeArticleListItem> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        // Expanded(
-        //   child: Wrap(
-        //     crossAxisAlignment: WrapCrossAlignment.end,
-        //     direction: Axis.horizontal,
-        //     alignment: WrapAlignment.center,
-        //     spacing: 5,
-        //     children: [
-        //       Icon(
-        //         Icons.book,
-        //         color: Colors.blue,
-        //         size: 15,
-        //       ),
-        //       Text(
-        //         author,
-        //         style: TextStyle(
-        //           fontSize: 12,
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.end,
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.center,
-          spacing: 5,
-          children: [
-            Icon(
-              Icons.book,
-              color: Colors.blue,
-              size: 15,
-            ),
-            Text(
-              author,
-              style: TextStyle(
-                fontSize: 12,
+        Flexible(
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.end,
+            direction: Axis.horizontal,
+            alignment: WrapAlignment.center,
+            spacing: 5,
+            children: [
+              Icon(
+                Icons.book,
+                color: Colors.blue,
+                size: 15,
               ),
-            ),
-          ],
+              Text(
+                author,
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
         ),
-        // Expanded(
-        //   child: Wrap(
-        //     direction: Axis.horizontal,
-        //     alignment: WrapAlignment.start,
-        //     spacing: 5,
-        //     children: [
-        //       Icon(
-        //         Icons.timer,
-        //         color: Colors.red,
-        //         size: 15,
-        //       ),
-        //       Text(
-        //         date,
-        //         style: TextStyle(
-        //           color: Colors.orange,
-        //           fontSize: 12,
-        //           fontStyle: FontStyle.italic,
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        Wrap(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.start,
-          spacing: 5,
-          children: [
-            Icon(
-              Icons.timer,
-              color: Colors.red,
-              size: 15,
-            ),
-            Text(
-              date,
-              style: TextStyle(
-                color: Colors.orange,
-                fontSize: 12,
-                fontStyle: FontStyle.italic,
+        Flexible(
+          child: Wrap(
+            direction: Axis.horizontal,
+            alignment: WrapAlignment.start,
+            spacing: 5,
+            children: [
+              Icon(
+                Icons.timer,
+                color: Colors.red,
+                size: 15,
               ),
-            ),
-          ],
+              Text(
+                date,
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
