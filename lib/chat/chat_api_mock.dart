@@ -29,13 +29,13 @@ class ChatApiMock {
       '12、也许这个世界上人人都爱钱。但爱钱的痛苦在于，钱并不万能。而且钱这东西，不是你想得到就能得到的，也不是你只要争取就能争取到的。所以爱钱的结果，大多是终日的焦灼和最终的失落。',
     ];
 
-    var content2 = content.reversed;
+    // var content2 = content.reversed;
 
-    for (int i = 0; i < content2.length; i++) {
+    for (int i = 0; i < content.length; i++) {
       _chatList.add(ChatItem(
           headIconUrl: (i.isEven ? leftImageUrl : rightImageUrl),
           // chatContent: content[random.nextInt(content.length)],
-          chatContent: content2.toList()[i],
+          chatContent: content.toList()[i],
           chatType: (i.isEven ? ChatType.left : ChatType.right)));
     }
     return this;
