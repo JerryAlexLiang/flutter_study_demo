@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/chat/chat_api_mock.dart';
 import 'package:flutter_study_demo/chat/chat_item.dart';
 import 'package:flutter_study_demo/chat/chat_widget.dart';
 import 'package:flutter_study_demo/chat/load_more_widget.dart';
+import 'package:flutter_study_demo/config/string.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ChatUIPage extends StatefulWidget {
@@ -77,8 +78,10 @@ class _ChatUIPageState extends State<ChatUIPage> {
                     chatType: ChatType.right,
                     chatContent: '肖战 无羁 余生请多指教',
                     headIconUrl: rightImageUrl,
+                    chatContentType: StringConfig.CHAT_TYPE_TEXT,
                   ),
                 );
+
                 _scrollToBottom(chatList);
                 print(
                     '===> ${chatList.map((e) => e.chatContent).toList().toString()}');

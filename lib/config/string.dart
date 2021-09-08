@@ -44,4 +44,12 @@ class StringConfig {
   static const menuInfo = ['Flutter', 'Android', 'ios'];
 
   static const homeTabs = ['Flutter', 'Android', 'ios'];
+
+  //IM
+  static const String CHAT_TYPE_LEFT = "left";
+  static const String CHAT_TYPE_RIGHT = "right";
+  static const String CHAT_TYPE_CENTER = "center";
+
+  static const String CHAT_TYPE_TEXT = "text";
+  static const String CHAT_TYPE_IMAGE = "image";
 }

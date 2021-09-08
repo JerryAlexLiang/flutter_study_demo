@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_study_demo/chat/chat_ui_page.dart';
 import 'package:flutter_study_demo/page/sliver_list_page.dart';
 import 'package:flutter_study_demo/provider/current_Index_provider.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
@@ -85,8 +86,8 @@ class IndexPageProvider extends StatelessWidget {
       label: '列表',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.network_check),
-      label: '网络',
+      icon: Icon(Icons.chat),
+      label: '聊天',
     )
   ];
 
@@ -98,7 +99,8 @@ class IndexPageProvider extends StatelessWidget {
     // StudyDemoNavigationPage(),
     TodoListPage('TodoList'),
     SliverListPage(),
-    NetworkRequestPage()
+    // NetworkRequestPage()
+    ChatUIPage(),
   ];
 
   IndexPageProvider({Key key}) : super(key: key);
