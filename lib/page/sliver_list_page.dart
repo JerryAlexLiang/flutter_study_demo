@@ -256,8 +256,13 @@ class SliverListPage extends StatelessWidget {
           background: Hero(
             //定义Hero,添加tag标签，此中组件共享
             tag: StringConfig.SLIVER_FLEXIBLE_SPACE_BAR,
-            child: Image.network(
-              imageUrl,
+            // child: Image.network(
+            //   imageUrl,
+            //   fit: BoxFit.cover,
+            // ),
+            child: FadeInImage.assetNetwork(
+              placeholder: "images/core_icon_bg_header.png",
+              image: imageUrl,
               fit: BoxFit.cover,
             ),
           ),
@@ -275,7 +280,7 @@ class SliverListPage extends StatelessWidget {
         onTap: () => Fluttertoast.showToast(msg: '妹子'),
       ),
       //背景色
-      backgroundColor: Colors.red,
+      // backgroundColor: Colors.red,
       // //左侧组件
       // leading: Icon(Icons.menu),
       //尾部组件列表 List<Widget>

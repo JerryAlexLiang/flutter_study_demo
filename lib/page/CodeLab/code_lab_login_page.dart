@@ -53,19 +53,35 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
                   //       ),
                   //     );
 
+                  // var image = FadeInImage.assetNetwork(
+                  //         //图片
+                  //         placeholder: "assets/images/default_image.png",
+                  //         image: user.avatarUrl);
+
                   Hero(
                     tag: StringConfig.SLIVER_FLEXIBLE_SPACE_BAR,
                     child: ClipRRect(
-                      child: Image.network(
-                        "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
-                        width: 100.0,
-                        height: 100.0,
+                      // child: Image.network(
+                      //   "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                      //   width: 100.0,
+                      //   height: 100.0,
+                      //   fit: BoxFit.cover,
+                      // ),
+                      //图片未加载完成前使用默认占位图，图片加载完成后透明度发生渐变，最后展示完成
+                      child: FadeInImage.assetNetwork(
+                        placeholder: "images/core_icon_bg_header.png",
+                        image:
+                            "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                        width: 100,
+                        height: 100,
                         fit: BoxFit.cover,
+                        repeat: ImageRepeat.repeat,
+                        // fadeInDuration: Duration(seconds: 5),
+                        // fadeInCurve: Curves.fastOutSlowIn,
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-
 
                   SizedBox(
                     height: 10,
