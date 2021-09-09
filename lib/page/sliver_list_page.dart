@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_study_demo/custom_router.dart';
@@ -50,34 +52,37 @@ class SliverListPage extends StatelessWidget {
     Colors.purple[700],
     Colors.purple[800],
     Colors.purple[900],
+    Colors.purple[300],
+    Colors.purple[100],
+    Colors.purple[200],
   ];
 
-  final List<StudyDemoNavigatorModel> dataList = [
+   List<StudyDemoNavigatorModel> dataList = [
     StudyDemoNavigatorModel("Flutter2中文网Demo1", 0, "image"),
     StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", 1, "image"),
     StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", 2, "image"),
     StudyDemoNavigatorModel("网络数据", 3, "image"),
-    StudyDemoNavigatorModel("保持页面状态SingleTickerProviderStateMixin", 3, "image"),
-    StudyDemoNavigatorModel("Extends Custom Widget", 4, "image"),
-    StudyDemoNavigatorModel("ScopedModel数据共享与传递", 5, "image"),
-    StudyDemoNavigatorModel("EventBus数据共享与传递", 6, "image"),
-    StudyDemoNavigatorModel("shared_preferences存储数据", 7, "image"),
-    StudyDemoNavigatorModel("路由的基本使用", 8, "image"),
-    StudyDemoNavigatorModel("SQLite数据库 TodoList", 9, "image"),
+    StudyDemoNavigatorModel("保持页面状态SingleTickerProviderStateMixin", 4, "image"),
+    StudyDemoNavigatorModel("Extends Custom Widget", 5, "image"),
+    StudyDemoNavigatorModel("ScopedModel数据共享与传递", 6, "image"),
+    StudyDemoNavigatorModel("EventBus数据共享与传递", 7, "image"),
+    StudyDemoNavigatorModel("shared_preferences存储数据", 8, "image"),
+    StudyDemoNavigatorModel("路由的基本使用", 9, "image"),
+    StudyDemoNavigatorModel("SQLite数据库 TodoList", 10, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter", 10, "image"),
+        "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter", 11, "image"),
     StudyDemoNavigatorModel(
-        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter", 11, "image"),
-    StudyDemoNavigatorModel("SliverPersistentHeader组件", 12, "image"),
-    StudyDemoNavigatorModel("AnimationWidget组件", 13, "image"),
-    StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 14, "image"),
-    StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 15, "image"),
-    StudyDemoNavigatorModel("OKToast插件", 16, "image"),
-    StudyDemoNavigatorModel("flutter_easyloading", 17, "image"),
-    StudyDemoNavigatorModel("Form TextFrmField", 18, "image"),
-    StudyDemoNavigatorModel("showSnackBar和showBottomSheet", 19, "image"),
-    StudyDemoNavigatorModel("RichText", 20, "image"),
-    StudyDemoNavigatorModel("ListView Chat UI", 21, "image"),
+        "可滚动的布局2 SliverAppBar + SliverGrid + SliverToBoxAdapter", 12, "image"),
+    StudyDemoNavigatorModel("SliverPersistentHeader组件", 13, "image"),
+    StudyDemoNavigatorModel("AnimationWidget组件", 14, "image"),
+    StudyDemoNavigatorModel("隐式动画组件ImplicitlyAnimatedWidget", 15, "image"),
+    StudyDemoNavigatorModel("手势事件GestureDetector - Drag", 16, "image"),
+    StudyDemoNavigatorModel("OKToast插件", 17, "image"),
+    StudyDemoNavigatorModel("flutter_easyloading", 18, "image"),
+    StudyDemoNavigatorModel("Form TextFrmField", 19, "image"),
+    StudyDemoNavigatorModel("showSnackBar和showBottomSheet", 20, "image"),
+    StudyDemoNavigatorModel("RichText", 21, "image"),
+    StudyDemoNavigatorModel("ListView Chat UI", 22, "image"),
   ];
 
   final imageUrl =

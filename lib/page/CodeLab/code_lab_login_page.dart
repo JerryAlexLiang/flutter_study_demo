@@ -33,16 +33,74 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
           padding: EdgeInsets.symmetric(horizontal: 25.0),
           children: [
             SizedBox(
-              height: 80.0,
+              height: 50.0,
             ),
             Container(
               child: Column(
                 children: [
-                  Image.network(
-                    "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.fill,
+                  //圆角图片
+                  //way01 最简单
+                  ClipRRect(
+                    child: Image.network(
+                      "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                      width: 100.0,
+                      height: 100.0,
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  //way02
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusDirectional.circular(20),
+                      ),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  //way03
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  //way04
+                  Card(
+                    child: Image.network(
+                      "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                      width: 100.0,
+                      height: 100.0,
+                      fit: BoxFit.cover,
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                   SizedBox(
                     height: 16.0,
@@ -52,7 +110,7 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
               ),
             ),
             SizedBox(
-              height: 120.0,
+              height: 50.0,
             ),
             TextField(
               decoration: InputDecoration(

@@ -80,8 +80,9 @@ class SliverPersistentHeaderPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           _buildSliversAppBar(context),
+          _buildPersistentHeader('SliverPersistentHeader 1', Colors.red),
           _buildSliverListHorizon3(),
-          _buildPersistentHeader('SliverPersistentHeader'),
+          _buildPersistentHeader('SliverPersistentHeader 2', Colors.yellow),
           // _buildSliverList(),
           _buildSliverList2(),
         ],
@@ -241,7 +242,7 @@ class SliverPersistentHeaderPage extends StatelessWidget {
         onTap: () => Fluttertoast.showToast(msg: '妹子'),
       ),
       //背景色
-      backgroundColor: Colors.red,
+      // backgroundColor: Colors.red,
       // //左侧组件
       // leading: Icon(Icons.menu),
       //尾部组件列表 List<Widget>
@@ -330,7 +331,7 @@ class SliverPersistentHeaderPage extends StatelessWidget {
         fontSize: 16.0);
   }
 
-  _buildPersistentHeader(String s) {
+  _buildPersistentHeader(String s, Color color) {
     //SliverPersistentHeader 通常用于CustomScrollView中，可以让一个组件在滑动中停留在顶部，不会滑动消失
     return SliverPersistentHeader(
       //pinned 是否伸展并顶部停留
@@ -343,9 +344,9 @@ class SliverPersistentHeaderPage extends StatelessWidget {
         100.0,
         Container(
           alignment: Alignment.center,
-          color: Colors.blue,
+          color: color,
           child: Text(
-            'SliverPersistentHeader - StudyList',
+            s,
             style: GoogleFonts.oswald(
               color: Colors.white,
               fontSize: 18.0,

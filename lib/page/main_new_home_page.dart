@@ -82,13 +82,13 @@ class IndexPageProvider extends StatelessWidget {
       label: '记录',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.list),
-      label: '列表',
-    ),
-    BottomNavigationBarItem(
       icon: Icon(Icons.chat),
       label: '聊天',
-    )
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.list),
+      label: '学习',
+    ),
   ];
 
   final List<Widget> tabPageBodies = [
@@ -98,9 +98,8 @@ class IndexPageProvider extends StatelessWidget {
     // SimpleListPage(),
     // StudyDemoNavigationPage(),
     TodoListPage('TodoList'),
-    SliverListPage(),
     // NetworkRequestPage()
-    ChatUIPage(),
+    ChatUIPage(), SliverListPage(),
   ];
 
   IndexPageProvider({Key key}) : super(key: key);

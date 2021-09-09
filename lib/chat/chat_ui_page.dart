@@ -144,10 +144,15 @@ class _ChatUIPageState extends State<ChatUIPage> {
 
   void _scrollToBottom(List<ChatItem> chatList) {
     if (chatList.length > 0) {
-      Timer(
-          Duration(milliseconds: 500),
-          () => _scrollController
-              .jumpTo(_scrollController.position.maxScrollExtent));
+      // Timer(
+      //     Duration(milliseconds: 500),
+      //     () => _scrollController
+      //         .jumpTo(_scrollController.position.maxScrollExtent));
+
+      _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(seconds: 2),
+          curve: Curves.fastLinearToSlowEaseIn);
     }
   }
 
