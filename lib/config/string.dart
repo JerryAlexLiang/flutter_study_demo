@@ -45,6 +45,9 @@ class StringConfig {
 
   static const homeTabs = ['Flutter', 'Android', 'ios'];
 
+  //Hero tag
+  static const SLIVER_FLEXIBLE_SPACE_BAR = "sliver-FlexibleSpaceBar";
+
   //IM
   static const String CHAT_TYPE_LEFT = "left";
   static const String CHAT_TYPE_RIGHT = "right";

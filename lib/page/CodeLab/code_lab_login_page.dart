@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_demo/config/string.dart';
 import 'package:flutter_study_demo/page/CodeLab/code_lab_home_page.dart';
 
 class CodeLabLoginPage extends StatefulWidget {
@@ -40,15 +41,32 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
                 children: [
                   //圆角图片
                   //way01 最简单
-                  ClipRRect(
-                    child: Image.network(
-                      "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
-                      width: 100.0,
-                      height: 100.0,
-                      fit: BoxFit.cover,
+
+                  //var hero = Hero(
+                  //       //定义Hero,添加tag标签,此中组件共享
+                  //       tag: 'user-head',
+                  //       child: Image.asset(
+                  //         "assets/images/icon_head.png",
+                  //         width: 60,
+                  //         height: 60,
+                  //         fit: BoxFit.cover,
+                  //       ),
+                  //     );
+
+                  Hero(
+                    tag: StringConfig.SLIVER_FLEXIBLE_SPACE_BAR,
+                    child: ClipRRect(
+                      child: Image.network(
+                        "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                        width: 100.0,
+                        height: 100.0,
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    borderRadius: BorderRadius.circular(20),
                   ),
+
+
                   SizedBox(
                     height: 10,
                   ),

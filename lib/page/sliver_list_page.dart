@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_study_demo/config/string.dart';
 import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/model/study_demo_navigator_model.dart';
 import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
@@ -55,9 +56,10 @@ class SliverListPage extends StatelessWidget {
     Colors.purple[300],
     Colors.purple[100],
     Colors.purple[200],
+    Colors.purple[500],
   ];
 
-   List<StudyDemoNavigatorModel> dataList = [
+  List<StudyDemoNavigatorModel> dataList = [
     StudyDemoNavigatorModel("Flutter2中文网Demo1", 0, "image"),
     StudyDemoNavigatorModel("Flutter2中文网Demo2 Flutter布局基础", 1, "image"),
     StudyDemoNavigatorModel("Flutter2中文网Demo3 Flutter CodeLab", 2, "image"),
@@ -83,6 +85,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("showSnackBar和showBottomSheet", 20, "image"),
     StudyDemoNavigatorModel("RichText", 21, "image"),
     StudyDemoNavigatorModel("ListView Chat UI", 22, "image"),
+    StudyDemoNavigatorModel("Hero跳转动画", 23, "image"),
   ];
 
   final imageUrl =
@@ -244,9 +247,19 @@ class SliverListPage extends StatelessWidget {
           //   "images/core_icon_bg_header.png",
           //   fit: BoxFit.fill,
           // ),
-          background: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
+
+          // background: Image.network(
+          //   imageUrl,
+          //   fit: BoxFit.cover,
+          // ),
+          //Hero跳转动画
+          background: Hero(
+            //定义Hero,添加tag标签，此中组件共享
+            tag: StringConfig.SLIVER_FLEXIBLE_SPACE_BAR,
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
           title: Text(
             'SliverAppBar + SliverList + SliverToBoxAdapter',
@@ -392,6 +405,10 @@ class SliverListPage extends StatelessWidget {
 
       case "ListView Chat UI":
         Get.toNamed(AppRoutes.LIST_VIEW_CHAT_UI);
+        break;
+
+      case "Hero跳转动画":
+        Navigator.push(context, CustomRoute(CodeLabLoginPage()));
         break;
     }
     Fluttertoast.showToast(
