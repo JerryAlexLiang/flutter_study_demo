@@ -215,7 +215,7 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
   _imageDecorationCircle(bool isCircle) {
     return BoxDecoration(
       shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-      color: Colors.blue,
+      color: Colors.white,
       borderRadius: isCircle
           ? null
           : BorderRadiusDirectional.all(
@@ -223,7 +223,7 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
             ),
       boxShadow: [
         BoxShadow(
-          color: Colors.red,
+          color: Colors.blue,
           offset: Offset(0, 0),
           //模糊
           blurRadius: 3.0,
