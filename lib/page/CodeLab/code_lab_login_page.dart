@@ -60,34 +60,40 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
 
                   Hero(
                     tag: StringConfig.SLIVER_FLEXIBLE_SPACE_BAR,
-                    child: ClipRRect(
-                      // child: Image.network(
-                      //   "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
-                      //   width: 100.0,
-                      //   height: 100.0,
-                      //   fit: BoxFit.cover,
-                      // ),
-                      //图片未加载完成前使用默认占位图，图片加载完成后透明度发生渐变，最后展示完成
-                      child: FadeInImage.assetNetwork(
-                        placeholder: "images/core_icon_bg_header.png",
-                        image:
-                            "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                        repeat: ImageRepeat.repeat,
-                        // fadeInDuration: Duration(seconds: 5),
-                        // fadeInCurve: Curves.fastOutSlowIn,
+                    child: Container(
+                      child: ClipRRect(
+                        // child: Image.network(
+                        //   "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+                        //   width: 100.0,
+                        //   height: 100.0,
+                        //   fit: BoxFit.cover,
+                        // ),
+                        //图片未加载完成前使用默认占位图，图片加载完成后透明度发生渐变，最后展示完成
+                        child: buildFadeInImage(),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      borderRadius: BorderRadius.circular(20),
+                      decoration: _imageDecorationCircle(false),
+                      padding: EdgeInsets.all(2),
                     ),
                   ),
 
                   SizedBox(
                     height: 10,
                   ),
+                  //way02 ClipOval 椭圆裁剪 可以容乃一个子组件，并将其以宽高为长轴和短轴进行椭圆裁剪
+                  Container(
+                    child: ClipOval(
+                      child: buildFadeInImage(),
+                    ),
+                    decoration: _imageDecorationCircle(true),
+                    padding: EdgeInsets.all(2),
+                  ),
 
-                  //way02
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  //way03
                   Container(
                     width: 100,
                     height: 100,
@@ -106,7 +112,7 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  //way03
+                  //way04
                   Container(
                     width: 100,
                     height: 100,
@@ -123,7 +129,7 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  //way04
+                  //way05
                   Card(
                     child: Image.network(
                       "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
@@ -189,6 +195,41 @@ class _CodeLabLoginPageState extends State<CodeLabLoginPage> {
           ],
         ),
       ),
+    );
+  }
+
+  FadeInImage buildFadeInImage() {
+    return FadeInImage.assetNetwork(
+      placeholder: "images/core_icon_bg_header.png",
+      image:
+          "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg",
+      width: 100,
+      height: 100,
+      fit: BoxFit.cover,
+      repeat: ImageRepeat.repeat,
+      // fadeInDuration: Duration(seconds: 5),
+      // fadeInCurve: Curves.fastOutSlowIn,
+    );
+  }
+
+  _imageDecorationCircle(bool isCircle) {
+    return BoxDecoration(
+      shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
+      color: Colors.blue,
+      borderRadius: isCircle
+          ? null
+          : BorderRadiusDirectional.all(
+              Radius.circular(20),
+            ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.red,
+          offset: Offset(0, 0),
+          //模糊
+          blurRadius: 3.0,
+          spreadRadius: 3.0,
+        ),
+      ],
     );
   }
 }
