@@ -30,49 +30,51 @@ class _SharedPreferencesTwoPageState extends State<SharedPreferencesTwoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('SharedPreferences2'),
-          primary: true,
-        ),
-        body: WillPopScope(
-            child: Container(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      ('$counter'),
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 22,
-                      ),
-                    ),
-                    Text(this.widget.intentValue),
-                    MaterialButton(
-                      onPressed: () {
-                        //出栈并带上参数，返回到上一个页面
-                        Navigator.pop(context, "肖战 余生请多指教");
-                      },
-                      child: Text(
-                        '返回并传递参数数据',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
-                      ),
-                      color: Colors.red,
-                      textColor: Colors.white,
-                    )
-                  ],
+      appBar: AppBar(
+        title: Text('SharedPreferences2'),
+        primary: true,
+      ),
+      body: WillPopScope(
+        child: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  ('$counter'),
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 22,
+                  ),
                 ),
-              ),
+                Text(this.widget.intentValue),
+                MaterialButton(
+                  onPressed: () {
+                    //出栈并带上参数，返回到上一个页面
+                    Navigator.pop(context, "肖战 余生请多指教");
+                  },
+                  child: Text(
+                    '返回并传递参数数据',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                    ),
+                  ),
+                  color: Colors.red,
+                  textColor: Colors.white,
+                )
+              ],
             ),
-            // ignore: missing_return
-            onWillPop: () async {
-              //出栈并带上参数，返回到上一个页面
-              Navigator.pop(context, "丁程鑫 像我一样");
-            }));
+          ),
+        ),
+        // ignore: missing_return
+        onWillPop: () async {
+          //出栈并带上参数，返回到上一个页面
+          Navigator.pop(context, "丁程鑫 像我一样");
+        },
+      ),
+    );
   }
 
   void getFromCache() async {

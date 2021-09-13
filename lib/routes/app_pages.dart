@@ -4,6 +4,7 @@ import 'package:flutter_study_demo/page/rich_text_page.dart';
 import 'package:flutter_study_demo/page/splash/bindings/splash_binding.dart';
 import 'package:flutter_study_demo/page/splash/views/splash_page.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
+import 'package:flutter_study_demo/wan_android/home/wan_web_view_page.dart';
 import 'package:get/get.dart';
 
 class AppPages {
@@ -26,6 +27,11 @@ class AppPages {
       name: AppRoutes.LIST_VIEW_CHAT_UI,
       page: () => ChatUIPage(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: AppRoutes.WAN_WEB_VIEW,
+      page: () => WanWebViewPage(),
+      transition: Transition.downToUp,
     ),
   ];
 }

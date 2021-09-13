@@ -94,6 +94,9 @@ dependencies:
   #image_picker: ^0.8.4 图片拾取器
   image_picker: ^0.8.4
 
+  #webview_flutter: ^2.0.13 WebView插件
+  webview_flutter: ^2.0.13
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

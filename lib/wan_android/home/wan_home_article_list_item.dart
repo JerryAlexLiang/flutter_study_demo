@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
+import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class WanHomeArticleListItem extends StatefulWidget {
   final Datas item;
@@ -33,7 +34,13 @@ class _WanHomeArticleListItemState extends State<WanHomeArticleListItem> {
           padding: EdgeInsets.all(5),
           child: item(),
         ),
-        onTap: () => Fluttertoast.showToast(msg: widget.item.title),
+        onTap: () {
+          Fluttertoast.showToast(msg: widget.item.title);
+          Get.toNamed(
+            AppRoutes.WAN_WEB_VIEW,
+            arguments: widget.item,
+          );
+        },
       ),
     );
   }
