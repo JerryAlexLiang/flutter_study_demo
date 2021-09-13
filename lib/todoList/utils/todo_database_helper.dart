@@ -17,6 +17,8 @@ class ToDoDatabaseHelper {
   String _date = 'date';
 
   //命名构造函数
+  //在Dart中实现单例非常简单，私有化构造可以使用【类名._()】格式实现，
+  // 这样外界就无法创建此类对象，并通过db静态变量创建当前对象暴露给外界，这样就能保证实现该对象的单例。
   ToDoDatabaseHelper._createInstance();
 
   factory ToDoDatabaseHelper() {
@@ -65,6 +67,7 @@ class ToDoDatabaseHelper {
     //     where: '$_title = ?', whereArgs: [title]);
 
     //模糊搜索（根据关键字查询匹配标题or内容）
+    //通过加上百分号，进行模糊查询
     var result = await db.query(todoTable,
         where: '$_title LIKE ? or $_description LIKE ?',
         whereArgs: ['%$searchContent%', '%$searchContent%']);

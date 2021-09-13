@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_study_demo/widget/LoadingDialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
@@ -115,7 +116,7 @@ class _FormTextFormFieldPageState extends State<FormTextFormFieldPage> {
     );
   }
 
-  _submit() {
+  _submit() async {
     _formKey.currentState.save();
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).requestFocus(FocusNode());

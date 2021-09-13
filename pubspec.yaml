@@ -88,6 +88,12 @@ dependencies:
   #date_format: ^2.0.4
   date_format: ^2.0.4
 
+  #permission_handler ^8.1.6 权限访问
+  permission_handler: ^8.1.6
+
+  #image_picker: ^0.8.4 图片拾取器
+  image_picker: ^0.8.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -109,9 +115,9 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
-#  assets:
-#    - images/core_icon_bg_header.png
-#    - images/core_icon_bg_weather.png
+  #  assets:
+  #    - images/core_icon_bg_header.png
+  #    - images/core_icon_bg_weather.png
 
   assets:
     - images/
