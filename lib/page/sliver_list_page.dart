@@ -57,6 +57,7 @@ class SliverListPage extends StatelessWidget {
     Colors.purple[100],
     Colors.purple[200],
     Colors.purple[500],
+    Colors.purple[300],
   ];
 
   List<StudyDemoNavigatorModel> dataList = [
@@ -86,6 +87,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("RichText", 21, "image"),
     StudyDemoNavigatorModel("ListView Chat UI", 22, "image"),
     StudyDemoNavigatorModel("Hero跳转动画", 23, "image"),
+    StudyDemoNavigatorModel("GetX MusicPage", 24, "image"),
   ];
 
   final imageUrl =
@@ -414,6 +416,10 @@ class SliverListPage extends StatelessWidget {
 
       case "Hero跳转动画":
         Navigator.push(context, CustomRoute(CodeLabLoginPage()));
+        break;
+
+      case "GetX MusicPage":
+        Get.toNamed(AppRoutes.MUSIC_HOME_PAGE);
         break;
     }
     Fluttertoast.showToast(

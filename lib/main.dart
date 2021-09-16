@@ -3,16 +3,11 @@ import 'dart:io';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_study_demo/model/scoped_counter_model.dart';
-import 'package:flutter_study_demo/page/main_new_home_page.dart';
-import 'package:flutter_study_demo/page/scoped_model_page.dart';
 import 'package:flutter_study_demo/routes/app_pages.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:scoped_model/scoped_model.dart';
 
-import 'page/main_new_home_page.dart';
 import 'provider/current_Index_provider.dart';
 
 void main() async {

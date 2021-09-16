@@ -44,7 +44,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
         accentColor: Color(0xFF2962FF),
         textTheme: TextTheme(
           //设置Material的默认字体样式
-          body1: TextStyle(
+          bodyText1: TextStyle(
             color: Color(0xFF888888),
             fontSize: 16.0,
           ),

@@ -28,7 +28,8 @@ class _AutomaticKeepAlivePageState extends State<AutomaticKeepAlivePage>
             Text('click add count 1'),
             Text(
               '$_count',
-              style: Theme.of(context).textTheme.display1,
+              // style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             MaterialButton(
               height: 50,

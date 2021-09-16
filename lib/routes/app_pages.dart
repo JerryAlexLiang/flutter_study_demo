@@ -1,4 +1,6 @@
 import 'package:flutter_study_demo/chat/chat_ui_page.dart';
+import 'package:flutter_study_demo/music/page/home/music_home_binding.dart';
+import 'package:flutter_study_demo/music/page/home/music_home_page.dart';
 import 'package:flutter_study_demo/page/main_new_home_page.dart';
 import 'package:flutter_study_demo/page/rich_text_page.dart';
 import 'package:flutter_study_demo/page/splash/bindings/splash_binding.dart';
@@ -32,6 +34,11 @@ class AppPages {
       name: AppRoutes.WAN_WEB_VIEW,
       page: () => WanWebViewPage(),
       transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: AppRoutes.MUSIC_HOME_PAGE,
+      page: () => MusicHomePage(),
+      binding: MusicHomeBinding(),
     ),
   ];
 }

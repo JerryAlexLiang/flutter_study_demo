@@ -38,6 +38,11 @@ dependencies:
   dio: ^4.0.0
   http: ^0.13.3
 
+  # cookie
+  dio_cookie_manager: ^2.0.0
+
+#  cookie_jar: ^3.0.1
+
   #scoped_model: ^1.0.1
   scoped_model: ^1.1.0
 
@@ -49,6 +54,9 @@ dependencies:
 
   #GetX 是 Flutter 上的一个轻量且强大的解决方案：高性能的状态管理、智能的依赖注入和便捷的路由管理  State Manager、Navigation Manager
   get: ^4.3.8
+
+  #sharePreference
+  get_storage: ^2.0.1
 
   #event_bus
   event_bus: ^2.0.0
@@ -96,6 +104,11 @@ dependencies:
 
   #webview_flutter: ^2.0.13 WebView插件
   webview_flutter: ^2.0.13
+
+  #路径操作
+  path: ^1.8.0
+
+
 
 dev_dependencies:
   flutter_test:
