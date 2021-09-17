@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_banner.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_controller.dart';
+import 'package:flutter_study_demo/music/page/home/music_home_playlist_widget.dart';
 import 'package:flutter_study_demo/music/page/home/play_list_card_widget.dart';
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -109,20 +110,40 @@ class MusicHomePage extends GetView<MusicHomeController> {
       child: ListView(
         shrinkWrap: true,
         children: [
-          Container(
-            height: 150,
-            // child: homeBanner(),
-            child: MusicHomeBanner(
-              bannerList: bannerList,
-            ),
+          _homeBanner(bannerList),
+          _recommendMusic(),
+        ],
+      ),
+    );
+  }
+
+  Container _recommendMusic() {
+    var playlistList = controller?.playlistList;
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 5,
+      ),
+      // child: recommendMusic(),
+      child: Column(
+        children: [
+          TitleArrowItem(
+            title: '推荐歌单',
+            callback: () => Fluttertoast.showToast(msg: "msg"),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
-            child: recommendMusic(),
+          MusicHomePlayListWidget(
+            playlistList: playlistList,
           ),
         ],
+      ),
+    );
+  }
+
+  Container _homeBanner(RxList<BannerItem> bannerList) {
+    return Container(
+      height: 180,
+      // child: homeBanner(),
+      child: MusicHomeBanner(
+        bannerList: bannerList,
       ),
     );
   }

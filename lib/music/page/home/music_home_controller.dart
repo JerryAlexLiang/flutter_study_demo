@@ -12,6 +12,8 @@ class MusicHomeController extends GetxController {
 
   var bannerList = List<BannerItem>.empty(growable: true).obs;
   var playlistList = List<PlaylistItem>.empty(growable: true).obs;
+  var rankList = List<RankItem>.empty().obs;
+  var radioList = List<RadioItem>.empty().obs;
 
   Rx<Future> futureX = Rx<Future>(null);
 
@@ -98,6 +100,8 @@ class MusicHomeController extends GetxController {
             loadState(LoadState.success);
             bannerList.assignAll(musicHomeModel.data.bannerList);
             playlistList.assignAll(musicHomeModel.data.playlistList);
+            rankList.assignAll(musicHomeModel.data.rankList);
+            radioList.assignAll(musicHomeModel.data.radioList);
 
             print('========> initData: ${bannerList.length}');
           } else {

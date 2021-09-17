@@ -36,6 +36,8 @@ class PlayListCardWidget extends StatelessWidget {
                         child: FadeInImage(
                           placeholder: AssetImage('images/icon_music_bg.jpg'),
                           image: NetworkImage('${playlistItem.pic}'),
+                          width: 100,
+                          height: 100,
                           fit: BoxFit.cover,
                         ),
                       ),

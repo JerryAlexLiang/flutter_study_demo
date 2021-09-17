@@ -108,17 +108,17 @@ class RankItem {
   String picBg;
   String picTitle;
   String total;
-  List<RankMusicList> list;
+  List<RankMusicItem> list;
 
   RankItem(
       {this.typeId,
-        this.label,
-        this.publish,
-        this.picIcon,
-        this.picBg,
-        this.picTitle,
-        this.total,
-        this.list});
+      this.label,
+      this.publish,
+      this.picIcon,
+      this.picBg,
+      this.picTitle,
+      this.total,
+      this.list});
 
   RankItem.fromJson(Map<String, dynamic> json) {
     typeId = json['type_id'];
@@ -129,9 +129,9 @@ class RankItem {
     picTitle = json['pic_title'];
     total = json['total'];
     if (json['list'] != null) {
-      list = new List<RankMusicList>();
+      list = <RankMusicItem>[];
       json['list'].forEach((v) {
-        list.add(new RankMusicList.fromJson(v));
+        list.add(new RankMusicItem.fromJson(v));
       });
     }
   }
@@ -152,7 +152,7 @@ class RankItem {
   }
 }
 
-class RankMusicList {
+class RankMusicItem {
   int id;
   String name;
   String pic;
@@ -164,19 +164,19 @@ class RankMusicList {
   int online;
   PayInfo payInfo;
 
-  RankMusicList(
+  RankMusicItem(
       {this.id,
-        this.name,
-        this.pic,
-        this.albumName,
-        this.artistName,
-        this.mvStatus,
-        this.mvPayInfo,
-        this.pay,
-        this.online,
-        this.payInfo});
+      this.name,
+      this.pic,
+      this.albumName,
+      this.artistName,
+      this.mvStatus,
+      this.mvPayInfo,
+      this.pay,
+      this.online,
+      this.payInfo});
 
-  RankMusicList.fromJson(Map<String, dynamic> json) {
+  RankMusicItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     pic = json['pic'];
@@ -249,15 +249,15 @@ class PayInfo {
 
   PayInfo(
       {this.play,
-        this.download,
-        this.localEncrypt,
-        this.limitfree,
-        this.cannotDownload,
-        this.refrainStart,
-        this.refrainEnd,
-        this.cannotOnlinePlay,
-        this.feeType,
-        this.down});
+      this.download,
+      this.localEncrypt,
+      this.limitfree,
+      this.cannotDownload,
+      this.refrainStart,
+      this.refrainEnd,
+      this.cannotOnlinePlay,
+      this.feeType,
+      this.down});
 
   PayInfo.fromJson(Map<String, dynamic> json) {
     play = json['play'];
@@ -269,7 +269,7 @@ class PayInfo {
     refrainEnd = json['refrain_end'];
     cannotOnlinePlay = json['cannotOnlinePlay'];
     feeType =
-    json['feeType'] != null ? new FeeType.fromJson(json['feeType']) : null;
+        json['feeType'] != null ? new FeeType.fromJson(json['feeType']) : null;
     down = json['down'];
   }
 
@@ -320,11 +320,11 @@ class PlaylistItem {
 
   PlaylistItem(
       {this.id,
-        this.name,
-        this.pic,
-        this.artistName,
-        this.countPlay,
-        this.desc});
+      this.name,
+      this.pic,
+      this.artistName,
+      this.countPlay,
+      this.desc});
 
   PlaylistItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -360,14 +360,14 @@ class RadioItem {
 
   RadioItem(
       {this.id,
-        this.name,
-        this.pic,
-        this.artistId,
-        this.artistName,
-        this.isstar,
-        this.countPlay,
-        this.countMusic,
-        this.desc});
+      this.name,
+      this.pic,
+      this.artistId,
+      this.artistName,
+      this.isstar,
+      this.countPlay,
+      this.countMusic,
+      this.desc});
 
   RadioItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -395,4 +395,3 @@ class RadioItem {
     return data;
   }
 }
-
