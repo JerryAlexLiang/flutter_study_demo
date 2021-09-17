@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_banner.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_controller.dart';
+import 'package:flutter_study_demo/music/page/home/play_list_card_widget.dart';
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -192,13 +193,14 @@ class MusicHomePage extends GetView<MusicHomeController> {
           child: GridView.builder(
             //去除GridView上方空白
             padding: EdgeInsets.zero,
+            // padding: EdgeInsets.symmetric(vertical: 0),
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              // childAspectRatio: 1 / 1,
+              mainAxisSpacing: 5,
+              crossAxisSpacing: 5,
+              childAspectRatio: 0.7,
             ),
             itemCount: playlistList?.length,
             itemBuilder: (context, index) =>
@@ -211,9 +213,12 @@ class MusicHomePage extends GetView<MusicHomeController> {
 
   recommendMusicItem(PlaylistItem playlistItem) {
     return Container(
-      child: Image.network(
-        playlistItem?.pic,
-        fit: BoxFit.cover,
+      // child: Image.network(
+      //   playlistItem?.pic,
+      //   fit: BoxFit.cover,
+      // ),
+      child: PlayListCardWidget(
+        playlistItem: playlistItem,
       ),
     );
   }
