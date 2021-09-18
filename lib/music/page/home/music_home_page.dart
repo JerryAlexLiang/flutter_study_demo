@@ -5,6 +5,8 @@ import 'package:flutter_study_demo/music/page/home/music_home_banner.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_controller.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_playlist_widget.dart';
 import 'package:flutter_study_demo/music/page/home/play_list_card_widget.dart';
+import 'package:flutter_study_demo/music/page/home/rank_music_card_widget.dart';
+import 'package:flutter_study_demo/music/page/home/rank_music_rectangle_widget.dart';
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -108,10 +110,10 @@ class MusicHomePage extends GetView<MusicHomeController> {
       controller: controller.refreshController,
       onRefresh: () => controller.refreshData(),
       child: ListView(
-        shrinkWrap: true,
         children: [
           _homeBanner(bannerList),
           _recommendMusic(),
+          _rankListMusic(),
         ],
       ),
     );
@@ -240,6 +242,104 @@ class MusicHomePage extends GetView<MusicHomeController> {
       // ),
       child: PlayListCardWidget(
         playlistItem: playlistItem,
+      ),
+    );
+  }
+
+  //Container _recommendMusic() {
+  //     var playlistList = controller?.playlistList;
+  //     return Container(
+  //       padding: EdgeInsets.symmetric(
+  //         horizontal: 5,
+  //       ),
+  //       // child: recommendMusic(),
+  //       child: Column(
+  //         children: [
+  //           TitleArrowItem(
+  //             title: '推荐歌单',
+  //             callback: () => Fluttertoast.showToast(msg: "msg"),
+  //           ),
+  //           MusicHomePlayListWidget(
+  //             playlistList: playlistList,
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
+
+  Widget _rankListMusic() {
+    var rankList = controller?.rankList;
+
+    List<Widget> items = [];
+
+    // items.add(
+    //   TitleArrowItem(
+    //     title: '排行榜',
+    //     callback: () => Fluttertoast.showToast(msg: '排行榜'),
+    //   ),
+    // );
+
+    if (rankList != null) {
+      var rankItems = rankList.map((element) => Text(element.label)).toList();
+      items.addAll(rankItems);
+    }
+
+    var rankMusicCardList = rankList
+        ?.map((element) => RankMusicCardWidget(rankItem: element))
+        ?.toList();
+
+    var rankMusicRectangleList = rankList
+        ?.map((element) => RankMusicRectangleWidget(rankItem: element))
+        ?.toList();
+
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 10,
+      ),
+      // child: Column(
+      //   children: items,
+      // ),
+      child: Column(
+        children: [
+          TitleArrowItem(
+            title: '排行榜1',
+            callback: () => Fluttertoast.showToast(msg: '排行榜'),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: rankMusicCardList,
+          ),
+          Column(
+            children: items,
+          ),
+          TitleArrowItem(
+            title: '排行榜2',
+            callback: () => Fluttertoast.showToast(msg: '排行榜'),
+          ),
+          Wrap(
+            runSpacing: 4,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: rankMusicCardList,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: rankMusicCardList,
+              ),
+            ],
+          ),
+
+          TitleArrowItem(
+            title: '排行榜3',
+            callback: () => Fluttertoast.showToast(msg: '排行榜'),
+          ),
+
+          Wrap(
+            runSpacing: 5,
+            children: rankMusicRectangleList,
+          ),
+        ],
       ),
     );
   }

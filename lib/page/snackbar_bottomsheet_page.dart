@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_demo/config/string.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/page/home_button.dart';
 import 'package:flutter_study_demo/page/home_left_drawer.dart';
 import 'package:flutter_study_demo/page/home_right_drawer.dart';

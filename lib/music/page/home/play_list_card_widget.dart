@@ -26,23 +26,27 @@ class PlayListCardWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                PhysicalModel(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(10),
-                  clipBehavior: Clip.antiAlias,
+                Container(
                   child: Stack(
                     children: [
                       Container(
-                        child: FadeInImage(
-                          placeholder: AssetImage('images/icon_music_bg.jpg'),
-                          image: NetworkImage('${playlistItem.pic}'),
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                        margin: EdgeInsets.only(bottom: 5),
+                        // padding: EdgeInsets.only(bottom: 5),
+                        child: PhysicalModel(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                          clipBehavior: Clip.antiAlias,
+                          child: FadeInImage(
+                            placeholder: AssetImage('images/icon_music_bg.jpg'),
+                            image: NetworkImage(playlistItem.pic),
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Positioned(
-                        bottom: 0,
+                        bottom: 5,
                         right: 0,
                         child: Container(
                           clipBehavior: Clip.antiAlias,
@@ -50,6 +54,9 @@ class PlayListCardWidget extends StatelessWidget {
                             color: Colors.transparent.withOpacity(0.3),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              // bottomLeft: Radius.circular(10),
+                              // topRight: Radius.circular(10),
                             ),
                           ),
                           padding: EdgeInsets.symmetric(

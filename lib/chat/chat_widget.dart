@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/chat/chat_item.dart';
 import 'package:flutter_study_demo/chat/circle_image.dart';
 import 'package:flutter_study_demo/chat/nine_point_box.dart';
-import 'package:flutter_study_demo/config/string.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ChatWidget extends StatelessWidget {

@@ -55,4 +55,8 @@ class StringConfig {
 
   static const String CHAT_TYPE_TEXT = "text";
   static const String CHAT_TYPE_IMAGE = "image";
+
+  //Default Image
+  static const DEFAULT_IMAGE_URL =
+      "https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/42eced211a394a76ae527f1aab45a4a2~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.image";
 }

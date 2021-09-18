@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_study_demo/config/string.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/model/study_demo_navigator_model.dart';
 import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';

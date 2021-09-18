@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_study_demo/chat/chat_item.dart';
-import 'package:flutter_study_demo/config/string.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 
 class ChatApiMock {
   var random = Random();
