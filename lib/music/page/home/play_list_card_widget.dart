@@ -32,6 +32,7 @@ class PlayListCardWidget extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(bottom: 5),
                         // padding: EdgeInsets.only(bottom: 5),
+                        //PhysicalModel ，主要的功能就是设置widget四边圆角，可以设置阴影颜色，和z轴高度
                         child: PhysicalModel(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(10),

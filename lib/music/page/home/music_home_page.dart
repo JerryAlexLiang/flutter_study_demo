@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/music/page/home/music_home_banner.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_controller.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_playlist_widget.dart';
 import 'package:flutter_study_demo/music/page/home/play_list_card_widget.dart';
+import 'package:flutter_study_demo/music/page/home/radio_music_list_widget.dart';
 import 'package:flutter_study_demo/music/page/home/rank_music_card_widget.dart';
 import 'package:flutter_study_demo/music/page/home/rank_music_rectangle_widget.dart';
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
@@ -104,16 +105,16 @@ class MusicHomePage extends GetView<MusicHomeController> {
   }
 
   homeView() {
-    var bannerList = controller?.bannerList;
-
     return SmartRefresher(
       controller: controller.refreshController,
       onRefresh: () => controller.refreshData(),
       child: ListView(
         children: [
-          _homeBanner(bannerList),
+          _homeBanner(),
           _recommendMusic(),
+          _radioList(),
           _rankListMusic(),
+          _bottomPlaceHolder(),
         ],
       ),
     );
@@ -140,7 +141,8 @@ class MusicHomePage extends GetView<MusicHomeController> {
     );
   }
 
-  Container _homeBanner(RxList<BannerItem> bannerList) {
+  Container _homeBanner() {
+    var bannerList = controller?.bannerList;
     return Container(
       height: 180,
       // child: homeBanner(),
@@ -246,31 +248,30 @@ class MusicHomePage extends GetView<MusicHomeController> {
     );
   }
 
-  //Container _recommendMusic() {
-  //     var playlistList = controller?.playlistList;
-  //     return Container(
-  //       padding: EdgeInsets.symmetric(
-  //         horizontal: 5,
-  //       ),
-  //       // child: recommendMusic(),
-  //       child: Column(
-  //         children: [
-  //           TitleArrowItem(
-  //             title: '推荐歌单',
-  //             callback: () => Fluttertoast.showToast(msg: "msg"),
-  //           ),
-  //           MusicHomePlayListWidget(
-  //             playlistList: playlistList,
-  //           ),
-  //         ],
-  //       ),
-  //     );
-  //   }
+  _radioList() {
+    var radioList = controller?.radioList;
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 5,
+      ),
+      child: Column(
+        children: [
+          TitleArrowItem(
+            title: '广播',
+            callback: () => Fluttertoast.showToast(msg: '广播剧'),
+          ),
+          RadioMusicListWidget(
+            radioItemList: radioList,
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _rankListMusic() {
     var rankList = controller?.rankList;
 
-    List<Widget> items = [];
+    // List<Widget> items = [];
 
     // items.add(
     //   TitleArrowItem(
@@ -279,10 +280,10 @@ class MusicHomePage extends GetView<MusicHomeController> {
     //   ),
     // );
 
-    if (rankList != null) {
-      var rankItems = rankList.map((element) => Text(element.label)).toList();
-      items.addAll(rankItems);
-    }
+    // if (rankList != null) {
+    //   var rankItems = rankList.map((element) => Text(element.label)).toList();
+    //   items.addAll(rankItems);
+    // }
 
     var rankMusicCardList = rankList
         ?.map((element) => RankMusicCardWidget(rankItem: element))
@@ -294,7 +295,7 @@ class MusicHomePage extends GetView<MusicHomeController> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 10,
+        horizontal: 5,
       ),
       // child: Column(
       //   children: items,
@@ -302,44 +303,66 @@ class MusicHomePage extends GetView<MusicHomeController> {
       child: Column(
         children: [
           TitleArrowItem(
-            title: '排行榜1',
+            title: '排行榜',
             callback: () => Fluttertoast.showToast(msg: '排行榜'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: rankMusicCardList,
+          // ),
+          Wrap(
+            runSpacing: 4,
             children: rankMusicCardList,
           ),
-          Column(
-            children: items,
-          ),
+          // Column(
+          //   children: items,
+          // ),
+          // TitleArrowItem(
+          //   title: '排行榜2',
+          //   callback: () => Fluttertoast.showToast(msg: '排行榜'),
+          // ),
+          // // Wrap(
+          // //   runSpacing: 4,
+          // //   children: [
+          // //     Row(
+          // //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // //       children: rankMusicCardList,
+          // //     ),
+          // //     Row(
+          // //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // //       children: rankMusicCardList,
+          // //     ),
+          // //   ],
+          // // ),
+          //
+          // Wrap(
+          //   runSpacing: 4,
+          //   children: [
+          //     Wrap(
+          //       children: rankMusicCardList,
+          //     ),
+          //     Wrap(
+          //       children: rankMusicCardList,
+          //     ),
+          //   ],
+          // ),
           TitleArrowItem(
             title: '排行榜2',
             callback: () => Fluttertoast.showToast(msg: '排行榜'),
           ),
           Wrap(
-            runSpacing: 4,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: rankMusicCardList,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: rankMusicCardList,
-              ),
-            ],
-          ),
-
-          TitleArrowItem(
-            title: '排行榜3',
-            callback: () => Fluttertoast.showToast(msg: '排行榜'),
-          ),
-
-          Wrap(
             runSpacing: 5,
             children: rankMusicRectangleList,
           ),
         ],
+      ),
+    );
+  }
+
+  _bottomPlaceHolder() {
+    return Container(
+      child: SizedBox(
+        height: 10,
       ),
     );
   }

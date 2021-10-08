@@ -17,8 +17,8 @@ class RankMusicCardWidget extends StatelessWidget {
       onTap: () => Fluttertoast.showToast(msg: 'msg1'),
       child: Container(
         padding: EdgeInsets.all(6),
-        width: (Get.width - 10 * 2) / 3 - 4,
-        height: (Get.width - 10 * 2) / 3 - 4,
+        width: (Get.width - 10 * 2) / 3,
+        height: (Get.width - 10 * 2) / 3,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           clipBehavior: Clip.antiAlias,
@@ -28,8 +28,8 @@ class RankMusicCardWidget extends StatelessWidget {
                 child: Opacity(
                   opacity: 1,
                   child: FadeInImage.assetNetwork(
-                    width: (Get.width - 5 * 2) / 3 - 4,
-                    height: (Get.width - 5 * 2) / 3 - 4,
+                    width: (Get.width - 5 * 2) / 3,
+                    height: (Get.width - 5 * 2) / 3,
                     placeholder: 'images/icon_music_bg.jpg',
                     fit: BoxFit.cover,
                     image: rankItem?.picIcon ?? StringConfig.DEFAULT_IMAGE_URL,

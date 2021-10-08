@@ -103,7 +103,10 @@ class MusicHomeController extends GetxController {
             rankList.assignAll(musicHomeModel.data.rankList);
             radioList.assignAll(musicHomeModel.data.radioList);
 
-            print('========> initData: ${bannerList.length}');
+            print('========> initData bannerList: ${bannerList.length}');
+            print('========> initData playlistList: ${playlistList.length}');
+            print('========> initData rankList: ${rankList.length}');
+            print('========> initData radioList: ${radioList.length}');
           } else {
             loadState(LoadState.empty);
             Get.snackbar('Empty', 'data empty...');
@@ -132,8 +135,13 @@ class MusicHomeController extends GetxController {
             refreshController.refreshCompleted();
             bannerList.assignAll(musicHomeModel.data.bannerList);
             playlistList.assignAll(musicHomeModel.data.playlistList);
+            rankList.assignAll(musicHomeModel.data.rankList);
+            radioList.assignAll(musicHomeModel.data.radioList);
 
-            print('========> refreshData: ${bannerList.length}');
+            print('========> refreshData bannerList: ${bannerList.length}');
+            print('========> refreshData playlistList: ${playlistList.length}');
+            print('========> refreshData rankList: ${rankList.length}');
+            print('========> refreshData radioList: ${radioList.length}');
           } else {
             refreshController.refreshFailed();
             Get.snackbar('Empty', 'data empty...');

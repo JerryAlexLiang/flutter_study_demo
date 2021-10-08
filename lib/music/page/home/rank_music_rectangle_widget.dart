@@ -11,10 +11,13 @@ class RankMusicRectangleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
+    return GestureDetector(
       onTap: () => Fluttertoast.showToast(msg: 'msg2'),
       child: Container(
+        margin: EdgeInsets.only(
+          left: 5,
+          right: 5,
+        ),
         width: Get.width,
         height: 150,
         decoration: BoxDecoration(
@@ -32,8 +35,25 @@ class RankMusicRectangleWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 color: Colors.white,
-                child: Center(
-                  child: Text('dd'),
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: 140,
+                    right: 5,
+                  ),
+                  child: _rankMusicNameList(),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 10,
+              left: 35,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  'images/icon_music_bg.jpg',
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -43,8 +63,8 @@ class RankMusicRectangleWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: FadeInImage.assetNetwork(
-                  width: 100,
-                  height: 100,
+                  width: 120,
+                  height: 120,
                   placeholder: 'images/icon_music_bg.jpg',
                   fit: BoxFit.cover,
                   image: rankItem?.picIcon ?? StringConfig.DEFAULT_IMAGE_URL,
@@ -53,6 +73,61 @@ class RankMusicRectangleWidget extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _rankMusicNameList() {
+    List<Widget> songList = [];
+
+    //label
+    songList.add(_songRankLabel());
+
+    //音乐榜单
+    var list = rankItem.list;
+    if (list != null && list.length > 0) {
+      var list2 = list.map((e) => _rankMusic(e, list.indexOf(e))).toList();
+      songList.addAll(list2);
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: songList,
+    );
+  }
+
+  Widget _songRankLabel() {
+    return Container(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            '${rankItem.label}',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          Icon(
+            Icons.chevron_right,
+            size: 16,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _rankMusic(RankMusicItem e, int index) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        '${index + 1}. ${e.name} - ${e.artistName}',
+        style: TextStyle(
+          fontSize: 13,
+          color: index == 0 ? Colors.red : Colors.black,
+        ),
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

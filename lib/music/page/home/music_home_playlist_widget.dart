@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/music/page/home/play_list_card_widget.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class MusicHomePlayListWidget extends StatelessWidget {
   final List<PlaylistItem> playlistList;
@@ -9,24 +10,26 @@ class MusicHomePlayListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView.builder(
-        //去除GridView上方空白
-        padding: EdgeInsets.zero,
-        // padding: EdgeInsets.symmetric(vertical: 0),
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 5,
-          crossAxisSpacing: 5,
-          childAspectRatio: 0.7,
+    return Obx(() {
+      return Container(
+        child: GridView.builder(
+          //去除GridView上方空白
+          padding: EdgeInsets.zero,
+          // padding: EdgeInsets.symmetric(vertical: 0),
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 5,
+            crossAxisSpacing: 5,
+            childAspectRatio: 0.7,
+          ),
+          itemCount: playlistList?.length,
+          itemBuilder: (context, index) =>
+              recommendMusicItem(playlistList[index]),
         ),
-        itemCount: playlistList?.length,
-        itemBuilder: (context, index) =>
-            recommendMusicItem(playlistList[index]),
-      ),
-    );
+      );
+    });
   }
 
   recommendMusicItem(PlaylistItem playlistItem) {
