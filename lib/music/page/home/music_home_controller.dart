@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_study_demo/music/api/http/music_http_manager.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 enum LoadState { loading, fail, success, empty }
@@ -31,6 +32,12 @@ class MusicHomeController extends GetxController {
   void onReady() {
     super.onReady();
     loadData();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    refreshController.dispose();
   }
 
   @override
