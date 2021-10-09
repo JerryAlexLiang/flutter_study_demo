@@ -47,6 +47,7 @@ class StringConfig {
 
   //Hero tag
   static const SLIVER_FLEXIBLE_SPACE_BAR = "sliver-FlexibleSpaceBar";
+  static const SLIVER_FLEXIBLE_SPACE_BAR_RANK = "sliver-FlexibleSpaceBar-rank";
 
   //IM
   static const String CHAT_TYPE_LEFT = "left";

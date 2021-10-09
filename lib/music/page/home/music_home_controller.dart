@@ -1,9 +1,7 @@
-import 'dart:convert';
 
 import 'package:flutter_study_demo/music/api/http/music_http_manager.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 enum LoadState { loading, fail, success, empty }
@@ -140,6 +138,7 @@ class MusicHomeController extends GetxController {
         if (musicHomeModel.success) {
           if (musicHomeModel != null && musicHomeModel.data != null) {
             refreshController.refreshCompleted();
+            //使用 "assign "和" assignAll "。 "assign "会清除你的List，并添加一个单个对象。 "assignAll "将清除现有的List，并添加任何可迭代对象。
             bannerList.assignAll(musicHomeModel.data.bannerList);
             playlistList.assignAll(musicHomeModel.data.playlistList);
             rankList.assignAll(musicHomeModel.data.rankList);

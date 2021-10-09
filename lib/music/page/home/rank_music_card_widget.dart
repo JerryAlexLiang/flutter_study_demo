@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class RankMusicCardWidget extends StatelessWidget {
@@ -14,7 +14,10 @@ class RankMusicCardWidget extends StatelessWidget {
     // return GestureDetector(
     return InkWell(
       borderRadius: BorderRadius.circular(10),
-      onTap: () => Fluttertoast.showToast(msg: 'msg1'),
+      onTap: () => Get.toNamed(
+        AppRoutes.MUSIC_RANK_DETAIL_PAGE,
+        arguments: {'id': rankItem?.typeId, 'label': rankItem?.label},
+      ),
       child: Container(
         padding: EdgeInsets.all(6),
         width: (Get.width - 10 * 2) / 3,

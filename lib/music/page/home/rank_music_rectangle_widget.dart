@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
+import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,10 @@ class RankMusicRectangleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Fluttertoast.showToast(msg: 'msg2'),
+      onTap: () => Get.toNamed(
+        AppRoutes.MUSIC_RANK_DETAIL_PAGE,
+        arguments: {'id': rankItem?.typeId, 'label': rankItem?.label},
+      ),
       child: Container(
         margin: EdgeInsets.only(
           left: 5,
@@ -47,13 +51,16 @@ class RankMusicRectangleWidget extends StatelessWidget {
             Positioned(
               top: 10,
               left: 35,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  'images/icon_music_bg.jpg',
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
+              child: Hero(
+                tag: rankItem?.label,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    'images/icon_music_bg.jpg',
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

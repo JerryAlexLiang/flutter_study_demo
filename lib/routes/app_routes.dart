@@ -7,5 +7,6 @@ abstract class AppRoutes{
   static const HERO_ROUTE_ANIMATION = '/heroRouteAnimation';
   static const WAN_WEB_VIEW = "/wanWebView";
   static const MUSIC_HOME_PAGE = "/musicHomePage";
+  static const MUSIC_RANK_DETAIL_PAGE = "/musicRankDetail";
 
 }
