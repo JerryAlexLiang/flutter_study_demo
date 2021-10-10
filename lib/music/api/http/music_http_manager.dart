@@ -18,4 +18,15 @@ abstract class MusicHttpManager {
     );
     return response;
   }
+
+  /// 获取排行榜详情数据接口2
+  /// ?topId=16 排行榜 ID offset：偏移的页数 limit 返回歌曲的数量
+  static Future<Response> getRankDetailModel2(String topId,
+      {int offset, int limit}) async {
+    var response = await Dio().get(
+      MusicApi.rank_detail2,
+      queryParameters: {'topId': topId, 'offset': offset, 'limit': limit},
+    );
+    return response;
+  }
 }

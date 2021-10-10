@@ -115,16 +115,57 @@ class RankDetailController extends GetxController {
           }
         } else {
           refreshController.refreshFailed();
-          Get.snackbar('Error', 'load error...');
+          Get.snackbar('Error', 'load refresh error...');
         }
       } else {
         refreshController.refreshFailed();
-        Get.snackbar('Error', 'load error...');
+        Get.snackbar('Error', 'load refresh error...');
       }
     } on Exception catch (e) {
       refreshController.refreshFailed();
-      Get.snackbar('Error', 'load error...${e.toString()}');
+      Get.snackbar('Error', 'load refresh error...${e.toString()}');
       print('=============>  rank detail refresh error ${e.toString()}');
+    }
+  }
+
+  //加载更多数据
+  void loadMoreData() async {
+    pagingState.nextPage();
+
+    if (pagingState.isEnd) return refreshController.loadNoData();
+
+    try {
+      var response = await MusicHttpManager.getRankDetailModel(id,
+          pn: pagingState.page, rn: pagingState.pageNum);
+      print(
+          '=============> rank detail loadMore id: $id pn: ${pagingState.page}  rn:  ${pagingState.pageNum}');
+      if (response.statusCode == 200) {
+        var model = musicRankDetailModelFromJson(response.toString());
+        if (model.success) {
+          if (model != null && model.data != null) {
+            refreshController.refreshCompleted();
+            rankDetailModel.value = model.data;
+            rankDetailList.addAll(model.data.list);
+          } else {
+            refreshController.refreshFailed();
+            pagingState.page--;
+            Get.snackbar('Empty', 'data empty...');
+          }
+        } else {
+          refreshController.refreshFailed();
+          pagingState.page--;
+          Get.snackbar('Error', 'loadMore error...');
+        }
+      } else {
+        refreshController.refreshFailed();
+        pagingState.page--;
+        Get.snackbar('Error', 'loadMore error...');
+      }
+    } on Exception catch (e) {
+      refreshController.refreshFailed();
+      pagingState.page--;
+      Get.snackbar('Error', 'loadMore error...');
+      print('=============>  rank detail loadMore error ${e.toString()}');
     }
   }
 

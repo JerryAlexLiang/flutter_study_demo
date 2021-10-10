@@ -3,6 +3,7 @@ import 'package:flutter_study_demo/music/page/home/music_home_binding.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_page.dart';
 import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_binding.dart';
 import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_page.dart';
+import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_page2.dart';
 import 'package:flutter_study_demo/page/main_new_home_page.dart';
 import 'package:flutter_study_demo/page/rich_text_page.dart';
 import 'package:flutter_study_demo/page/splash/bindings/splash_binding.dart';
@@ -44,7 +45,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.MUSIC_RANK_DETAIL_PAGE,
-      page: () => RankDetailPage(),
+      // page: () => RankDetailPage(),
+      page: () => RankDetailPage2(),
       binding: RankDetailBinding(),
     ),
   ];

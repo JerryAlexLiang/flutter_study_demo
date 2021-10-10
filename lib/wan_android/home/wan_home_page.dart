@@ -164,21 +164,36 @@ class _WanHomePageState extends State<WanHomePage>
               onLoad: () async {
                 print('开始加载更多 currentPage: $page');
 
-                await requestGet(WanAndroidApi.homeArticleList + "$page/json")
-                    .then((value) {
-                  WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value);
-                  List<Datas> list = bean.data.datas;
+                // await requestGet(WanAndroidApi.homeArticleList + "$page/json")
+                //     .then((value) {
+                //   WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value);
+                //   List<Datas> list = bean.data.datas;
+                //
+                //   setState(() {
+                //     articleDataList.addAll(list);
+                //     page++;
+                //   });
+                //
+                //   _controller.finishLoad(success: true);
+                //
+                //   print('加载更多成功 currentPage: $page');
+                //   print('加载更多成功 currentPage: $bean');
+                // });
 
-                  setState(() {
-                    articleDataList.addAll(list);
-                    page++;
-                  });
+                var value2 = await requestGet(
+                    WanAndroidApi.homeArticleList + "$page/json");
+                WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value2);
+                List<Datas> list = bean.data.datas;
 
-                  _controller.finishLoad(success: true);
-
-                  print('加载更多成功 currentPage: $page');
-                  print('加载更多成功 currentPage: $bean');
+                setState(() {
+                  articleDataList.addAll(list);
+                  page++;
                 });
+
+                _controller.finishLoad(success: true);
+
+                print('加载更多成功 currentPage: $page');
+                print('加载更多成功 currentPage: $bean');
               },
             );
           } else {

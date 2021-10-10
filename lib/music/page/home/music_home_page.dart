@@ -20,43 +20,6 @@ class MusicHomePage extends GetView<MusicHomeController> {
 
   @override
   Widget build(BuildContext context) {
-    //使homeBodyntroller数据变化
-    // return Obx(
-    //   () => FutureBuilder(
-    //     future: controller.futureX.value,
-    //     builder: (context, snapshot) {
-    //       if (snapshot.connectionState == ConnectionState.done) {
-    //         if (snapshot.hasError) {
-    //           return Center(
-    //             child: CircularProgressIndicator(),
-    //           );
-    //         } else {
-    //           return Center(
-    //             // child: Obx(() => homeBody(controller.playlistList)),
-    //             child: homeBody(controller.playlistList),
-    //           );
-    //         }
-    //       } else {
-    //         return Center(
-    //           child: CircularProgressIndicator(),
-    //         );
-    //       }
-    //     },
-    //   ),
-    // );
-
-    // return Obx(() {
-    //   if (controller.isLoading.value) {
-    //     return Center(
-    //       child: CircularProgressIndicator(),
-    //     );
-    //   } else {
-    //     return Center(
-    //       child: homeBody(controller.playlistList),
-    //     );
-    //   }
-    // });
-
     return Scaffold(
       body: Obx(
         () {

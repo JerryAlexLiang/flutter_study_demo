@@ -1,11 +1,11 @@
-import 'package:flutter_study_demo/music/model/music_rank_detail_model.dart';
-import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_controller.dart';
+import 'package:flutter_study_demo/music/model/music_rank_detail_model2.dart';
+import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_controller2.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class RankDetailPage extends GetView<RankDetailController> {
+class RankDetailPage2 extends GetView<RankDetailController2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class RankDetailPage extends GetView<RankDetailController> {
           enablePullUp: true,
           controller: controller?.refreshController,
           onRefresh: () => controller?.refreshData(),
-          onLoading: ()=>controller?.loadMoreData(),
+          onLoading: () => controller?.loadMoreData(),
           child: CustomScrollView(
             controller: controller?.scrollController,
             slivers: [
@@ -69,7 +69,7 @@ class RankDetailPage extends GetView<RankDetailController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '共${controller?.rankDetailModel?.value?.total ?? 0}首',
+                  '共${controller?.rankDetailModel?.value?.num ?? 0}首',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -99,7 +99,7 @@ class RankDetailPage extends GetView<RankDetailController> {
       background: Hero(
         tag: controller.label,
         // child: fadeInImage(),
-        child: controller?.rankDetailModel?.value?.pic != null
+        child: controller?.rankDetailModel?.value?.img != null
             ? fadeInImage()
             : SizedBox(),
       ),
@@ -111,7 +111,7 @@ class RankDetailPage extends GetView<RankDetailController> {
   FadeInImage fadeInImage() {
     return FadeInImage.assetNetwork(
       placeholder: 'images/icon_music_bg.jpg',
-      image: controller?.rankDetailModel?.value?.pic,
+      image: controller?.rankDetailModel?.value?.img,
       width: 100,
       fit: BoxFit.contain,
     );
@@ -121,6 +121,7 @@ class RankDetailPage extends GetView<RankDetailController> {
     if (controller.loadState.value == LoadState.loading) {
       return SliverToBoxAdapter(
         child: Container(
+          color: Colors.red,
           height: Get.height - 300,
           width: Get.width,
           child: Center(
@@ -160,7 +161,7 @@ class RankDetailPage extends GetView<RankDetailController> {
     }
   }
 
-  _buildSongListItem(RxList<ListElement> rankDetailList, int index) {
+  _buildSongListItem(RxList<MusicList> rankDetailList, int index) {
     return ListTile(
       onTap: () => Fluttertoast.showToast(
           msg: '${controller?.rankDetailList[index]?.name}'),
@@ -187,7 +188,7 @@ class RankDetailPage extends GetView<RankDetailController> {
       trailing: Container(
         width: 100,
         child: Text(
-          '${rankDetailList[index]?.artistName}',
+          '${rankDetailList[index]?.artist}',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
