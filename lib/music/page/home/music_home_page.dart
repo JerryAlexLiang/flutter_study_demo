@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_banner.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_controller.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_study_demo/music/page/home/radio_music_list_widget.dart'
 import 'package:flutter_study_demo/music/page/home/rank_music_card_widget.dart';
 import 'package:flutter_study_demo/music/page/home/rank_music_rectangle_widget.dart';
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
+import 'package:flutter_study_demo/wan_android/home/wan_home_article_list_item.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -69,14 +72,18 @@ class MusicHomePage extends GetView<MusicHomeController> {
 
   homeView() {
     return SmartRefresher(
+      enablePullDown: true,
+      enablePullUp: true,
       controller: controller.refreshController,
       onRefresh: () => controller.refreshData(),
+      onLoading: () => controller.loadMoreArticleList(),
       child: ListView(
         children: [
           _homeBanner(),
           _recommendMusic(),
           _radioList(),
           _rankListMusic(),
+          _articleListPage(),
           _bottomPlaceHolder(),
         ],
       ),
@@ -318,6 +325,36 @@ class MusicHomePage extends GetView<MusicHomeController> {
             children: rankMusicRectangleList,
           ),
         ],
+      ),
+    );
+  }
+
+  _articleListPage() {
+    var articleList = controller.articleList;
+    var list = articleList.map((element) => _articleListItem(element)).toList();
+
+    return Wrap(
+      spacing: 1,
+      children: list,
+    );
+
+    // return Obx(() {
+    //   return Container(
+    //     child:  Wrap(
+    //       spacing: 1,
+    //       children: articleList.map((element) => _articleListItem(element)).toList(),
+    //     ),
+    //   );
+    // });
+  }
+
+  Widget _articleListItem(Datas item) {
+    return Container(
+      width: Get.width,
+      height: ScreenUtil().setHeight(200),
+      color: Colors.grey.withOpacity(0.1),
+      child: Center(
+        child: WanHomeArticleListItem(item),
       ),
     );
   }

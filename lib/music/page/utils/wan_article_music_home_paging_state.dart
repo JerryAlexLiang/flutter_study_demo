@@ -1,13 +1,15 @@
-class PagingState {
+class PagingState2 {
   //默认页数50
-  int pageNum = 50;
+  // int pageNum = 50;
+  int pageNum = 10;
 
   int total = 0;
-  int page = 1;
+  // int page = 1;
+  int page = -1;
   bool isLoading = false;
   bool isFirst = true;
 
-  PagingState({this.pageNum = 50});
+  PagingState2({this.pageNum = 10});
 
   //是否加载完
   bool get isEnd => pageNum * page > total;
@@ -15,7 +17,8 @@ class PagingState {
   //重置
   void reset() {
     isFirst = false;
-    page = 0;
+    // page = 0;
+    page = -1;
     isLoading = false;
   }
 

@@ -143,26 +143,26 @@ class RankDetailController extends GetxController {
         var model = musicRankDetailModelFromJson(response.toString());
         if (model.success) {
           if (model != null && model.data != null) {
-            refreshController.refreshCompleted();
+            refreshController.loadComplete();
             rankDetailModel.value = model.data;
             rankDetailList.addAll(model.data.list);
           } else {
-            refreshController.refreshFailed();
+            refreshController.loadFailed();
             pagingState.page--;
             Get.snackbar('Empty', 'data empty...');
           }
         } else {
-          refreshController.refreshFailed();
+          refreshController.loadFailed();
           pagingState.page--;
           Get.snackbar('Error', 'loadMore error...');
         }
       } else {
-        refreshController.refreshFailed();
+        refreshController.loadFailed();
         pagingState.page--;
         Get.snackbar('Error', 'loadMore error...');
       }
     } on Exception catch (e) {
-      refreshController.refreshFailed();
+      refreshController.loadFailed();
       pagingState.page--;
       Get.snackbar('Error', 'loadMore error...');
       print('=============>  rank detail loadMore error ${e.toString()}');

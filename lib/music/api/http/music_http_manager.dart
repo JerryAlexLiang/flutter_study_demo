@@ -1,5 +1,6 @@
 //酷我接口
 import 'package:dio/dio.dart';
+import 'package:flutter_study_demo/config/service_url.dart';
 import 'package:flutter_study_demo/music/api/music_api.dart';
 
 abstract class MusicHttpManager {
@@ -27,6 +28,14 @@ abstract class MusicHttpManager {
       MusicApi.rank_detail2,
       queryParameters: {'topId': topId, 'offset': offset, 'limit': limit},
     );
+    return response;
+  }
+
+  //首页文章列表 https://www.wanandroid.com/article/list/0/json
+  // static String homeArticleList = '${serviceUrl}article/list/';
+  static Future<Response> getWanHomeArticleList(int page, int pageSize) async {
+    var response = await Dio().get(WanAndroidApi.homeArticleList + "$page/json",
+        queryParameters: {"page_size": pageSize});
     return response;
   }
 }

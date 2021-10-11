@@ -1,6 +1,7 @@
-
+import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/music/api/http/music_http_manager.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
+import 'package:flutter_study_demo/music/page/utils/wan_article_music_home_paging_state.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -14,11 +15,17 @@ class MusicHomeController extends GetxController {
   var rankList = List<RankItem>.empty().obs;
   var radioList = List<RadioItem>.empty().obs;
 
+  var articleBean = WanHomeArticleBean().obs;
+  var articleList = List<Datas>.empty(growable: true).obs;
+
   Rx<Future> futureX = Rx<Future>(null);
 
   var isLoading = true.obs;
 
   var loadState = LoadState.loading.obs;
+
+  //分页加载状态管理
+  PagingState2 pagingState = PagingState2();
 
   @override
   void onInit() {
@@ -131,6 +138,8 @@ class MusicHomeController extends GetxController {
   }
 
   refreshData() async {
+    pagingState.reset();
+
     try {
       var response = await MusicHttpManager.getMusicHomeModel();
       if (response.statusCode == 200) {
@@ -143,6 +152,9 @@ class MusicHomeController extends GetxController {
             playlistList.assignAll(musicHomeModel.data.playlistList);
             rankList.assignAll(musicHomeModel.data.rankList);
             radioList.assignAll(musicHomeModel.data.radioList);
+
+            articleBean.value = null;
+            articleList.clear();
 
             print('========> refreshData bannerList: ${bannerList.length}');
             print('========> refreshData playlistList: ${playlistList.length}');
@@ -163,6 +175,42 @@ class MusicHomeController extends GetxController {
     } on Exception catch (e) {
       refreshController.refreshFailed();
       Get.snackbar('Error', 'load error...${e.toString()}');
+    }
+  }
+
+  void loadMoreArticleList() async {
+
+    print('=============> wan article loadMore page1 : ${pagingState.page}');
+
+    pagingState.nextPage();
+
+    // if (pagingState.isEnd) return refreshController.loadNoData();
+    try {
+      var response = await MusicHttpManager.getWanHomeArticleList(
+          pagingState.page, pagingState.pageNum);
+      print('=============> wan article loadMore page2 : ${pagingState.page}');
+      if (response.statusCode == 200) {
+        var model = WanHomeArticleBean.fromJson(response.data);
+        refreshController.loadComplete();
+        articleBean.value = model;
+        articleList.addAll(model.data.datas);
+        pagingState.total = model.data.total;
+        if (pagingState.isEnd) return refreshController.loadNoData();
+        print(
+            '=============>  wan article loadMore success1 ${model.data.datas.length}');
+        print(
+            '=============>  wan article loadMore success2 ${articleList.length}');
+      } else {
+        refreshController.loadFailed();
+        pagingState.page--;
+        Get.snackbar('Error', 'wan article loadMore error...');
+        print('=============>  wan article loadMore error');
+      }
+    } on Exception catch (e) {
+      refreshController.loadFailed();
+      pagingState.page--;
+      Get.snackbar('Error', 'wan article loadMore error...');
+      print('=============>  wan article loadMore error ${e.toString()}');
     }
   }
 }
