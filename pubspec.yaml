@@ -41,7 +41,7 @@ dependencies:
   # cookie
   dio_cookie_manager: ^2.0.0
 
-#  cookie_jar: ^3.0.1
+  cookie_jar: ^3.0.1
 
   #scoped_model: ^1.0.1
   scoped_model: ^1.1.0

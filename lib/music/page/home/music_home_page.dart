@@ -11,6 +11,7 @@ import 'package:flutter_study_demo/music/page/home/radio_music_list_widget.dart'
 import 'package:flutter_study_demo/music/page/home/rank_music_card_widget.dart';
 import 'package:flutter_study_demo/music/page/home/rank_music_rectangle_widget.dart';
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
+import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_article_list_item.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -101,7 +102,7 @@ class MusicHomePage extends GetView<MusicHomeController> {
         children: [
           TitleArrowItem(
             title: '推荐歌单',
-            callback: () => Fluttertoast.showToast(msg: "msg"),
+            callback: () => Get.toNamed(AppRoutes.MUSIC_RECOMMEND_PAGE),
           ),
           MusicHomePlayListWidget(
             playlistList: playlistList,
