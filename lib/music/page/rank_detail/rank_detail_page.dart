@@ -15,7 +15,7 @@ class RankDetailPage extends GetView<RankDetailController> {
           enablePullUp: true,
           controller: controller?.refreshController,
           onRefresh: () => controller?.refreshData(),
-          onLoading: ()=>controller?.loadMoreData(),
+          onLoading: () => controller?.loadMoreData(),
           child: CustomScrollView(
             controller: controller?.scrollController,
             slivers: [
@@ -40,14 +40,10 @@ class RankDetailPage extends GetView<RankDetailController> {
   }
 
   _sliverAppBarTitle() {
-    // return Opacity(
-    //   //此处有bug
-    //   // opacity: controller.percent.value ?? 0,
-    //   child: Text('${controller.label ?? ''}'),
-    // );
-
-    return Text(
-      '${controller.label ?? ''}',
+    return Opacity(
+      //此处有bug
+      // opacity: controller.percent.value ?? 0,
+      child: Text('${controller.label ?? ''}'),
     );
   }
 

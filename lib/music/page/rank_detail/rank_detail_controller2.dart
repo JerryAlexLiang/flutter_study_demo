@@ -43,9 +43,14 @@ class RankDetailController2 extends GetxController {
     label = Get.arguments['label'];
     //滑动监听
     scrollController.addListener(() {
-      if (scrollController.position.pixels <= 140) {
-        percent.value = (scrollController.position.pixels / 140).toDouble();
+      double scrollerPercent = scrollController.offset / 140;
+      if (scrollerPercent < 0) {
+        scrollerPercent = 0;
+      } else if (scrollerPercent > 1.0) {
+        scrollerPercent = 1.0;
       }
+      percent.value = scrollerPercent;
+      print('=======> 滑动监听: ${percent.value}');
     });
   }
 

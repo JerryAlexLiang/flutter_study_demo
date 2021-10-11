@@ -40,14 +40,10 @@ class RankDetailPage2 extends GetView<RankDetailController2> {
   }
 
   _sliverAppBarTitle() {
-    // return Opacity(
-    //   //此处有bug
-    //   // opacity: controller.percent.value ?? 0,
-    //   child: Text('${controller.label ?? ''}'),
-    // );
-
-    return Text(
-      '${controller.label ?? ''}',
+    return Opacity(
+      //此处有bug
+      opacity: controller.percent.value ?? 0,
+      child: Text('${controller.label ?? ''}'),
     );
   }
 
