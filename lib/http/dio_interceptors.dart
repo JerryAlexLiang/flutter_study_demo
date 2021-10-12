@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_study_demo/http/dio_response.dart';
+import 'package:flutter_study_demo/music/page/home/music_home_controller.dart';
 import 'package:get/get.dart' as getX;
 
 /// 自定义拦截器
@@ -38,16 +39,19 @@ class DioInterceptors extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     //请求成功时对数据做基本处理
     if (response.statusCode == 200) {
-      response.data = DioResponse(
-        code: DioResponseCode.SUCCESS,
-        message: "数据请求成功啦!!!",
-        data: response.data,
-      );
+      // response = DioResponse(
+      //   code: DioResponseCode.SUCCESS,
+      //   message: "数据请求成功啦!!!",
+      //   data: response.data,
+      //   success: true,
+      // );
+      response = response;
     } else {
       response.data = DioResponse(
         code: DioResponseCode.ERROR,
         message: "数据请求失败啦!!!",
-        data: response.data,
+        data: null,
+        success: false,
       );
     }
 
@@ -99,8 +103,11 @@ class DioInterceptors extends Interceptor {
 
       case DioErrorType.other:
         //other 其他错误类型
+        // getX.Get.snackbar('提示', '请求异常');
         break;
     }
+
+    // handler.next(err);
 
     super.onError(err, handler);
   }

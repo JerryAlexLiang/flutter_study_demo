@@ -1,41 +1,40 @@
-import 'package:flutter_study_demo/music/model/music_recommend_model.dart';
-import 'package:flutter_study_demo/music/page/recommend/recommend_controller.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
+import 'package:flutter_study_demo/music/page/home/music_home_playlist_widget.dart';
+import 'package:flutter_study_demo/music/page/recommend/recommend_controller.dart';
+import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class RecommendPage extends GetView<RecommendController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('推荐歌单'),
+        actions: [
+          recommendMusicType(),
+        ],
+      ),
       body: Obx(() {
         if (controller.loadState.value == LoadState.loading) {
           return Center(
             child: CircularProgressIndicator(),
           );
         } else if (controller.loadState.value == LoadState.success) {
-          return Center(
-            // child: homeBody(controller.playlistList),
-            child: SmartRefresher(
-              controller: controller?.refreshController,
-              // child: ListView.builder(
-              //   itemCount: controller?.recommendList?.length,
-              //   itemBuilder: (context, index) =>
-              //       _recommendWidget(controller.recommendList, index),
-              // ),
-
-              child: ListView(
-                children: _buildList(controller.recommendList),
-              ),
-            ),
+          return Container(
+            child: recommendMusicView(),
           );
         } else if (controller.loadState.value == LoadState.empty) {
-          return Center(
-            child: Text('暂时无数据'),
+          return SimpleEmptyWidget(
+            type: StringConfig.SIMPLE_EMPTY_WIDGET,
+            callback: () => controller?.loadData(),
           );
         } else if (controller.loadState.value == LoadState.fail) {
-          return Center(
-            child: Text('数据请求失败'),
+          return SimpleEmptyWidget(
+            type: StringConfig.SIMPLE_ERROR_WIDGET,
+            callback: () => controller?.loadData(),
           );
         }
         return null;
@@ -43,27 +42,57 @@ class RecommendPage extends GetView<RecommendController> {
     );
   }
 
-  _recommendWidget(RxList<PrettyList> recommendList, int index) {
-    var model = recommendList[index];
-    var name = model.name;
-
-    return Container(
-      child: Center(
-        child: Text(name),
-      ),
-    );
+  Obx recommendMusicType() {
+    return Obx(() {
+      return Row(
+        children: [
+          ChoiceChip(
+            label: Text('热门'),
+            selected: controller.recommendType.value == "热门",
+            onSelected: (bool b) {
+              return controller.recommendType("热门");
+            },
+          ),
+          SizedBox(
+            width: 3,
+          ),
+          ChoiceChip(
+            label: Text('最新'),
+            selected: controller.recommendType.value == "最新",
+            onSelected: (bool b) => controller.recommendType("最新"),
+          ),
+          SizedBox(
+            width: 3,
+          ),
+          ChoiceChip(
+            label: Text('测试'),
+            selected: controller.recommendType.value == "测试",
+            onSelected: (bool b) => controller.recommendType("测试"),
+          ),
+          SizedBox(
+            width: 15,
+          ),
+        ],
+      );
+    });
   }
 
-  List<Widget> _buildList(RxList<PrettyList> recommendList) {
-    var list = recommendList
-        .map((element) => Container(
-              color: Colors.red,
-              child: Center(
-                child: Text(element.name),
-              ),
-            ))
-        .toList();
-
-    return list;
+  Center recommendMusicView() {
+    return Center(
+      child: SmartRefresher(
+        controller: controller?.refreshController,
+        onRefresh: () => controller?.loadData(true),
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 5,
+            ),
+            MusicHomePlayListWidget(
+              playlistList: controller.recommendList,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

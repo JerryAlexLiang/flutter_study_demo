@@ -1,4 +1,7 @@
 class StringConfig {
+  static const String SIMPLE_EMPTY_WIDGET = "empty";
+  static const String SIMPLE_ERROR_WIDGET = "error";
+
   // app
   static const String exit_tip = '再按一次退出';
   static const String home = '首页';

@@ -1,5 +1,7 @@
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/music/model/music_rank_detail_model.dart';
 import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_controller.dart';
+import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -138,8 +140,12 @@ class RankDetailPage extends GetView<RankDetailController> {
         child: Container(
           height: Get.height - 300,
           width: Get.width,
-          child: Center(
-            child: Text('暂时无数据'),
+          // child: Center(
+          //   child: Text('暂时无数据'),
+          // ),
+          child: SimpleEmptyWidget(
+            type: StringConfig.SIMPLE_EMPTY_WIDGET,
+            callback: () => controller?.loadData(),
           ),
         ),
       );
@@ -148,8 +154,12 @@ class RankDetailPage extends GetView<RankDetailController> {
         child: Container(
           height: Get.height - 300,
           width: Get.width,
-          child: Center(
-            child: Text('数据请求失败'),
+          // child: Center(
+          //   child: Text('数据请求失败'),
+          // ),
+          child: SimpleEmptyWidget(
+            type: StringConfig.SIMPLE_ERROR_WIDGET,
+            callback: () => controller?.loadData(),
           ),
         ),
       );

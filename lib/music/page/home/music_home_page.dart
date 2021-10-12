@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/music/page/home/music_home_banner.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_study_demo/music/page/home/rank_music_rectangle_widget.d
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_article_list_item.dart';
+import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -37,12 +39,20 @@ class MusicHomePage extends GetView<MusicHomeController> {
               child: homeView(),
             );
           } else if (controller.loadState.value == LoadState.empty) {
-            return Center(
-              child: Text('暂时无数据'),
+            // return Center(
+            //   child: Text('暂时无数据'),
+            // );
+            return SimpleEmptyWidget(
+              type: StringConfig.SIMPLE_EMPTY_WIDGET,
+              callback: () => controller?.loadData(),
             );
           } else if (controller.loadState.value == LoadState.fail) {
-            return Center(
-              child: Text('数据请求失败'),
+            // return Center(
+            //   child: Text('数据请求失败'),
+            // );
+            return SimpleEmptyWidget(
+              type: StringConfig.SIMPLE_ERROR_WIDGET,
+              callback: () => controller?.loadData(),
             );
           }
           return null;

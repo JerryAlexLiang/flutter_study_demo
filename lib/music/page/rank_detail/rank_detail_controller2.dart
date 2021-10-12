@@ -95,6 +95,8 @@ class RankDetailController2 extends GetxController {
         print('rank detail fail');
       }
     } on Exception catch (e) {
+      loadState(LoadState.fail);
+
       Get.snackbar('Error', 'load error...${e.toString()}');
       print('=============>2  rank detail error ${e.toString()}');
     }

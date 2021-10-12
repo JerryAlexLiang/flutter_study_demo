@@ -4,6 +4,8 @@ class DioResponse<T> {
   // 消息(例如成功消息文字/错误消息文字)
   final String message;
 
+  final bool success;
+
   // 自定义code(可根据内部定义方式)
   final int code;
 
@@ -14,6 +16,7 @@ class DioResponse<T> {
   // .........
 
   DioResponse({
+    this.success,
     this.message,
     this.data,
     this.code,
@@ -23,7 +26,8 @@ class DioResponse<T> {
   String toString() {
     StringBuffer sb = StringBuffer('{');
     sb.write("\"message\":\"$message\"");
-    sb.write(",\"errorMsg\":\"$code\"");
+    sb.write(",\"success\":\"$success\"");
+    sb.write(",\"code\":\"$code\"");
     sb.write(",\"data\":\"$data\"");
     sb.write('}');
     return sb.toString();

@@ -1,8 +1,81 @@
+// // To parse this JSON data, do
+// //
+// //     final recommendModel = recommendModelFromJson(jsonString);
+//
+// import 'dart:convert';
+//
+// RecommendModel recommendModelFromJson(String str) => RecommendModel.fromJson(json.decode(str));
+//
+// String recommendModelToJson(RecommendModel data) => json.encode(data.toJson());
+//
+// class RecommendModel {
+//   RecommendModel({
+//     this.type,
+//     this.total,
+//     this.prettyList,
+//   });
+//
+//   String type;
+//   int total;
+//   List<PrettyList> prettyList;
+//
+//   factory RecommendModel.fromJson(Map<String, dynamic> json) => RecommendModel(
+//     type: json["type"],
+//     total: json["total"],
+//     prettyList: List<PrettyList>.from(json["prettyList"].map((x) => PrettyList.fromJson(x))),
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "type": type,
+//     "total": total,
+//     "prettyList": List<dynamic>.from(prettyList.map((x) => x.toJson())),
+//   };
+// }
+//
+// class PrettyList {
+//   PrettyList({
+//     this.id,
+//     this.name,
+//     this.pic,
+//     this.artistName,
+//     this.countPlay,
+//     this.desc,
+//   });
+//
+//   String id;
+//   String name;
+//   String pic;
+//   String artistName;
+//   String countPlay;
+//   String desc;
+//
+//   factory PrettyList.fromJson(Map<String, dynamic> json) => PrettyList(
+//     id: json["id"],
+//     name: json["name"],
+//     pic: json["pic"],
+//     artistName: json["artist_name"],
+//     countPlay: json["count_play"],
+//     desc: json["desc"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//     "pic": pic,
+//     "artist_name": artistName,
+//     "count_play": countPlay,
+//     "desc": desc,
+//   };
+// }
+
+
 // To parse this JSON data, do
 //
 //     final recommendModel = recommendModelFromJson(jsonString);
 
 import 'dart:convert';
+
+import 'music_home_model.dart';
 
 RecommendModel recommendModelFromJson(String str) =>
     RecommendModel.fromJson(json.decode(str));
@@ -42,14 +115,22 @@ class Data {
 
   String type;
   int total;
-  List<PrettyList> prettyList;
+  // List<PrettyList> prettyList;
+  List<PlaylistItem> prettyList;
+
+  // factory Data.fromJson(Map<String, dynamic> json) => Data(
+  //       type: json["type"],
+  //       total: json["total"],
+  //       prettyList: List<PrettyList>.from(
+  //           json["prettyList"].map((x) => PrettyList.fromJson(x))),
+  //     );
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        type: json["type"],
-        total: json["total"],
-        prettyList: List<PrettyList>.from(
-            json["prettyList"].map((x) => PrettyList.fromJson(x))),
-      );
+    type: json["type"],
+    total: json["total"],
+    prettyList: List<PlaylistItem>.from(
+        json["prettyList"].map((x) => PlaylistItem.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
         "type": type,
@@ -58,38 +139,38 @@ class Data {
       };
 }
 
-class PrettyList {
-  PrettyList({
-    this.id,
-    this.name,
-    this.pic,
-    this.artistName,
-    this.countPlay,
-    this.desc,
-  });
-
-  String id;
-  String name;
-  String pic;
-  String artistName;
-  String countPlay;
-  String desc;
-
-  factory PrettyList.fromJson(Map<String, dynamic> json) => PrettyList(
-        id: json["id"],
-        name: json["name"],
-        pic: json["pic"],
-        artistName: json["artist_name"],
-        countPlay: json["count_play"],
-        desc: json["desc"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "pic": pic,
-        "artist_name": artistName,
-        "count_play": countPlay,
-        "desc": desc,
-      };
-}
+// class PrettyList {
+//   PrettyList({
+//     this.id,
+//     this.name,
+//     this.pic,
+//     this.artistName,
+//     this.countPlay,
+//     this.desc,
+//   });
+//
+//   String id;
+//   String name;
+//   String pic;
+//   String artistName;
+//   String countPlay;
+//   String desc;
+//
+//   factory PrettyList.fromJson(Map<String, dynamic> json) => PrettyList(
+//         id: json["id"],
+//         name: json["name"],
+//         pic: json["pic"],
+//         artistName: json["artist_name"],
+//         countPlay: json["count_play"],
+//         desc: json["desc"],
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "name": name,
+//         "pic": pic,
+//         "artist_name": artistName,
+//         "count_play": countPlay,
+//         "desc": desc,
+//       };
+// }

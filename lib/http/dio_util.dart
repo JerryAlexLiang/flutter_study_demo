@@ -7,6 +7,7 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter_study_demo/http/dio_cache_interceptors.dart';
 import 'package:flutter_study_demo/http/dio_interceptors.dart';
 import 'package:flutter_study_demo/http/dio_method.dart';
+import 'package:flutter_study_demo/http/dio_response.dart';
 import 'package:flutter_study_demo/http/dio_token_interceptors.dart';
 import 'package:flutter_study_demo/http/dio_transformer.dart';
 
