@@ -200,6 +200,7 @@ class NavigationPage extends StatelessWidget {
           color: Colors.grey[200],
         ),
         child: InkWell(
+          borderRadius: BorderRadius.circular(20),
           onTap: () {
             Get.toNamed(
               AppRoutes.WAN_WEB_VIEW,
