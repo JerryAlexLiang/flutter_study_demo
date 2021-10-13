@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class RankMusicRectangleWidget extends StatelessWidget {
   final RankItem rankItem;
+  final int index;
 
-  RankMusicRectangleWidget({Key key, this.rankItem}) : super(key: key);
+  RankMusicRectangleWidget({Key key, this.rankItem, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Get.toNamed(
-        AppRoutes.MUSIC_RANK_DETAIL_PAGE,
+        AppRoutes.MUSIC_RANK_DETAIL_PAGE2,
         arguments: {'id': rankItem?.typeId, 'label': rankItem?.label},
       ),
       child: Container(
@@ -53,6 +53,7 @@ class RankMusicRectangleWidget extends StatelessWidget {
               left: 35,
               child: Hero(
                 tag: rankItem?.label,
+                // tag: index,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset(

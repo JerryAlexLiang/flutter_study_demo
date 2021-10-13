@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_study_demo/AppBindings.dart';
 import 'package:flutter_study_demo/routes/app_pages.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -46,6 +47,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
         enableLog: true,
         initialRoute: AppRoutes.SPLASH,
+        initialBinding: AppBindings(),
         getPages: AppPages.routes,
         smartManagement: SmartManagement.keepFactory,
         theme: ThemeData(

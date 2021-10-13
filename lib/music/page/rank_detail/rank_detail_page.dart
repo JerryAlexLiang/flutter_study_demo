@@ -43,8 +43,7 @@ class RankDetailPage extends GetView<RankDetailController> {
 
   _sliverAppBarTitle() {
     return Opacity(
-      //此处有bug
-      // opacity: controller.percent.value ?? 0,
+      opacity: controller.percent.value ?? 0,
       child: Text('${controller.label ?? ''}'),
     );
   }
@@ -95,12 +94,15 @@ class RankDetailPage extends GetView<RankDetailController> {
   _flexibleSpaceBar() {
     return FlexibleSpaceBar(
       background: Hero(
-        tag: controller.label,
+        tag: controller.id,
         // child: fadeInImage(),
         child: controller?.rankDetailModel?.value?.pic != null
             ? fadeInImage()
             : SizedBox(),
       ),
+      // background: controller?.rankDetailModel?.value?.pic != null
+      //     ? fadeInImage()
+      //     : SizedBox(),
       //视差效果
       collapseMode: CollapseMode.parallax,
     );

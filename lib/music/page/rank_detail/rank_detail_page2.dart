@@ -119,7 +119,6 @@ class RankDetailPage2 extends GetView<RankDetailController2> {
     if (controller.loadState.value == LoadState.loading) {
       return SliverToBoxAdapter(
         child: Container(
-          color: Colors.red,
           height: Get.height - 300,
           width: Get.width,
           child: Center(

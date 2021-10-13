@@ -100,6 +100,7 @@ class _TodoListPageState extends State<TodoListPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: "todo",
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
         onPressed: () => navigatorToAddPage(TodoModel()),

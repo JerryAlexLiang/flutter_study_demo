@@ -5,6 +5,7 @@ import 'package:flutter_study_demo/page/home_left_drawer.dart';
 import 'package:flutter_study_demo/page/home_right_drawer.dart';
 import 'package:flutter_study_demo/page/sliver_grid_page.dart';
 import 'package:flutter_study_demo/page/sliver_list_page.dart';
+import 'package:flutter_study_demo/page/sliver_persistent_header_page.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/widget/home_menu.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -67,7 +68,7 @@ class SnackBarBottomSheetPage extends StatelessWidget {
   Widget _buildTabBarViewContent(int index) {
     switch (index) {
       case 0:
-        return TodoListPage('Flutter');
+        return SliverPersistentHeaderPage();
         break;
 
       case 1:

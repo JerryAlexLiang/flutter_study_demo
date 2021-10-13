@@ -9,7 +9,7 @@ class RankDetailBinding extends Bindings {
   void dependencies() {
     //1、可以通过[Get.put,Get.lazyPut,Get.putAsync,Get.create]方法注入实例
     //2、通过Get.find可以获得实例
-    // Get.lazyPut(() => RankDetailController());
+    Get.lazyPut(() => RankDetailController());
     Get.lazyPut(() => RankDetailController2());
   }
 }

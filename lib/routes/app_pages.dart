@@ -12,6 +12,8 @@ import 'package:flutter_study_demo/page/splash/bindings/splash_binding.dart';
 import 'package:flutter_study_demo/page/splash/views/splash_page.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_web_view_page.dart';
+import 'package:flutter_study_demo/wan_android/navigation/navigation_binding.dart';
+import 'package:flutter_study_demo/wan_android/navigation/navigation_view.dart';
 import 'package:get/get.dart';
 
 class AppPages {
@@ -44,10 +46,15 @@ class AppPages {
       name: AppRoutes.MUSIC_HOME_PAGE,
       page: () => MusicHomePage(),
       binding: MusicHomeBinding(),
+      transition: Transition.fade,
     ),
     GetPage(
       name: AppRoutes.MUSIC_RANK_DETAIL_PAGE,
-      // page: () => RankDetailPage(),
+      page: () => RankDetailPage(),
+      binding: RankDetailBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.MUSIC_RANK_DETAIL_PAGE2,
       page: () => RankDetailPage2(),
       binding: RankDetailBinding(),
     ),
@@ -56,5 +63,10 @@ class AppPages {
       page: () => RecommendPage(),
       binding: RecommendBinding(),
     ),
+    // GetPage(
+    //   name: AppRoutes.WAN_NAVIGATION_PAGE,
+    //   page: () => NavigationPage(),
+    //   binding: NavigationBinding(),
+    // ),
   ];
 }

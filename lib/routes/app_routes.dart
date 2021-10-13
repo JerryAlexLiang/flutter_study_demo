@@ -1,5 +1,4 @@
-abstract class AppRoutes{
-
+abstract class AppRoutes {
   static const SPLASH = '/';
   static const MAIN = '/main';
   static const RICH_TEXT = '/richText';
@@ -8,6 +7,7 @@ abstract class AppRoutes{
   static const WAN_WEB_VIEW = "/wanWebView";
   static const MUSIC_HOME_PAGE = "/musicHomePage";
   static const MUSIC_RANK_DETAIL_PAGE = "/musicRankDetail";
+  static const MUSIC_RANK_DETAIL_PAGE2 = "/musicRankDetail2";
   static const MUSIC_RECOMMEND_PAGE = "/musicRecommend";
-
+  static const WAN_NAVIGATION_PAGE = "/wanNavigationPage";
 }

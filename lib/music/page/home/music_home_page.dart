@@ -271,7 +271,7 @@ class MusicHomePage extends GetView<MusicHomeController> {
         ?.toList();
 
     var rankMusicRectangleList = rankList
-        ?.map((element) => RankMusicRectangleWidget(rankItem: element))
+        ?.map((element) => RankMusicRectangleWidget(rankItem: element,index: rankList.indexOf(element),))
         ?.toList();
 
     return Container(
