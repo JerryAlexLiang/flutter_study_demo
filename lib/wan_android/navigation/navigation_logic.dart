@@ -44,6 +44,8 @@ class NavigationLogic extends GetxController {
       print('========>  navigation load success 1  ${model.toJson()}  ');
 
       if (model != null) {
+        loadState(LoadState.success);
+        
         navigationList.assignAll(model.data);
         if (navigationList != null && navigationList.length > 0) {
           //默认定位第一个导航栏
