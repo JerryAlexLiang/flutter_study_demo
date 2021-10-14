@@ -4,12 +4,10 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:flutter_study_demo/http/address_constant.dart';
 import 'package:flutter_study_demo/http/dio_cache_interceptors.dart';
 import 'package:flutter_study_demo/http/dio_interceptors.dart';
 import 'package:flutter_study_demo/http/dio_method.dart';
-import 'package:flutter_study_demo/http/dio_response.dart';
-import 'package:flutter_study_demo/http/dio_token_interceptors.dart';
-import 'package:flutter_study_demo/http/dio_transformer.dart';
 
 /// 封装网络请求
 
@@ -23,7 +21,7 @@ class DioUtil {
   static const int RECEIVE_TIMEOUT = 6 * 1000;
 
   /// 请求的URL前缀
-  static  String baseUrl = "http://localhost:8080";
+  static  String baseUrl = AddressConstant.BASE_URL;
 
   /// 是否开启网络缓存,默认false
   static bool cacheEnable = false;
@@ -64,6 +62,13 @@ class DioUtil {
       _instance = DioUtil._init();
     }
     return _instance;
+  }
+
+  DioUtil changeBaseUrl(String baseUrl){
+    if(_dio!=null){
+      _dio.options.baseUrl = baseUrl;
+    }
+    return this;
   }
 
   //对Dio请求进行初始化

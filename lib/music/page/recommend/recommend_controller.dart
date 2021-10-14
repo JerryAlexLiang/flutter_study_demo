@@ -31,8 +31,7 @@ class RecommendController extends GetxController
   void onInit() {
     super.onInit();
 
-    DioUtil.baseUrl = "http://m.kuwo.cn/newh5app/api/mobile/v1/playlist/rcm";
-    DioUtil.instance.openLog();
+    DioUtil.instance.changeBaseUrl("http://m.kuwo.cn/newh5app/api/mobile/v1/playlist/rcm");
 
     refreshController = RefreshController(initialRefresh: false);
 

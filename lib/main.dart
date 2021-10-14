@@ -9,6 +9,7 @@ import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'http/dio_util.dart';
 import 'provider/current_Index_provider.dart';
 
 void main() async {
@@ -26,6 +27,9 @@ void main() async {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
+    //开启DioUtil统一日志打印
+    DioUtil.instance.openLog();
 
     // //强制横屏
     // SystemChrome.setPreferredOrientations([

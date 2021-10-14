@@ -14,8 +14,6 @@ class NavigationLogic extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    DioUtil.baseUrl = "https://www.wanandroid.com";
-    DioUtil.instance.openLog();
   }
 
   @override
