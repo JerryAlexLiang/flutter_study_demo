@@ -20,6 +20,24 @@ class NavigationPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('导航'),
         elevation: 0,
+        actions: [
+          InkWell(
+            onTap: () => Get.toNamed(AppRoutes.WAN_PROJECT_PAGE),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('项目'),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(Icons.article_outlined,size: 20,),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Obx(() {

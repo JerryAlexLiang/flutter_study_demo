@@ -14,6 +14,8 @@ import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_web_view_page.dart';
 import 'package:flutter_study_demo/wan_android/navigation/navigation_binding.dart';
 import 'package:flutter_study_demo/wan_android/navigation/navigation_view.dart';
+import 'package:flutter_study_demo/wan_android/project/project_binding.dart';
+import 'package:flutter_study_demo/wan_android/project/project_view.dart';
 import 'package:get/get.dart';
 
 class AppPages {
@@ -68,5 +70,11 @@ class AppPages {
     //   page: () => NavigationPage(),
     //   binding: NavigationBinding(),
     // ),
+
+    GetPage(
+      name: AppRoutes.WAN_PROJECT_PAGE,
+      page: ()=>ProjectPage(),
+      binding: ProjectBinding(),
+    ),
   ];
 }

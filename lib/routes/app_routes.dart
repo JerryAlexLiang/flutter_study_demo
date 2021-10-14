@@ -10,4 +10,5 @@ abstract class AppRoutes {
   static const MUSIC_RANK_DETAIL_PAGE2 = "/musicRankDetail2";
   static const MUSIC_RECOMMEND_PAGE = "/musicRecommend";
   static const WAN_NAVIGATION_PAGE = "/wanNavigationPage";
+  static const WAN_PROJECT_PAGE = "/wanProjectPage";
 }

@@ -160,8 +160,12 @@ class DioUtil {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
+      //还原BaseUrL
+      _dio.options.baseUrl = baseUrl;
       return response.data;
     } on DioError catch (e) {
+      //还原BaseUrL
+      _dio.options.baseUrl = baseUrl;
       throw e;
     }
   }

@@ -2,6 +2,9 @@ class StringConfig {
   static const String SIMPLE_EMPTY_WIDGET = "empty";
   static const String SIMPLE_ERROR_WIDGET = "error";
 
+  static const String SIMPLE_MATERIAL_LOADING_WIDGET = "materialLoading";
+  static const String SIMPLE_CUPERTINO_LOADING_WIDGET = "cupertinoLoading";
+
   // app
   static const String exit_tip = '再按一次退出';
   static const String home = '首页';

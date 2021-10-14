@@ -31,7 +31,10 @@ class MusicHomePage extends GetView<MusicHomeController> {
         () {
           if (controller.loadState.value == LoadState.loading) {
             return Center(
-              child: CircularProgressIndicator(),
+              // child: CircularProgressIndicator(),
+              child: CupertinoActivityIndicator(
+                radius: 20,
+              ),
             );
           } else if (controller.loadState.value == LoadState.success) {
             return Center(
@@ -271,7 +274,10 @@ class MusicHomePage extends GetView<MusicHomeController> {
         ?.toList();
 
     var rankMusicRectangleList = rankList
-        ?.map((element) => RankMusicRectangleWidget(rankItem: element,index: rankList.indexOf(element),))
+        ?.map((element) => RankMusicRectangleWidget(
+              rankItem: element,
+              index: rankList.indexOf(element),
+            ))
         ?.toList();
 
     return Container(
