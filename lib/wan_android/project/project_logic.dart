@@ -121,6 +121,9 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
       // }
 
       if (_pageIndex == 1) {
+
+        refreshController.refreshCompleted(resetFooterState: true);
+
         if (model != null &&
             model.data != null &&
             model.data.datas != null &&
@@ -135,7 +138,7 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
           if (!canRefreshMore) {
             loadState(LoadState.empty);
           } else {
-            refreshController.refreshFailed();
+            refreshController.refreshCompleted();
           }
         }
       } else {
