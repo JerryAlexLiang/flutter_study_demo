@@ -12,34 +12,36 @@ class SimpleEmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: MaterialButton(
-        onPressed: callback,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            type == "empty"
-                ? Icon(
-                    Icons.hourglass_empty,
-                    size: 100,
-                    color: Colors.red,
-                  )
-                : Icon(
-                    Icons.error_outline,
-                    color: Colors.red,
-                    size: 100,
-                  ),
-            type == "empty"
-                ? Text(
-                    '暂时无数据',
-                    style: TextStyle(color: Colors.red, fontSize: 16),
-                  )
-                : Text(
-                    '数据请求失败',
-                    style: TextStyle(color: Colors.red, fontSize: 16),
-                  ),
-          ],
+    return Scaffold(
+      body: Center(
+        child: MaterialButton(
+          onPressed: callback,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              type == "empty"
+                  ? Icon(
+                      Icons.hourglass_empty,
+                      size: 100,
+                      color: Colors.red,
+                    )
+                  : Icon(
+                      Icons.error_outline,
+                      color: Colors.red,
+                      size: 100,
+                    ),
+              type == "empty"
+                  ? Text(
+                      '暂时无数据',
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    )
+                  : Text(
+                      '数据请求失败',
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+            ],
+          ),
         ),
       ),
     );

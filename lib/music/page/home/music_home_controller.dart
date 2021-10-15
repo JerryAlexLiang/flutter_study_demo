@@ -2,6 +2,7 @@ import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/music/api/http/music_http_manager.dart';
 import 'package:flutter_study_demo/music/model/music_home_model.dart';
 import 'package:flutter_study_demo/music/page/utils/wan_article_music_home_paging_state.dart';
+import 'package:flutter_study_demo/wan_android/project/wan_article_model.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -16,7 +17,7 @@ class MusicHomeController extends GetxController {
   var radioList = List<RadioItem>.empty().obs;
 
   var articleBean = WanHomeArticleBean().obs;
-  var articleList = List<Datas>.empty(growable: true).obs;
+  var articleList = List<WanArticleModel>.empty(growable: true).obs;
 
   Rx<Future> futureX = Rx<Future>(null);
 

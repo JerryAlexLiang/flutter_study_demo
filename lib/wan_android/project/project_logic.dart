@@ -14,6 +14,9 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
   final currentProject = ProjectsModel().obs;
   final articles = List<WanArticleModel>.empty(growable: true).obs;
 
+  var _cid = 0.obs;
+  int _pageIndex = 1;
+
   var loadState = LoadState.loading.obs;
 
   //分页状态
@@ -26,9 +29,14 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
 
+  void setId(int id) {
+    _cid.value = id;
+  }
+
   @override
   void onInit() {
     super.onInit();
+    tabController = TabController(length: projects.length, vsync: this);
     print('=======> ProjectLogic onInit()');
   }
 
@@ -59,17 +67,13 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
       print('========>  init projectList success 1  ${model.toJson()}  ');
 
       if (model != null && model.data != null && model.data.length > 0) {
-        loadState(LoadState.success);
-
         projects.assignAll(model.data);
         //默认定位第一个导航栏
         currentProject.value = projects[0];
 
         tabController = TabController(length: projects.length, vsync: this);
 
-        initArticleList(currentProject.value.id);
-        changeTabListener();
-
+        loadState(LoadState.success);
       } else {
         loadState(LoadState.empty);
       }
@@ -79,9 +83,9 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
     }
   }
 
-  initArticleList(int id, [refresh = false]) async {
+  initArticleList([canRefreshMore = false]) async {
     try {
-      if (!refresh) {
+      if (!canRefreshMore) {
         loadState(LoadState.loading);
       }
 
@@ -89,53 +93,104 @@ class ProjectLogic extends GetxController with SingleGetTickerProviderMixin {
       //cid 分类的id，上面项目分类接口  页码：拼接在链接中，从1开始。
       //该接口支持传入page_size 控制分页数量，取值为[1-40]，不传则使用默认值，一旦传入了 page_size，后续该接口分页都需要带上，否则会造成分页读取错误。
 
-      var result = await DioUtil().request("/project/list/1/json",
-          method: DioMethod.get, params: {"cid": id});
+      //HttpManager.instance.get("project/list/$_pageIndex/json", params: {"cid": _cid.value}, list: true, refresh: refresh),
+
+      var result = await DioUtil().request("/project/list/$_pageIndex/json",
+          method: DioMethod.get, params: {"cid": _cid.value});
       print('========>  init articleList success 0  $result  ');
 
       var model = WanArticlesModel.fromJson(result);
       print('========>  init articleList success 1  ${model.toJson()}  ');
 
-      if (model != null &&
-          model.data != null &&
-          model.data.datas != null &&
-          model.data.datas.length > 0) {
-        if (!refresh) {
-          loadState(LoadState.success);
-        } else {
-          refreshController.refreshCompleted();
-        }
+      // if (model != null &&
+      //     model.data != null &&
+      //     model.data.datas != null &&
+      //     model.data.datas.length > 0) {
+      //   if (!refresh) {
+      //     loadState(LoadState.success);
+      //   } else {
+      //     refreshController.refreshCompleted();
+      //   }
+      //   articles.assignAll(model.data.datas);
+      // } else {
+      //   if (!refresh) {
+      //     loadState(LoadState.empty);
+      //   } else {
+      //     refreshController.refreshCompleted();
+      //   }
+      // }
 
-        articles.assignAll(model.data.datas);
-      } else {
-        if (!refresh) {
-          loadState(LoadState.empty);
+      if (_pageIndex == 1) {
+        if (model != null &&
+            model.data != null &&
+            model.data.datas != null &&
+            model.data.datas.length > 0) {
+          if (!canRefreshMore) {
+            loadState(LoadState.success);
+          } else {
+            refreshController.refreshCompleted();
+          }
+          articles.assignAll(model.data.datas);
         } else {
-          refreshController.refreshCompleted();
+          if (!canRefreshMore) {
+            loadState(LoadState.empty);
+          } else {
+            refreshController.refreshFailed();
+          }
+        }
+      } else {
+        if (model != null &&
+            model.data != null &&
+            model.data.datas != null &&
+            model.data.datas.length > 0) {
+          if (!canRefreshMore) {
+            loadState(LoadState.success);
+          } else {
+            refreshController.loadComplete();
+          }
+          articles.addAll(model.data.datas);
+        } else {
+          if (!canRefreshMore) {
+            loadState(LoadState.empty);
+          } else {
+            refreshController.loadNoData();
+          }
         }
       }
     } on Exception catch (e) {
       loadState(LoadState.fail);
+      refreshController.loadFailed();
+      refreshController.refreshFailed();
       Get.snackbar('Error', 'init articleList error...${e.toString()}');
     }
   }
 
-  void changeTabListener() {
-    if (tabController != null && tabController.length > 0) {
-      tabController.addListener(() {
-        //TabBar之TabController.addListener bug:
-        //点击切换tab的时候执行了一个动画效果，滑动切换的时候是没有的，在这个过程中触发了一次Listener。
-
-        if (tabController.index == tabController.animation.value) {
-          currentProject.value = projects[tabController.index];
-          print(
-              '=======> ProjectLogic changeTabListener() 1  ${currentProject.value.name}');
-          print(
-              '=======> ProjectLogic changeTabListener() 2  ${projects[tabController.index].name}');
-        }
-
-        initArticleList(currentProject.value.id);
-      });
-    }
+  void refreshArticleList() {
+    _pageIndex = 1;
+    initArticleList(true);
   }
+
+  void loadMoreArticleList() {
+    _pageIndex++;
+    initArticleList(true);
+  }
+
+// void changeTabListener() {
+//   if (tabController != null && tabController.length > 0) {
+//     tabController.addListener(() {
+//       //TabBar之TabController.addListener bug:
+//       //点击切换tab的时候执行了一个动画效果，滑动切换的时候是没有的，在这个过程中触发了一次Listener。
+//
+//       if (tabController.index == tabController.animation.value) {
+//         currentProject.value = projects[tabController.index];
+//         print(
+//             '=======> ProjectLogic changeTabListener() 1  ${currentProject.value.name}');
+//         print(
+//             '=======> ProjectLogic changeTabListener() 2  ${projects[tabController.index].name}');
+//       }
+//
+//       initArticleList(currentProject.value.id);
+//     });
+//   }
+// }
 }

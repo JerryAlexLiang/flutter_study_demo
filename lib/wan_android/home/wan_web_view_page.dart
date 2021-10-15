@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
+import 'package:flutter_study_demo/wan_android/project/wan_article_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -11,7 +12,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class WanWebViewPage extends StatefulWidget {
   WanWebViewPage({Key key}) : super(key: key);
 
-  final Datas item = Get.arguments;
+  final WanArticleModel item = Get.arguments;
 
   @override
   _WanWebViewPageState createState() {

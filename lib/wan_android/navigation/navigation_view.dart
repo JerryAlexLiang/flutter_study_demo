@@ -6,6 +6,7 @@ import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/utils/get_random_color.dart';
 import 'package:flutter_study_demo/wan_android/navigation/wan_navigation_model.dart';
+import 'package:flutter_study_demo/wan_android/project/wan_article_model.dart';
 import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
 import 'package:get/get.dart';
 
@@ -207,7 +208,7 @@ class NavigationPage extends StatelessWidget {
   }
 
   Widget _articleTitleWidget(Article article) {
-    Datas newArticle = Datas(link: article.link, title: article.title);
+    WanArticleModel newArticle = WanArticleModel(link: article.link, title: article.title);
 
     return Container(
       ///使用DecoratedBox+InkWell看不到点击效果，需要使用Ink组件

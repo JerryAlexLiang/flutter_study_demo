@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/http/LoadState.dart';
+import 'package:flutter_study_demo/wan_android/project/project_articles_view.dart';
 import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
 import 'package:flutter_study_demo/widget/simple_loading_widget.dart';
 import 'package:get/get.dart';
@@ -18,40 +19,40 @@ class ProjectPage extends GetView<ProjectLogic> {
         );
       } else if (controller.loadState.value == LoadState.success) {
         return Container(
-          child: _wanProjectView(controller),
+          child: _wanProjectView(),
         );
       } else if (controller.loadState.value == LoadState.empty) {
         return SimpleEmptyWidget(
           type: StringConfig.SIMPLE_EMPTY_WIDGET,
-          // callback: () => controller?.loadData(),
+          callback: () => controller.initProjectList(),
         );
       } else if (controller.loadState.value == LoadState.fail) {
         return SimpleEmptyWidget(
           type: StringConfig.SIMPLE_ERROR_WIDGET,
-          // callback: () => controller?.loadData(),
+          callback: () => controller.initProjectList(),
         );
       }
       return null;
     });
   }
 
-  Widget _wanProjectView(ProjectLogic controller) {
+  Widget _wanProjectView() {
     return Scaffold(
       appBar: AppBar(
         /// AppBar总高度 = 导航栏高度（默认56）+ bottom preferredSize高度（默认0）
         /// TabBar不带icon默认高度为48，因此指定导航栏高度为48
         toolbarHeight: 48,
-        title: _buildProjectTab(controller),
+        title: _buildProjectTab(),
         elevation: 0,
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
-        child: _buildProjectPages(controller),
+        child: _buildProjectPages(),
       ),
     );
   }
 
-  PreferredSizeWidget _buildProjectTab(ProjectLogic controller) {
+  _buildProjectTab() {
     var projects = controller.projects;
 
     var tabList = projects
@@ -79,11 +80,14 @@ class ProjectPage extends GetView<ProjectLogic> {
     );
   }
 
-  Widget _buildProjectPages(ProjectLogic controller) {
+  Widget _buildProjectPages() {
     var projects = controller.projects;
+
     var tabPagesList = projects
         .map((element) => Center(
-              child: Text(element.name),
+              child: ProjectArticlesPage(
+                id: element.id,
+              ),
             ))
         .toList();
 

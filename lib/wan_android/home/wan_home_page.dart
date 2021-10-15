@@ -11,6 +11,7 @@ import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/wan_android/home/home_eye_subject_page.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_article_list_item.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_swiper_banner.dart';
+import 'package:flutter_study_demo/wan_android/project/wan_article_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'eye_category_list_page.dart';
@@ -35,7 +36,7 @@ class _WanHomePageState extends State<WanHomePage>
 
   EasyRefreshController _controller = EasyRefreshController();
 
-  List<Datas> articleDataList = [];
+  List<WanArticleModel> articleDataList = [];
 
   // @override
   // bool get wantKeepAlive{
@@ -147,7 +148,7 @@ class _WanHomePageState extends State<WanHomePage>
                 await requestGet(WanAndroidApi.homeArticleList + "$page/json")
                     .then((value) {
                   WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value);
-                  List<Datas> list = bean.data.datas;
+                  List<WanArticleModel> list = bean.data.datas;
 
                   setState(() {
                     page = 1;
@@ -183,7 +184,7 @@ class _WanHomePageState extends State<WanHomePage>
                 var value2 = await requestGet(
                     WanAndroidApi.homeArticleList + "$page/json");
                 WanHomeArticleBean bean = WanHomeArticleBean.fromJson(value2);
-                List<Datas> list = bean.data.datas;
+                List<WanArticleModel> list = bean.data.datas;
 
                 setState(() {
                   articleDataList.addAll(list);
@@ -224,7 +225,7 @@ class _WanHomePageState extends State<WanHomePage>
     }
   }
 
-  Widget _articleListItem(Datas item) {
+  Widget _articleListItem(WanArticleModel item) {
     // return InkWell(
     //   onTap: () {
     //     Fluttertoast.showToast(msg: item.title);

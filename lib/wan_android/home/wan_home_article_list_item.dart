@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/model/wan_home_article_bean.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
+import 'package:flutter_study_demo/wan_android/project/wan_article_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class WanHomeArticleListItem extends StatefulWidget {
-  final Datas item;
+  final WanArticleModel item;
 
   // WanHomeArticleListItem({this.item});
 

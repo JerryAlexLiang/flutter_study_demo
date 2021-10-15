@@ -14,6 +14,7 @@ import 'package:flutter_study_demo/music/page/home/rank_music_rectangle_widget.d
 import 'package:flutter_study_demo/music/page/widget/title_arrow_item.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/wan_android/home/wan_home_article_list_item.dart';
+import 'package:flutter_study_demo/wan_android/project/wan_article_model.dart';
 import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -365,7 +366,7 @@ class MusicHomePage extends GetView<MusicHomeController> {
     // });
   }
 
-  Widget _articleListItem(Datas item) {
+  Widget _articleListItem(WanArticleModel item) {
     return Container(
       width: Get.width,
       height: ScreenUtil().setHeight(200),
