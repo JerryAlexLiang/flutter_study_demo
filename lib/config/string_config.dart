@@ -65,4 +65,10 @@ class StringConfig {
   //Default Image
   static const DEFAULT_IMAGE_URL =
       "https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/42eced211a394a76ae527f1aab45a4a2~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.image";
+
+  static const DEFAULT_IMAGE_URL_2 =
+      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202001%2F07%2F20200107073702_exdsf.thumb.400_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637138669&t=76e7709d08b5ee5fd3e346d47bfebeb7";
+
+  static const UNKNOWN_ROUTE_404_IMAGE_URL = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F017fd7556fec6d0000009fcb838b41.jpg%402o.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637139544&t=37d20adcf1f9d2f3c65b87d0de8509ee";
+
 }

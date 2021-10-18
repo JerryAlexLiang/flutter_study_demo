@@ -21,7 +21,7 @@ class DioUtil {
   static const int RECEIVE_TIMEOUT = 6 * 1000;
 
   /// 请求的URL前缀
-  static  String baseUrl = AddressConstant.BASE_URL;
+  static String baseUrl = AddressConstant.BASE_URL;
 
   /// 是否开启网络缓存,默认false
   static bool cacheEnable = false;
@@ -64,8 +64,8 @@ class DioUtil {
     return _instance;
   }
 
-  DioUtil changeBaseUrl(String baseUrl){
-    if(_dio!=null){
+  DioUtil changeBaseUrl(String baseUrl) {
+    if (_dio != null) {
       _dio.options.baseUrl = baseUrl;
     }
     return this;
@@ -180,10 +180,9 @@ class DioUtil {
   //////////// 3、封装请求类 //////////////////
 
   /////////// 5、统一日志打印 ////////////////
-  void openLog(){
+  void openLog() {
     _dio.interceptors.add(LogInterceptor(responseBody: true));
   }
-
 
   /////////// 5、统一日志打印 ////////////////
 

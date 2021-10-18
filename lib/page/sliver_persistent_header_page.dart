@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/custom_router.dart';
 import 'package:flutter_study_demo/model/study_demo_navigator_model.dart';
 import 'package:flutter_study_demo/page/CodeLab/code_lab_login_page.dart';
@@ -61,9 +62,10 @@ class SliverPersistentHeaderPage extends StatelessWidget {
     StudyDemoNavigatorModel("SliverPersistentHeader组件", 15, "image"),
   ];
 
-  final imageUrl =
-      // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
-      "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
+  final imageUrl = StringConfig.DEFAULT_IMAGE_URL_2;
+
+  // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
+  // "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
 
   @override
   Widget build(BuildContext context) {

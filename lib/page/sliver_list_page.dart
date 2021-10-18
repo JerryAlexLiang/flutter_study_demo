@@ -58,6 +58,7 @@ class SliverListPage extends StatelessWidget {
     Colors.purple[200],
     Colors.purple[500],
     Colors.purple[300],
+    Colors.purple[100],
   ];
 
   List<StudyDemoNavigatorModel> dataList = [
@@ -88,11 +89,14 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("ListView Chat UI", 22, "image"),
     StudyDemoNavigatorModel("Hero跳转动画", 23, "image"),
     StudyDemoNavigatorModel("GetX MusicPage", 24, "image"),
+    StudyDemoNavigatorModel("GetX 导航 - not found", 25, "image"),
   ];
 
-  final imageUrl =
-      // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
-      "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
+  final imageUrl = StringConfig.DEFAULT_IMAGE_URL_2;
+
+  // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
+  // "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
+  // "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202001%2F07%2F20200107073702_exdsf.thumb.400_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637138669&t=76e7709d08b5ee5fd3e346d47bfebeb7";
 
   @override
   Widget build(BuildContext context) {
@@ -348,7 +352,13 @@ class SliverListPage extends StatelessWidget {
 
       case "SQLite数据库 TodoList":
         Navigator.push(
-            context, CustomRoute(TodoListPage('SQLite数据库 TodoList')));
+          context,
+          CustomRoute(
+            TodoListPage(
+              pageTitle: 'SQLite数据库 TodoList',
+            ),
+          ),
+        );
         break;
 
       case "可滚动的布局1 SliverAppBar + SliverList + SliverToBoxAdapter":
@@ -420,6 +430,10 @@ class SliverListPage extends StatelessWidget {
 
       case "GetX MusicPage":
         Get.toNamed(AppRoutes.MUSIC_HOME_PAGE);
+        break;
+
+      case "GetX 导航 - not found":
+        Get.toNamed("/page");
         break;
     }
     Fluttertoast.showToast(

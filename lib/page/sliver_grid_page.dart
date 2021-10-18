@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SliverGridPage extends StatelessWidget {
@@ -48,9 +49,10 @@ class SliverGridPage extends StatelessWidget {
     Colors.purple[900],
   ];
 
-  final imageUrl =
-      // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
-      "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
+  final imageUrl = StringConfig.DEFAULT_IMAGE_URL_2;
+
+  // "https://img1.baidu.com/it/u=2620121525,3057821586&fm=26&fmt=auto&gp=0.jpg";
+  // "http://gank.io/images/d6bba8cf5b8c40f9ad229844475e9149";
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +112,7 @@ class SliverGridPage extends StatelessWidget {
                   Expanded(
                     child: Image.network(
                       imageUrl,
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.fitHeight,
                       width: 250,
                     ),
                     flex: 4,

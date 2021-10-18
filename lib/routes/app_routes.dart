@@ -1,5 +1,6 @@
 abstract class AppRoutes {
-  static const SPLASH = '/';
+  static const UNKNOWN_ROUTE_PAGE = '/notfound';
+  static const SPLASH = '/splash';
   static const MAIN = '/main';
   static const RICH_TEXT = '/richText';
   static const LIST_VIEW_CHAT_UI = '/chatUI';
@@ -11,4 +12,5 @@ abstract class AppRoutes {
   static const MUSIC_RECOMMEND_PAGE = "/musicRecommend";
   static const WAN_NAVIGATION_PAGE = "/wanNavigationPage";
   static const WAN_PROJECT_PAGE = "/wanProjectPage";
+  static const TO_DO_LIST_PAGE = "/toDoListPage";
 }

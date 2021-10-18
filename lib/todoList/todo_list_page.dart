@@ -11,7 +11,7 @@ class TodoListPage extends StatefulWidget {
 
   final String pageTitle;
 
-  TodoListPage(this.pageTitle);
+  TodoListPage({this.pageTitle});
 
   @override
   _TodoListPageState createState() {

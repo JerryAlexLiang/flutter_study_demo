@@ -134,7 +134,9 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.push(
                 context,
                 CustomRoute(
-                  TodoListPage('SQLite数据库 TodoList'),
+                  TodoListPage(
+                    pageTitle: 'SQLite数据库 TodoList',
+                  ),
                 ),
               );
             },

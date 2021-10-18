@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_study_demo/AppBindings.dart';
 import 'package:flutter_study_demo/routes/app_pages.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
+import 'package:flutter_study_demo/unknown_route_page.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +51,8 @@ void main() async {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         enableLog: true,
+        //处理到未定义路线的导航（404错误）
+        unknownRoute: AppPages.unknownRoute,
         initialRoute: AppRoutes.SPLASH,
         initialBinding: AppBindings(),
         getPages: AppPages.routes,

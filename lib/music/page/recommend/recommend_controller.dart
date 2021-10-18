@@ -30,9 +30,6 @@ class RecommendController extends GetxController
   @override
   void onInit() {
     super.onInit();
-
-    DioUtil.instance.changeBaseUrl("http://m.kuwo.cn/newh5app/api/mobile/v1/playlist/rcm");
-
     refreshController = RefreshController(initialRefresh: false);
 
     /// Workers将协助你在事件发生时触发特定的回调
@@ -94,6 +91,8 @@ class RecommendController extends GetxController
       } else {
         type = "test";
       }
+
+      DioUtil.instance.changeBaseUrl("http://m.kuwo.cn/newh5app/api/mobile/v1/playlist/rcm");
 
       var result = await DioUtil().request("/" + type,
           method: DioMethod.get, cancelToken: _cancelToken);
