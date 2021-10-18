@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_demo/config/string_config.dart';
 import 'package:flutter_study_demo/http/LoadState.dart';
 import 'package:flutter_study_demo/wan_android/project/project_articles_view.dart';
+import 'package:flutter_study_demo/widget/custom_underline_tabIndicator.dart';
 import 'package:flutter_study_demo/widget/simple_empty_widget.dart';
 import 'package:flutter_study_demo/widget/simple_loading_widget.dart';
 import 'package:get/get.dart';
@@ -67,6 +68,19 @@ class ProjectPage extends GetView<ProjectLogic> {
       indicatorColor: Colors.red,
       indicatorSize: TabBarIndicatorSize.label,
       indicatorWeight: 3,
+      //自定义indicator指示器
+      indicator: CustomUnderlineTabIndicator(
+        borderSide: BorderSide(
+          width: 5,
+          color: Colors.red,
+        ),
+        insets: EdgeInsets.only(
+          left: 18,
+          right: 18,
+          top: 10,
+          // bottom: 3,
+        ),
+      ),
       automaticIndicatorColorAdjustment: true,
       labelStyle: TextStyle(
         fontSize: 16,
