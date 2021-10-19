@@ -7,6 +7,7 @@ import 'package:flutter_study_demo/AppBindings.dart';
 import 'package:flutter_study_demo/routes/app_pages.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/unknown_route_page.dart';
+import 'package:flutter_study_demo/utils/Utils.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -60,6 +61,14 @@ void main() async {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        builder: (context, child) {
+          //Global GestureDetector that will dismiss the keyboard
+          //关闭键盘的全局手势检测器
+          return GestureDetector(
+            child: child,
+            onTap: () => Utils.hideKeyboard(context),
+          );
+        },
       ),
     ),
     // ScopedModel<ScopedCounterModel>(

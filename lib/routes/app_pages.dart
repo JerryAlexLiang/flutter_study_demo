@@ -6,11 +6,12 @@ import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_page.dart'
 import 'package:flutter_study_demo/music/page/rank_detail/rank_detail_page2.dart';
 import 'package:flutter_study_demo/music/page/recommend/recommend_binding.dart';
 import 'package:flutter_study_demo/music/page/recommend/recommend_page.dart';
+import 'package:flutter_study_demo/page/home_page_view/home_page_view_binding.dart';
+import 'package:flutter_study_demo/page/home_page_view/home_page_view_view.dart';
 import 'package:flutter_study_demo/page/main_new_home_page.dart';
 import 'package:flutter_study_demo/page/rich_text_page.dart';
 import 'package:flutter_study_demo/page/splash/bindings/splash_binding.dart';
 import 'package:flutter_study_demo/page/splash/views/splash_page.dart';
-import 'package:flutter_study_demo/route_auth_middleware.dart';
 import 'package:flutter_study_demo/routes/app_routes.dart';
 import 'package:flutter_study_demo/todoList/todo_list_page.dart';
 import 'package:flutter_study_demo/unknown_route_page.dart';
@@ -92,6 +93,12 @@ class AppPages {
       page: () => TodoListPage(
         pageTitle: "请先写一个日志，模拟导航-中间件-认证 Auth",
       ),
+    ),
+
+    GetPage(
+      name: AppRoutes.HOME_PAGE_VIEW_PAGE,
+      page: () => HomePageViewPage(),
+      binding: HomePageViewBinding(),
     ),
   ];
 }

@@ -13,4 +13,6 @@ abstract class AppRoutes {
   static const WAN_NAVIGATION_PAGE = "/wanNavigationPage";
   static const WAN_PROJECT_PAGE = "/wanProjectPage";
   static const TO_DO_LIST_PAGE = "/toDoListPage";
+
+  static const HOME_PAGE_VIEW_PAGE = "/homePageViewPage";
 }

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class AutomaticKeepAlivePage extends StatefulWidget {
+class AutomaticKeepAlivePage3 extends StatefulWidget {
   @override
-  _AutomaticKeepAlivePageState createState() => _AutomaticKeepAlivePageState();
+  _AutomaticKeepAlivePage3State createState() => _AutomaticKeepAlivePage3State();
 }
 
 //混入AutomaticKeepAliveClientMixin，这是保持状态的关键
 //然后重写wantKeepAlive 的值为true。
-class _AutomaticKeepAlivePageState extends State<AutomaticKeepAlivePage>
+class _AutomaticKeepAlivePage3State extends State<AutomaticKeepAlivePage3>
     with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
     super.initState();
-    print('==========> 初始化 AutomaticKeepAlivePage1');
+    print('==========> 初始化 AutomaticKeepAlivePage3');
   }
 
   int _count = 0;

@@ -59,6 +59,7 @@ class SliverListPage extends StatelessWidget {
     Colors.purple[500],
     Colors.purple[300],
     Colors.purple[100],
+    Colors.purple[200],
   ];
 
   List<StudyDemoNavigatorModel> dataList = [
@@ -90,6 +91,7 @@ class SliverListPage extends StatelessWidget {
     StudyDemoNavigatorModel("Hero跳转动画", 23, "image"),
     StudyDemoNavigatorModel("GetX MusicPage", 24, "image"),
     StudyDemoNavigatorModel("GetX 导航 - not found", 25, "image"),
+    StudyDemoNavigatorModel("主页设计-实现页面切换后保持原页面状态", 26, "image"),
   ];
 
   final imageUrl = StringConfig.DEFAULT_IMAGE_URL_2;
@@ -434,6 +436,10 @@ class SliverListPage extends StatelessWidget {
 
       case "GetX 导航 - not found":
         Get.toNamed("/page");
+        break;
+
+      case "主页设计-实现页面切换后保持原页面状态":
+        Get.toNamed(AppRoutes.HOME_PAGE_VIEW_PAGE);
         break;
     }
     Fluttertoast.showToast(
